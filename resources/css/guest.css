@@ -1,0 +1,17 @@
+.option1{
+
+}
+.md\:w-1\/4{
+    width: 100%;
+}
+
+    @media (max-width: 767px) {
+
+        /* Mengatur padding horizontal ke px-6 saat tampilan di perangkat mobile dengan lebar maksimum 767px */
+        .phone {
+            padding-left: 4px;
+            padding-right: 4px;
+        }
+
+    }
+

@@ -1,0 +1,17 @@
+<svg width="125" height="122" viewBox="0 0 125 122" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="62.5" cy="60.8766" rx="62.5" ry="60.8766" fill="#199342" />
+    <mask id="mask0_325_20" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="28" y="18"
+        width="72" height="86">
+        <path
+            d="M33.443 64.2538C37.8928 64.6974 52.6316 68.7568 52.6316 75.5112C52.6316 82.2657 44.6971 79.9894 41.1184 80.0142C38.0463 79.708 29.6053 80.0142 29.6053 86.7687C29.6053 93.5231 43.0373 98.0261 56.4693 100.278C69.9013 102.529 91.0088 102.529 91.0088 102.529M33.443 50.7449L44.9561 37.236M71.8202 19.2242H91.0088L98.6842 28.2301"
+            stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M75.6579 37.236L87.1711 50.7449H56.4693L44.9561 37.236H75.6579Z" fill="#333333"
+            fill-opacity="0.93" stroke="white" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+        <path d="M98.6842 57.0099V43.501M67.9825 75.0218V66.0158M79.4956 84.0277V66.0158"
+            stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </mask>
+    <g mask="url(#mask0_325_20)">
+        <path d="M18.0921 5.71529H110.197V113.786H18.0921V5.71529Z" fill="white" />
+    </g>
+</svg>

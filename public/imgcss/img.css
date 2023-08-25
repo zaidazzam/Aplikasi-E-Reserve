@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+body, .navbar, .form-group, h3, button{
+    font-family: 'Poppins', sans-serif;
+}
+
+.antialiased{
+    overflow-y: hidden;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.img1{
+    height: 70px;
+    width: 70px;
+    margin: auto;
+}
+.dlt-btn{
+    margin-top: 5px;
+    width: 70px;
+}
+.edit-input{
+    /* margin: auto; */
+    width: 18pc;
+    height: 2pc;
+    margin-right: 10px;
+    border-color: darkgrey;
+    padding-left:5px ;
+    color: rgb(100, 98, 98);
+}
+
+.navbar a {
+    color: white;
+}
+
+.form-group{
+    display: flex;
+    margin: 1.5rem auto;
+    align-items: center;
+}
+
+.edit-input{
+    width: 90%;
+    border-radius: 5px;
+    font-size: 12px;
+    padding: 5px;
+}
+
+
+.btn-simpan{
+    padding: 10px 40px !important;
+    font-weight: 500 !important;
+    color: white !important;
+}
+
+.bg-orange, .btn-orange{
+    background-color: #fc5305 !important;
+}
+
+.container.tambah{
+    margin-top: 1rem;
+}
+
+.box-card{
+    margin-top: 5rem;
+}
+
+.top-nav .admin{
+    display: none;
+}
+
+.btn.logout{
+    align-items: center;
+}
+
+.btn.logout p{
+    margin: 0px;
+}
+
+.table.relawan{
+    margin: 2rem auto;
+}
+
+.form-group.label{
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.form-group.label label{
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.btn-filter{
+    margin-top: 3rem !important;
+}
+.mobile{
+    display: none;
+}
+.mobile1{
+    display: none;
+    text-align: justify;
+    font-size: 2px;
+}
+@media screen and (max-width: 768px){
+    .antialiased{
+        overflow: scroll;
+    }
+    .box-card{
+        margin: 1rem auto;
+    }
+    .top-nav{
+        flex-direction: column;
+    }
+    .top-nav div{
+        margin: 5px auto;
+    }
+    .form-group{
+        flex-direction: column;
+        align-items: normal;
+        margin: 1rem;
+    }
+    .edit-input{
+        width: 100%;
+    }
+    .form-group label{
+        margin-bottom: 5px;
+    }
+    .btn-outline-dark a{
+        font-size: 12px;
+    }
+    .container.tambah{
+        margin-bottom: 1rem;
+    }
+    .nav-dashboard{
+        display: flex;
+        flex-direction: column;
+    }
+    .nav-dashboard button{
+        margin: 5px auto;
+    }
+    .btn-filter{
+        text-align: center;
+        margin-top: 0px !important;
+        margin: 10px auto;
+    }
+    .desktop{
+        display: none;
+    }
+    .mobile{
+        display: block;
+    }
+    .mobile1{
+        display: block;
+        text-align: justify;
+    }
+    .nav-spesial{
+        display: flex;
+        align-items: center;
+    }
+}
