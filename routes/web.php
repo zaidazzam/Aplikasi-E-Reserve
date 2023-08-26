@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeStayController;
+use App\Http\Controllers\Admin\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,6 +31,7 @@ Route::get('/pembayaran/metode', [HomeStayController::class, 'pilihMetode']);
 Route::get('/pembayaran/metode/konfirmasi', [HomeStayController::class, 'konfirmasiPembayaran']);
 
 
+// Route::get('/dashboard', [DashboardController::class, 'konfirmasiPembayaran']);
 
 
 Route::get('/dashboard', function () {

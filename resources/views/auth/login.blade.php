@@ -1,68 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-guest-layout>
+    <x-auth-card>
+        <x-slot name="logo">
+            <a href="/">
+                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+            </a>
+        </x-slot>
 
-<head>
-    <!-- Required meta tags-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Colorlib Templates">
-    <meta name="author" content="Colorlib">
-    <meta name="keywords" content="Colorlib Templates">
+        <!-- Session Status -->
+        <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <!-- Title Page-->
-    <title>Au Register Forms by Colorlib</title>
+        <!-- Validation Errors -->
+        <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
 
+            <!-- Email Address -->
+            <div>
+                <x-label for="login" :value="__('Email / Name / Phone no')" />
 
-
-    <!-- Icons font CSS-->
-    <link href="{{ asset('vendor/mdi-font/css/material-design-iconic-font.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('vendor/font-awesome-4.7/css/font-awesome.min.css') }}" rel="stylesheet">
-    <!-- Font special for pages-->
-    <link
-        href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Vendor CSS-->
-    <link href="{{ asset('vendor/select2/select2.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('vendor/datepicker/daterangepicker.css') }}" rel="stylesheet">
-
-    <!-- Main CSS-->
-    <link href="{{ asset('imgcss/css/main.css') }}" rel="stylesheet">
-</head>
-
-<body>
-    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
-        <div class="wrapper wrapper--w680">
-            <div class="card card-4">
-                <div class="card-body">
-                    <h2 class="title">Form Daftar</h2>
-                    <form method="POST">
-                        <div class="input-group">
-                            <label class="label">Email</label>
-                            <input class="input--style-4" type="text" name="first_name">
-                        </div>
-                        <div class="input-group">
-                            <label class="label">Password</label>
-                            <input class="input--style-4" type="text" name="first_name">
-                        </div>
-                        <div class="p-t-15">
-                            <button class="btn btn--radius-2 btn--blue" type="submit">Daftar</button>
-                        </div>
-                    </form>
-                </div>
+                <x-input id="login" class="block mt-1 w-full" type="text" name="login" :value="old('login')" required
+                    autofocus />
             </div>
-        </div>
-    </div>
 
-    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('vendor/select2/select2.min.js') }}"></script>
-    <script src="{{ asset('vendor/datepicker/moment.min.js') }}"></script>
-    <script src="{{ asset('vendor/datepicker/daterangepicker.js') }}"></script>
-    <!-- Main JS-->
-    <script src="{{ asset('js/global.js') }}"></script>
+            <!-- Password -->
+            <div class="mt-4">
+                <x-label for="password" :value="__('Password')" />
 
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
+                    autocomplete="current-password" />
+            </div>
 
-</html>
-<!-- end document-->
+            <!-- Remember Me -->
+            <div class="block mt-4">
+                <label for="remember_me" class="inline-flex items-center">
+                    <input id="remember_me" type="checkbox"
+                        class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                        name="remember">
+                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                </label>
+            </div>
+
+            <div class="flex items-center justify-end mt-4">
+                @if (Route::has('password.request'))
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900"
+                        href="{{ route('password.request') }}">
+                        {{ __('Forgot your password?') }}
+                    </a>
+                @endif
+
+                <x-button class="ml-3">
+                    {{ __('Log in') }}
+                </x-button>
+            </div>
+        </form>
+    </x-auth-card>
+</x-guest-layout>
