@@ -106,7 +106,7 @@
                                                     menyelesaikan proses reservasi, kami dapat mengirimkan pengingat
                                                     untuk membantu Anda
                                                     melanjutkan proses pemesanan Anda.</label>
-                                                <select class="border form-select border-0 mt-2">
+                                                <select class="form-select border-0 mt-2">
                                                     <option selected disabled>Wilayah </option>
                                                     <option value="2">Kota/Kabupaten Garut</option>
                                                     <option value="2">Kota/Kabupaten Bandung</option>
@@ -168,6 +168,57 @@
                                                         <label for="">Isi jumlah peserta yang akan ikut serta
                                                             dalam petualangan ini, karena harga yang Anda bayar akan
                                                             disesuaikan dengan jumlah peserta dan harga wisata</label>
+                                                        <input type="number" class="form-control" id="first"
+                                                            name="name" placeholder="Jumlah Peserta">
+                                                    </div>
+                                                </div>
+                                                <div class="custom-control custom-switch">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        id="customSwitches" />
+                                                    <label class="custom-control-label" for="customSwitches">
+                                                        <h3>Paket Breakfast</h3>
+                                                    </label>
+                                                </div>
+                                                <div class="">
+                                                    <!-- Default unchecked -->
+                                                    <div class="dropdown">
+                                                        <label
+                                                            class="dropdown-label  text-truncate border rounded">Pilih
+                                                            Breakfast</label>
+                                                        <div class="dropdown-list">
+                                                            <div class="checkbox">
+                                                                <input type="checkbox" name="dropdown-group-all"
+                                                                    class="check-all checkbox-custom "
+                                                                    id="checkbox-main" />
+                                                                <label for="checkbox-main"
+                                                                    class="checkbox-custom-label ">Selection
+                                                                    All</label>
+                                                            </div>
+                                                            <div class="checkbox">
+                                                                <input type="checkbox" name="dropdown-group"
+                                                                    class="check " id="checkbox-custom_01" />
+                                                                <label for="checkbox-custom_01"
+                                                                    class="checkbox-custom-label"> Wisata Curug Rp.
+                                                                    20.000</label>
+                                                            </div>
+                                                            <div class="checkbox">
+                                                                <input type="checkbox" name="dropdown-group"
+                                                                    class="check " id="checkbox-custom_01" />
+                                                                <label for="checkbox-custom_01"
+                                                                    class="checkbox-custom-label">Wisata Taman Rp.
+                                                                    20.000</label>
+                                                            </div>
+                                                            <div class="checkbox">
+                                                                <input type="checkbox" name="dropdown-group"
+                                                                    class="check " id="checkbox-custom_01" />
+                                                                <label for="checkbox-custom_01"
+                                                                    class="checkbox-custom-label">Wisata Gunung
+                                                                    1</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 form-group p_star">
+                                                        <label for="">Isi jumlah Peserta</label>
                                                         <input type="number" class="form-control" id="first"
                                                             name="name" placeholder="Jumlah Peserta">
                                                     </div>
@@ -394,227 +445,21 @@
                                     <li><a href="#">Total <span>Rp.2000.0000</span></a></li>
                                 </ul>
                             </div>
-                            {{-- <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Product</th>
-                                                <th scope="col">Quantity</th>
-                                                <th scope="col">Total</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <p>Pixelstore fresh Blackberry</p>
-                                                </td>
-                                                <td>
-                                                    <h5>x 02</h5>
-                                                </td>
-                                                <td>
-                                                    <p>$720.00</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <p>Pixelstore fresh Blackberry</p>
-                                                </td>
-                                                <td>
-                                                    <h5>x 02</h5>
-                                                </td>
-                                                <td>
-                                                    <p>$720.00</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <p>Pixelstore fresh Blackberry</p>
-                                                </td>
-                                                <td>
-                                                    <h5>x 02</h5>
-                                                </td>
-                                                <td>
-                                                    <p>$720.00</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h4>Subtotal</h4>
-                                                </td>
-                                                <td>
-                                                    <h5></h5>
-                                                </td>
-                                                <td>
-                                                    <p>$2160.00</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h4>Shipping</h4>
-                                                </td>
-                                                <td>
-                                                    <h5></h5>
-                                                </td>
-                                                <td>
-                                                    <p>Flat rate: $50.00</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h4>Total</h4>
-                                                </td>
-                                                <td>
-                                                    <h5></h5>
-                                                </td>
-                                                <td>
-                                                    <p>$2210.00</p>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div> --}}
                         </div>
                     </section>
                 </form>
             </div>
     </section>
-
-    <!-- Step 2 Content, default hidden on page load. -->
-    {{-- <section id="step-2" class="form-step d-none">
-        <section>
-            <div class="container">
-                <div class="d-flex flex-wrap align-items-center justify-content-center pt-4">
-                    <div class="col-first">
-                        <h1 class="text-dark">Metode Pembayaran</h1>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-        <div class="container">
-            <div class="row">
-                <div class="card-left col-8">
-                    <div class="form-pemesan">
-                        <h2>Pilih Metode</h2>
-                        <div class="metode-pembayaran">
-                            <div class="pilihan mb-3">
-                                <h5>Pembayaran Dana</h5>
-                                <div class="d-flex pembayaran">
-                                    <div class="first mt-4 me-3"><img
-                                            src="{{ asset('img/logo-pembayaran/Logo_dana_blue.svg.png') }}"
-                                            alt="Pembayaran Dana" style="max-width: 80px; "></div>
-                                    <ul class="m-2">
-                                        <li>
-                                            <h6>Nama Dana: Zaid Abdullah Azzam</h6>
-                                        </li>
-                                        <li>
-                                            <h3>Nomor Dana: 089688347718</h3>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <h3>Pembayaran Bank BNI</h3>
-                                <div class="d-flex pembayaran">
-                                    <div class="first mt-4 me-3"><img src="{{ asset('img/logo-pembayaran/bni.svg') }}"
-                                            alt="Pembayaran Dana" style="max-width: 80px; "></div>
-                                    <ul class="m-2">
-                                        <li>
-                                            <h3>Nama BNI: Zaid Abdullah Azzam</h3>
-                                        </li>
-                                        <li>
-                                            <h3>Nomor BNI: 089688347718</h3>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <h3>Pembayaran Bank BNI</h3>
-                                <div class="d-flex pembayaran">
-                                    <div class="first mt-4 me-3"><img
-                                            src="{{ asset('img/logo-pembayaran/bni.svg') }}" alt="Pembayaran Dana"
-                                            style="max-width: 80px; "></div>
-                                    <ul class="m-2">
-                                        <li>
-                                            <h3>Nama BNI: Zaid Abdullah Azzam</h3>
-                                        </li>
-                                        <li>
-                                            <h3>Nomor BNI: 089688347718</h3>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-
-
-                            <div class=" mb-3">
-                                <h3>Bank Transfer</h3>
-                                <div class="d-flex pembayaran">
-                                    <a href="bayar-bank.html">
-                                        <div class="first"><img src="img/logo-pembayaran/bni.svg"
-                                                alt="Bank Transfer"></div>
-                                    </a>
-                                    <a href="bayar-bank.html">
-                                        <div><img src="img/logo-pembayaran/bri 1.svg" alt="Bank Transfer">
-                                        </div>
-                                    </a>
-                                    <a href="bayar-bank.html">
-                                        <div><img src="img/logo-pembayaran/mandiri 1.svg" alt="Bank Transfer">
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="order_box">
-                        <h2>Rincian Pesanan Anda</h2>
-                        <div class="details_item mb-2">
-                            <ul class="list list_2">
-                                <li><a>Check-in <span>Jum, 11 Agu 2023</span></a></li>
-                                <li><a>Check-out<span>Sab, 12 Agu 2023</span></a></li>
-                                <li><a>Total Masa inap <span>1 Malam</span></a></li>
-                            </ul>
-                        </div>
-                        <h2>Rincian Biaya Anda</h2>
-                        <ul class="list list_2">
-                            <li><a href="">Harga Homestay <span>Rp. 123.567</span></a></li>
-                            <li><a href="">Biaya Pemesanan <span>Rp. 2.500.</span></a></li>
-                            <li><a href="">Paket Wisata <span>Rp. 123.500. x 5 </span></a></li>
-                            <label>Paket wisata akan disesuaikan dengan jumlah peserta untuk memberikan
-                                pengalaman
-                                yang lebih memuaskan.</label>
-                            <li><a href="#">Total <span>Rp.2000.0000</span></a></li>
-                        </ul>
-                        <div class="creat_account">
-                            <input type="checkbox" id="f-option4" name="selector">
-                            <label for="f-option4">Saya telah membaca dan menerima</label>
-                            <a href="#">syarat & ketentuan*</a>
-                        </div>
-                        <a class="primary-btn" href="#">Lanjutkan Pembayaran</a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        </div>
-        <div class="mt-3">
-            <button class="button btn-navigate-form-step" type="button" step_number="1">
-                Prev
-            </button>
-            <button class="button btn-navigate-form-step" type="button" step_number="3">
-                Next
-            </button>
-        </div>
-    </section> --}}
-    <!--================End Checkout Area =================-->
-
-    <script src="{{ asset('js-2/main.js') }}"></script>
-    <script src="{{ asset('js-2/gmaps.min.js') }}"></script>
-    <script src="{{ asset('js-2/vendor/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js-2/jquery.ajaxchimp.min.js') }}"></script>
-    <script src="{{ asset('js-2/vendor/jquery-2.2.4.min.js') }}"></script>
-    <script src="{{ asset('js-2/jquery.nice-select.min.js') }}"></script>
-    <script src="{{ asset('js-2/jquery.sticky.js') }}"></script>
-    <script src="{{ asset('js-2/nouislider.min.js') }}"></script>
-    <script src="{{ asset('js-2/jquery.magnific-popup.min.js') }}"></script>
-    <script src="{{ asset('js-2/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('js/js-pembayaran/main.js') }}"></script>
+    <script src="{{ asset('js/js-pembayaran/gmaps.min.js') }}"></script>
+    <script src="{{ asset('js/js-pembayaran/vendor/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/js-pembayaran/jquery.ajaxchimp.min.js') }}"></script>
+    <script src="{{ asset('js/js-pembayaran/vendor/jquery-2.2.4.min.js') }}"></script>
+    <script src="{{ asset('js/js-pembayaran/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ asset('js/js-pembayaran/jquery.sticky.js') }}"></script>
+    <script src="{{ asset('js/js-pembayaran/nouislider.min.js') }}"></script>
+    <script src="{{ asset('js/js-pembayaran/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('js/js-pembayaran/owl.carousel.min.js') }}"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
         integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous">
@@ -726,7 +571,7 @@
 
             function updateStatus(label, result) {
                 if (!result.length) {
-                    label.html('Pilih Wisata');
+                    label.html('Pilih Paket');
                 }
             };
 
@@ -797,48 +642,3 @@
 </body>
 
 </html>
-{{-- <div class="returning_customer">
-                <div class="check_title">
-                    <h2>Pelanggan Kembali ?</h2>
-                </div>
-                <p>Jika Anda pernah tinggal di homestay kami sebelumnya, silakan masukkan detail Anda di kotak di bawah
-                    ini. Jika Anda adalah tamu baru, lanjutkan ke bagian Penagihan & Pengiriman.</p>
-                <form class="row contact_form" action="#" method="post" novalidate="novalidate">
-                    <div class="col-md-6 form-group p_star">
-                        <input type="text" class="form-control" id="name" name="name">
-                        <span class="placeholder" data-placeholder="Email"></span>
-                    </div>
-                    <div class="col-md-6 form-group p_star">
-                        <input type="password" class="form-control" id="password" name="password">
-                        <span class="placeholder" data-placeholder="Password"></span>
-                    </div>
-                    <div class="col-md-12 form-group">
-                        <button type="submit" value="submit" class="primary-btn">Masuk</button>
-                        <a class="lost_pass" href="#">Lupa Password?</a>
-                    </div>
-                </form>
-            </div> --}}
-{{-- <div class="col-md-12 form-group">
-                                <div class="creat_account">
-                                    <h3>Tambah Paket Wisata</h3>
-                                    <select class="border form-select border-0 mb-2">
-                                        <option selected disabled>Wisata </option>
-                                        <option value="2">Kota/Kabupaten Garut</option>
-                                        <option value="2">Kota/Kabupaten Bandung</option>
-                                        <option value="4">Jawa-Barat</option>
-                                        <option value="4">Luar Jawa barat</option>
-                                        <option value="4">Luar Indonesia</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-12 form-group p_star">
-                                    <input type="number" class="form-control" id="first" name="name"
-                                        placeholder="Jumlah Peserta">
-                                </div>
-                            </div> --}}
-{{-- <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value=""
-                                            id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                            Pajak
-                                        </label>
-                                    </div> --}}

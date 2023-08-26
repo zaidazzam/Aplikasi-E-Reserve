@@ -29,8 +29,8 @@
     <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
     <!-- Libraries Stylesheet -->
-    <link href="{{ asset('imgcss/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('imgcss/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/imgcss/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/imgcss/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('lib/animate/animate.min.css') }}" rel="stylesheet">
     <link href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
     <!-- Font Awesome -->
