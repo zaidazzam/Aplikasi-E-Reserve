@@ -13,7 +13,7 @@
     <!-- Scripts -->
     @vite('resources/js/app.js', 'vendor/courier/build')
 
-    <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+    <title>Dashboard</title>
 
     <meta name="description" content="" />
 
