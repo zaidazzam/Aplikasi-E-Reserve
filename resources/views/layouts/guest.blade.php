@@ -12,6 +12,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
+    <link href="{{ asset('img/group12.svg') }}" rel="icon" type="image/x-icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

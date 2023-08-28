@@ -19,7 +19,7 @@
 
     <!-- Favicon -->
     {{-- <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" /> --}}
-    <link href="{{ asset('assets/img/favicon/favicon.ico') }}" rel="icon" type="image/x-icon">
+    <link href="{{ asset('img/group12.svg') }}" rel="icon" type="image/x-icon">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
