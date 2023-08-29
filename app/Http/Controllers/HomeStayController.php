@@ -11,4 +11,10 @@ class HomestayController extends Controller
         return view ('admin.homestay.data-homestay');
 
     }
+
+    public function create() {
+
+        return view ('admin.homestay.create-homestay');
+
+    }
 }

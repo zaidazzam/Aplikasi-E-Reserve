@@ -147,8 +147,7 @@
                 <div class="d-flex justify-content-between">
                     <h2 class="mb-3"">Informasi Umum</h1>
                         <div>
-                            <h6 class="btn btn-primary" data-bs-toggle="pill" href="#tab-ramah-keluarga">Ramah
-                                Keluarga</h6>
+                            <h6 class="btn btn-primary" data-bs-toggle="pill" href="#tab-ramah-keluarga">8,6</h6>
                         </div>
                 </div>
                 <h5 class="mb-3">Homestay Coffee Garden</h5>

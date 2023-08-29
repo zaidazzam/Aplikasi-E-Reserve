@@ -27,6 +27,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet" />
+    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" rel="stylesheet" /> --}}
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+    {{-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" rel="stylesheet" /> --}}
 
     <!-- Icons. Uncomment required icon fonts -->
     <link href="{{ asset('assets/vendor/fonts/boxicons.css') }}" rel="stylesheet">
@@ -56,6 +59,99 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{ asset('assets/js/config.js') }}"></script>
     {{-- <script src="../assets/js/config.js"></script> --}}
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap');
+
+        .icon {
+            cursor: pointer;
+            margin-right: 50px;
+            line-height: 60px
+        }
+
+        .icon span {
+            background: #f00;
+            padding: 7px;
+            border-radius: 50%;
+            color: #fff;
+            vertical-align: top;
+            margin-left: -25px
+        }
+
+        .icon img {
+            display: inline-block;
+            width: 26px;
+            margin-top: 4px
+        }
+
+        .icon:hover {
+            opacity: .7
+        }
+
+        .logo {
+            flex: 1;
+            margin-left: 50px;
+            color: #eee;
+            font-size: 20px;
+            font-family: monospace
+        }
+
+        .notifications {
+            width: 300px;
+            height: 0px;
+            opacity: 0;
+            position: absolute;
+            top: 63px;
+            right: 62px;
+            border-radius: 5px 0px 5px 5px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+        }
+
+        .notifications h2 {
+            font-size: 14px;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            color: #999
+        }
+
+        .notifications h2 span {
+            color: #f00
+        }
+
+        .notifications-item {
+            display: flex;
+            border-bottom: 1px solid #eee;
+            padding: 6px 9px;
+            margin-bottom: 0px;
+            cursor: pointer
+        }
+
+        .notifications-item:hover {
+            background-color: #eee
+        }
+
+        .notifications-item img {
+            display: block;
+            width: 50px;
+            height: 50px;
+            margin-right: 9px;
+            border-radius: 50%;
+            margin-top: 2px
+        }
+
+        .notifications-item .text h4 {
+            color: #777;
+            font-size: 16px;
+            margin-top: 3px
+        }
+
+        .notifications-item .text p {
+            color: #aaa;
+            font-size: 12px
+        }
+    </style>
 </head>
 
 <body>
@@ -88,20 +184,8 @@
                                     document.write(new Date().getFullYear());
                                 </script>
                                 , made with ❤️ by
-                                <a href="https://themeselection.com" target="_blank"
-                                    class="footer-link fw-bolder">ThemeSelection</a>
-                            </div>
-                            <div>
-                                <a href="https://themeselection.com/license/" class="footer-link me-4"
-                                    target="_blank">License</a>
-                                <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More
-                                    Themes</a>
-
-                                <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
-                                    target="_blank" class="footer-link me-4">Documentation</a>
-
-                                <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-                                    target="_blank" class="footer-link me-4">Support</a>
+                                <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">Tim
+                                    E-Reserve</a>
                             </div>
                         </div>
                     </footer>
@@ -147,6 +231,35 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <script>
+        $(document).ready(function() {
+
+
+
+
+            var down = false;
+
+            $('#bell').click(function(e) {
+
+                var color = $(this).text();
+                if (down) {
+
+                    $('#box').css('height', '0px');
+                    $('#box').css('opacity', '0');
+                    down = false;
+                } else {
+
+                    $('#box').css('height', 'auto');
+                    $('#box').css('opacity', '1');
+                    down = true;
+
+                }
+
+            });
+
+        });
+    </script>
 </body>
 
 </html>

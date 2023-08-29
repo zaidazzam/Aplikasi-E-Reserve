@@ -19,6 +19,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+// Guest //
 Route::get('/beranda', [GuestController::class, 'landing']);
 Route::get('/beranda/homestay', [GuestController::class, 'categori']);
 Route::get('/beranda/homestay/detail', [GuestController::class, 'homestayDetail']);
@@ -35,9 +37,18 @@ Route::get('/pembayaran/metode/konfirmasi', [GuestController::class, 'konfirmasi
 // Route::get('/dashboard', [DashboardController::class, 'konfirmasiPembayaran']);
 
 
+// Dashboard //
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+
+// Homestay //
 Route::get('/datahomestay', [HomestayController::class, 'index'])->middleware(['auth']);
+Route::get('/createhomestay', [HomestayController::class, 'create'])->middleware(['auth']);
+
+
+
+
+
 require __DIR__.'/auth.php';
