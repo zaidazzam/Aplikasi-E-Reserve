@@ -29,7 +29,7 @@
                 <li class="menu-header small text-uppercase">
                     <span class="menu-header-text">Homestay</span>
                 </li>
-                <li class="menu-item {{ request()->is('datahomestay', 'createhomestay') ? 'active' : '' }}">
+                <li class="menu-item {{ request()->is('datahomestay', 'tambahhomestay') ? 'active' : '' }}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class="menu-icon tf-icons bx bx-dock-top"></i>
                         <div data-i18n=" ">Homestay</div>
@@ -41,8 +41,32 @@
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="{{ url('/createhomestay') }}" class="menu-link">
+                            <a href="{{ url('/tambahhomestay') }}" class="menu-link">
                                 <div data-i18n="">Tambah Homestay</div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {{-- Menu Homestay --}}
+
+                {{-- Menu Fasilitas --}}
+                <li class="menu-header small text-uppercase">
+                    <span class="menu-header-text">Fasilitas</span>
+                </li>
+                <li class="menu-item {{ request()->is('datafasilitas', 'tambahfasilitas') ? 'active' : '' }}">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                        <div data-i18n=" ">Fasilitas Homestay</div>
+                    </a>
+                    <ul class="menu-sub">
+                        <li class="menu-item">
+                            <a href="{{ url('/datafasilitas') }}" class="menu-link">
+                                <div data-i18n="">Data Fasilitas</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="{{ url('/tambahfasilitas') }}" class="menu-link">
+                                <div data-i18n="">Tambah Fasilitas</div>
                             </a>
                         </li>
                     </ul>
@@ -60,12 +84,12 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="" class="menu-link">
+                            <a href="{{ url('/datapaketwisata') }}" class="menu-link">
                                 <div data-i18n="">Data Wisata</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="" class="menu-link">
+                            <a href="{{ url('/tambahpaketwisata') }}" class="menu-link">
                                 <div data-i18n="">Tambah Wisata</div>
                             </a>
                         </li>
@@ -139,12 +163,12 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="" class="menu-link">
+                            <a href="{{ url('/dataartikel') }}" class="menu-link">
                                 <div data-i18n="">Data Artikel</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="" class="menu-link">
+                            <a href="{{ url('/tambahartikel') }}" class="menu-link">
                                 <div data-i18n="">Tambah Artikel</div>
                             </a>
                         </li>
@@ -156,22 +180,23 @@
                 <li class="menu-header small text-uppercase">
                     <span class="menu-header-text">Layanan Tambahan</span>
                 </li>
-                <li class="menu-item {{ request()->is('datalayanan', 'tambuhlayanan') ? 'active' : '' }}">
+                <li class="menu-item {{ request()->is('datalayanan', 'tambahlayanan') ? 'active' : '' }}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class="menu-icon tf-icons bx bx-dock-top"></i>
                         <div data-i18n="">Layanan Tambahan</div>
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="" class="menu-link">
+                            <a href="{{ url('/datalayanan') }}" class="menu-link">
                                 <div data-i18n="">Data Layanan</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="" class="menu-link">
+                            <a href="{{ url('/tambahlayanan') }}" class="menu-link">
                                 <div data-i18n="">Tambah Layanan</div>
                             </a>
                         </li>
+
                     </ul>
                 </li>
                 {{-- Menu Service Tambahan --}}

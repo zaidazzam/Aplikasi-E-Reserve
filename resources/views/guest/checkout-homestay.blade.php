@@ -176,7 +176,7 @@
                                                     <input type="checkbox" class="custom-control-input"
                                                         id="customSwitches" />
                                                     <label class="custom-control-label" for="customSwitches">
-                                                        <h3>Paket Breakfast</h3>
+                                                        <h3>Service Tamabahan</h3>
                                                     </label>
                                                 </div>
                                                 <div class="">

@@ -3,7 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\HomestayController;
+use App\Http\Controllers\PaketWisataController;
+use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\LayananController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,8 +49,33 @@ Route::get('/dashboard', function () {
 
 // Homestay //
 Route::get('/datahomestay', [HomestayController::class, 'index'])->middleware(['auth']);
-Route::get('/createhomestay', [HomestayController::class, 'create'])->middleware(['auth']);
+Route::get('/tambahhomestay', [HomestayController::class, 'create'])->middleware(['auth']);
+Route::get('/edithomestay', [HomestayController::class, 'editHomestay'])->middleware(['auth']);
+Route::get('/tambahhomestay/fasilitas/', [HomestayController::class, 'tambahFasilitas'])->middleware(['auth']);
+Route::get('/tambahhomestay/gambar/', [HomestayController::class, 'tambahGambar'])->middleware(['auth']);
 
+
+// Fasilitas Homestay
+Route::get('/datafasilitas', [FasilitasController::class, 'index'])->middleware(['auth']);
+Route::get('/tambahfasilitas', [FasilitasController::class, 'tambahFasilitas'])->middleware(['auth']);
+
+// Fasilitas Homestay
+Route::get('/datapaketwisata', [PaketWisataController::class, 'index'])->middleware(['auth']);
+Route::get('/tambahpaketwisata', [PaketWisataController::class, 'tambahWisata'])->middleware(['auth']);
+Route::get('/editpaketwisata', [PaketWisataController::class, 'editWisata'])->middleware(['auth']);
+
+
+
+// Fasilitas Homestay
+Route::get('/dataartikel', [ArtikelController::class, 'index'])->middleware(['auth']);
+Route::get('/tambahartikel', [ArtikelController::class, 'tambahArtikel'])->middleware(['auth']);
+Route::get('/editartikel', [ArtikelController::class, 'editArtikel'])->middleware(['auth']);
+
+
+// Layanan Tambahan Homestay
+Route::get('/datalayanan', [LayananController::class, 'index'])->middleware(['auth']);
+Route::get('/tambahlayanan', [LayananController::class, 'tambahLayanan'])->middleware(['auth']);
+Route::get('/editlayanan', [LayananController::class, 'editLayanan'])->middleware(['auth']);
 
 
 
