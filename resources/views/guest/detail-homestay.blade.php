@@ -154,11 +154,19 @@
                 <h5 class="text-warning mb-3">Rp. 1234.567</h5>
                 <p><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Jl. Desa Kamojang
                 </p>
+
                 <p>Parkir mobil dan Wi-Fi selalu gratis, sehingga Anda dapat terus terhubung serta datang dan pergi
                     kapan saja. Terletak strategis di Seminyak, memungkinkan Anda akses dan jarak yang dekat ke atraksi
                     dan objek wisata lokal. Jangan pulang dulu sebelum berkunjung ke Sacred Monkey Forest Sanctuary yang
                     terkenal. Memiliki peringkat bintang-5, properti berkelas ini menyediakan akses ke pijat, kolam
                     renang dalam ruangan dan kolam air panas untuk para tamu di properti. </p>
+
+
+                <div>
+                    <label for="" class="fw-bold"> Kapasitas Tamu</label>
+                    <p class="me-2"><i class="fa fa-person text-primary me-2"></i> 2 dewasa
+                    </p>
+                </div>
             </div>
 
             <div class=" mx-auto wow fadeInUp bg-white rounded p-3 m-2" data-wow-delay="0.1s" id="tab-fasilitas"

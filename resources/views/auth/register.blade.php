@@ -86,7 +86,12 @@
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
                             <div class="mb-3">
-                                <label for="name" class="form-label">Nama</label>
+                                <label for="name" class="form-label">Nama </label>
+                                <input type="text" class="form-control" id="name" name="name"
+                                    placeholder="Masukan nama" autofocus />
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Username</label>
                                 <input type="text" class="form-control" id="name" name="name"
                                     placeholder="Masukan nama" autofocus />
                             </div>
@@ -94,6 +99,14 @@
                                 <label for="email" class="form-label">Email</label>
                                 <input type="text" class="form-control" id="email" name="email"
                                     placeholder="Enter your email" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="defaultSelect" class="form-label">Pilih Role</label>
+                                <select id="defaultSelect" class="form-select">
+                                    <option>Pilih Role</option>
+                                    <option value="1">Customer</option>
+                                    <option value="2">Pemilik Homestay</option>
+                                </select>
                             </div>
                             <div class="mb-3 form-password-toggle">
                                 <label class="form-label" for="password">Password</label>

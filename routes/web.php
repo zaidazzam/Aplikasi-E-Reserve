@@ -8,6 +8,9 @@ use App\Http\Controllers\HomestayController;
 use App\Http\Controllers\PaketWisataController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\LayananController;
+use App\Http\Controllers\MitraController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\TransaksiController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -77,6 +80,20 @@ Route::get('/datalayanan', [LayananController::class, 'index'])->middleware(['au
 Route::get('/tambahlayanan', [LayananController::class, 'tambahLayanan'])->middleware(['auth']);
 Route::get('/editlayanan', [LayananController::class, 'editLayanan'])->middleware(['auth']);
 
+// Mitra
+Route::get('/dashboardmitra', [MitraController::class, 'index']);
+Route::get('/datamitra', [MitraController::class, 'data']);
+Route::get('/tambahdatamitra', [MitraController::class, 'tambah']);
+Route::get('/editdatamitra', [MitraController::class, 'edit']);
+
+// Customer
+Route::get('/dashboard/customer', [CustomerController::class, 'index'])->middleware(['auth']);
+
+
+// Transaksi
+Route::get('/dashboard/transaksi/', [TransaksiController::class, 'index'])->middleware(['auth']);
+Route::get('/dashboard/transaksi/pendapatan', [TransaksiController::class, 'pendapatan'])->middleware(['auth']);
+Route::get('/dashboard/transaksi/pengeluaran', [TransaksiController::class, 'pengeluaran'])->middleware(['auth']);
 
 
 

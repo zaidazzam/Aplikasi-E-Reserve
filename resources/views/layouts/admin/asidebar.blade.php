@@ -143,8 +143,8 @@
                 <li class="menu-header small text-uppercase">
                     <span class="menu-header-text">Customer</span>
                 </li>
-                <li class="menu-item {{ request()->is('datacustomer') ? 'active' : '' }}">
-                    <a href="" class="menu-link">
+                <li class="menu-item {{ request()->is('dashboard/customer') ? 'active' : '' }}">
+                    <a href="/dashboard/customer" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-collection"></i>
                         <div data-i18n="Basic">Data Customer</div>
                     </a>
