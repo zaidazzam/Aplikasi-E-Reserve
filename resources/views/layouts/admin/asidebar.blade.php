@@ -102,14 +102,14 @@
                     <span class="menu-header-text">Transaksi</span>
                 </li>
                 <li
-                    class="menu-item {{ request()->is('datatransaksi', 'datapengeluaran', 'datapendapatanfee') ? 'active' : '' }}">
+                    class="menu-item {{ request()->is('dashboard/transaksi', 'datapengeluaran', 'datapendapatanfee') ? 'active' : '' }}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class="menu-icon tf-icons bx bx-dock-top"></i>
                         <div data-i18n="">Transaksi</div>
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="" class="menu-link">
+                            <a href="/dashboard/transaksi" class="menu-link">
                                 <div data-i18n="">Data Transaksi</div>
                             </a>
                         </li>

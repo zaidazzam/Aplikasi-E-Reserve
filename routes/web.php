@@ -69,7 +69,7 @@ Route::get('/editpaketwisata', [PaketWisataController::class, 'editWisata'])->mi
 
 
 
-// Fasilitas Homestay
+// Fasilitas Artikel
 Route::get('/dataartikel', [ArtikelController::class, 'index'])->middleware(['auth']);
 Route::get('/tambahartikel', [ArtikelController::class, 'tambahArtikel'])->middleware(['auth']);
 Route::get('/editartikel', [ArtikelController::class, 'editArtikel'])->middleware(['auth']);

@@ -18,4 +18,12 @@ class TransaksiController extends Controller
     {
         return view('admin.transaksi.data-pengeluaran');
     }
+    public function wisataTransaksi()
+    {
+        return view('admin.transaksi.data-pengeluaran');
+    }
+    public function serviceTransaksi()
+    {
+        return view('admin.transaksi.data-pengeluaran');
+    }
 }
