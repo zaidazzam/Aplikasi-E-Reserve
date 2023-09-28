@@ -16,33 +16,14 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($artikels as $artikel)
                         <tr>
-                            <td>
-                                Wisata Curug Cihaniwung
-                            </td>
-                            <td class="text-wrap">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod illum
-                                facilis ipsa
-                                quaerat aspernatur tempore ducimus minima voluptates quas, fugit, repudiandae eos a
-                                assumenda soluta? Asperiores repellat assumenda magni distinctio.</td>
-                            <td> <img class="img-fluid-gambar" src="{{ asset('img/header/pemandangan2.svg') }}"
-                                    alt="">
-                            </td>
-                            <td class="text-center">
-                                <div class="dropdown">
-                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                        data-bs-toggle="dropdown">
-                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="{{ url('/editartikel') }}"><i
-                                                class="bx bx-edit-alt me-1"></i> Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                class="bx bx-trash me-1"></i> Hapus</a>
-                                    </div>
-                                </div>
-                            </td>
+                            <td>{{ $artikel->judul }}</td>
+                            <td class="truncate-text">{{ $artikel->deskripsi }}</td>
+                            <td><img class="img-fluid-gambar" src="{{ asset('storage/' . $artikel->image) }}"></td>
+                           
                         </tr>
-                    </tbody>
+                        @endforeach
                 </table>
             </div>
         </div>

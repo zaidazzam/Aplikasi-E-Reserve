@@ -150,6 +150,44 @@
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
 </body>
+
+<script>
+    // Get the input elements by their IDs
+    var datepicker = document.getElementById("datepicker");
+    var datepicker1 = document.getElementById("datepicker1");
+    var homestay_id = document.getElementById("homestay_id");
+
+
+    // Listen for the click event on the "Pesan" button
+    document.getElementById("bookingLink").addEventListener("click", function (event) {
+        // Prevent the default behavior of the anchor tag
+        event.preventDefault();
+
+        // Get the values from the input elements
+        var checkinDate = datepicker.value;
+        var checkoutDate = datepicker1.value;
+        var homestay = homestay_id.value;
+
+        var checkinComponents = checkinDate.split("/");
+        var checkoutComponents = checkoutDate.split("/");
+
+
+    // Ensure there are three components in each date
+    if (checkinComponents.length === 3 && checkoutComponents.length === 3) {
+        // Reconstruct the formatted date strings as "year-day-month"
+        var formattedCheckinDate = checkinComponents[2] + "-" + checkinComponents[0] + "-" + checkinComponents[1];
+        var formattedCheckoutDate = checkoutComponents[2] + "-" + checkoutComponents[0] + "-" + checkoutComponents[1];
+
+        // Construct the URL with the formatted values as path parameters
+        var url = "{{ url('/pembayaran/') }}/" +homestay+ "/"+ formattedCheckinDate + "/" + formattedCheckoutDate;
+        // Navigate to the constructed URL
+        window.location.href = url;
+    } else {
+        // Handle invalid date format
+        alert("Invalid date format. Please enter dates in the format 'year-month-day'.");
+    }
+    });
+</script>
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://kit.fontawesome.com/9b616d1e46.js" crossorigin="anonymous"></script>

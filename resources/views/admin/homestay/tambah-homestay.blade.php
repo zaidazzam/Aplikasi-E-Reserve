@@ -1,114 +1,90 @@
 <x-app-layout>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Create Homestay</div>
 
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Homestay/</span> Tambah Homestay</h4>
-
-    <!-- Basic Layout & Basic with Icons -->
-    <div class="row">
-        <!-- Basic Layout -->
-        <div class="col-xxl">
-            <div class="card mb-4">
-                <div class="card-header d-flex align-items-center justify-content-between">
-                    <h5 class="mb-0"></h5>
-                    <small class="text-muted float-end"></small>
-                </div>
                 <div class="card-body">
-                    <form>
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-default-name">Nama Homestay</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="basic-default-name"
-                                    placeholder="Homestay" />
-                            </div>
+                    <form method="POST" action="{{ route('homestays.store') }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label for="nama">Nama Homestay:</label>
+                            <input type="text" name="nama" id="nama" class="form-control" required>
                         </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-default-company">Pemilik</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="basic-default-company"
-                                    placeholder="Bu Nunung" />
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-default-phone">Harga (Rp)</label>
-                            <div class="col-sm-10">
-                                <input type="number" id="basic-default-phone" class="form-control phone-mask"
-                                    placeholder="500.000" aria-describedby="basic-default-phone" />
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-default-phone">Jumlah Kamar</label>
-                            <div class="col-sm-10">
-                                <input type="number" id="basic-default-phone" class="form-control phone-mask"
-                                    placeholder="3" aria-describedby="basic-default-phone" />
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-default-phone">Kapasitas Tamu</label>
-                            <div class="col-sm-10">
-                                <input type="number" id="basic-default-phone" class="form-control phone-mask"
-                                    placeholder="5" aria-describedby="basic-default-phone" />
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-default-phone">Alamat</label>
-                            <div class="col-sm-10">
-                                <input type="text" id="basic-default-phone" class="form-control phone-mask"
-                                    placeholder="Jl Desa Kamojang" aria-describedby="basic-default-phone" />
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- Basic with Icons -->
-        <div class="col-xxl">
-            <div class="card mb-4">
-                <div class="card-header d-flex align-items-center justify-content-between">
-                    <h5 class="mb-0"></h5>
-                    <small class="text-muted float-end"></small>
-                </div>
-                <div class="card-body">
-                    <form>
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-default-name">Peta</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="basic-default-name"
-                                    placeholder="Homestay" />
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-default-name">Deskripsi</label>
-                            <div class="col-sm-10">
-                                <textarea class="form-control" aria-label="With textarea" placeholder="Paket Wisata Cihaniwung adalah ......"></textarea>
+                        <div class="form-group">
+                        <label for="image">Image:</label>
+                        <input type="file" name="image" id="image" class="form-control-file" accept="image/*">
+                    </div>
 
-                            </div>
+                    <div class="form-group">
+                        <img id="image-preview" src="#" alt="Preview" style="display: none; max-width: 100%;">
+                    </div>
+                        <div class="form-group">
+                            <label for="harga">Harga:</label>
+                            <input type="number" name="harga" id="harga" class="form-control" required>
                         </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-default-name">Kebijakan</label>
-                            <div class="col-sm-10">
-                                <textarea class="form-control" aria-label="With textarea" placeholder="Paket Wisata Cihaniwung adalah ......"></textarea>
+                        <div class="form-group">
+                            <label for="alamat">Alamat:</label>
+                            <textarea name="alamat" id="alamat" class="form-control" rows="3" required></textarea>
+                        </div>
 
-                            </div>
+                        <div class="form-group">
+                            <label for="latitude">Latitude:</label>
+                            <input type="number" name="latitude" id="latitude" class="form-control" required>
                         </div>
-                        <div class="row mb-3">
-                            <label for="defaultSelect" class="form-label col-sm-2">Status</label>
-                            <div class="col-sm-10">
-                                <select id="defaultSelect" class="form-select">
-                                    <option disabled>Pilih Status</option>
-                                    <option value="1">Normal</option>
-                                    <option value="2">Rekomendasi</option>
-                                    <option value="3">Tutup</option>
-                                </select>
-                            </div>
+
+                        <div class="form-group">
+                            <label for="longitude">Longitude:</label>
+                            <input type="number" name="longitude" id="longitude" class="form-control" required>
                         </div>
-                        <div class="row justify-content-start">
-                            <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-                            </div>
+
+                        <div class="form-group">
+                            <label for="deskripsi">Deskripsi:</label>
+                            <textarea name="deskripsi" id="deskripsi" class="form-control" rows="5" required></textarea>
                         </div>
+
+                        <div class="form-group">
+                            <label for="kebijakan">Kebijakan:</label>
+                            <textarea name="kebijakan" id="kebijakan" class="form-control" rows="5" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="jumlah_kamar">Jumlah Kamar:</label>
+                            <input type="number" name="jumlah_kamar" id="jumlah_kamar" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="kapasitas_kamar">Kapasitas Kamar:</label>
+                            <input type="text" name="kapasitas_kamar" id="kapasitas_kamar" class="form-control" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Create Homestay</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+<script>
+    document.getElementById('image').addEventListener('change', function () {
+        const fileInput = this;
+        const imagePreview = document.getElementById('image-preview');
+
+        if (fileInput.files && fileInput.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = 'block';
+            };
+
+            reader.readAsDataURL(fileInput.files[0]);
+        } else {
+            imagePreview.src = '#';
+            imagePreview.style.display = 'none';
+        }
+    });
+</script>
 
 </x-app-layout>

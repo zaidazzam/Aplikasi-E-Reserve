@@ -45,7 +45,7 @@
 </style>
 <x-guest-layout>
     <!-- Header Start -->
-    <div class="container-fluid header bg-white p-0 mb-5">
+    <!-- <div class="container-fluid header bg-white p-0 mb-5">
         <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
             <div class="col-md-6 p-5 mt-lg-5">
                 <h1 class="display-7 animated fadeIn mb-4">Detail Blog</h1>
@@ -73,9 +73,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Search Start -->
-    <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
+    <!-- <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
         <div class="container">
             <div class="row g-2">
                 <div class="col-md-10">
@@ -107,27 +107,26 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Search End -->
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
                 <div class="blog-detail">
-                    <img src="{{ asset('img/property-1.jpg') }}" alt="Gambar Blog" class="img-fluid mb-4">
-                    <h2>Judul Blog</h2>
-                    <p class="text-muted">Tanggal atau informasi lainnya</p>
-                    <p>Deskripsi blog lengkap...</p>
-                    <p>Tulisan lanjutan tentang topik ini...</p>
+                    <img src="{{ asset('storage/' . $item->image) }}" alt="Gambar Blog" style="width:100%; heigth:70%;" class="img-fluid mb-4">
+                    <h2>{{ $item->judul }}</h2>
+                    <p class="text-muted">{{ $item->created_at }}</p>
+                    <p>{{ $item->deskripsi }}</p>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="related-blogs">
                     <h3>Artikel Terkait</h3>
                     <div class="list-group">
-                        <a href="#" class="list-group-item">Judul Artikel Terkait 1</a>
-                        <a href="#" class="list-group-item">Judul Artikel Terkait 2</a>
-                        <a href="#" class="list-group-item">Judul Artikel Terkait 3</a>
+                        @foreach($list_article as $item)
+                        <a href="{{ route('blog.detail', ['id' => $item->id]) }}" class="list-group-item">{{$item->judul}}</a>
                         <!-- Tambahkan artikel terkait lainnya di sini -->
+                        @endforeach
                     </div>
                 </div>
             </div>

@@ -41,4 +41,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function homestays()
+        {
+            return $this->hasMany(Homestay::class, 'users_id');
+        }
 }

@@ -12,25 +12,26 @@
                     <small class="text-muted float-end"></small>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form method="POST" action="{{ route('artikels.store') }}" enctype="multipart/form-data">
+                    @csrf
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-name">Judul</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="basic-default-name"
+                                <input type="text" name="judul" class="form-control" id="basic-default-name"
                                     placeholder="Wisata Cihaniwung" />
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-name">Deskripsi</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" aria-label="With textarea" placeholder="Paket Wisata Cihaniwung adalah ......"></textarea>
+                                <textarea class="form-control" name="deskripsi" aria-label="With textarea" placeholder="Paket Wisata Cihaniwung adalah ......"></textarea>
 
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="formFileMultiple" class="col-sm-2 col-form-label">Upload Gambar</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="file" placeholder="Pilih gambar"
+                                <input class="form-control" name="image" type="file" placeholder="Pilih gambar"
                                     id="formFileMultiple" multiple />
                             </div>
                         </div>
