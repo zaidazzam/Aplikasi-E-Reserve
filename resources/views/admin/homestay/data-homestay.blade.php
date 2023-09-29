@@ -71,7 +71,34 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        @foreach ($homestay as $rekomendasi)
+                            <tr>
+                                <td>ID</td>
+                                <td>{{ $rekomendasi->nama }}</td>
+                                <td>{{ $rekomendasi->users_id }}</td>
+                                <td>{{ $rekomendasi->harga }}</td>
+                                <td>{{ $rekomendasi->jumlah_kamar }}</td>
+                                <td>{{ $rekomendasi->kapasitas_kamar }}</td>
+                                <td>{{ $rekomendasi->alamat }}</td>
+                                <td>{{ $rekomendasi->latitude }}</td>
+                                <td>{{ $rekomendasi->longitude }}</td>
+                                <td class="text-wrap">
+                                    <a href="{{ url('/tambahhomestay/gambar/') }}"> <button
+                                            class="btn btn-outline-primary" type="button"
+                                            id="button-addon1">Gambar</button></a>
+                                </td>
+                                <td>{{ $rekomendasi->deskripsi }}</td>
+                                <td class="text-wrap">
+                                    <a href="{{ url('/tambahhomestay/fasilitas/') }}"> <button
+                                            class="btn btn-outline-primary" type="button" id="button-addon1">
+                                            Fasilitas</button></a>
+                                </td>
+                                <td>{{ $rekomendasi->kebijakan }}</td>
+                                <td><span class="badge bg-label-primary me-1">Rekomendasi</span></td>
+                                <td>Ubah</td>
+                            </tr>
+                        @endforeach
+                        {{-- <tr>
                             <td class="text-nowrap">
                                 H-01
                             </td>
@@ -134,7 +161,7 @@
                                     </div>
                                 </div>
                             </td>
-                        </tr>
+                        </tr> --}}
                     </tbody>
                 </table>
 
