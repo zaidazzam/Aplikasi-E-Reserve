@@ -15,8 +15,8 @@ class TransaksiController extends Controller
     public function index()
     {
        $transaksi = Transaksi::all();
-       return response()->json($transaksi);
-    //    return view ('admin.transaksi.index',compact('transaksi'));
+    //    return response()->json($transaksi);
+       return view ('admin.transaksi.data-transaksi',compact('transaksi'));
     }
 
     /**
@@ -26,7 +26,7 @@ class TransaksiController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -52,7 +52,7 @@ class TransaksiController extends Controller
         //     'total_masa_inap' => 'required',
         // ]);
         $generate_number_random = rand(100000,999999);
-      
+
         $transaksi = new Transaksi([
             'nomor_invoice' => $generate_number_random,
             'homestay_id' => $request->homestay_id,
@@ -75,8 +75,8 @@ class TransaksiController extends Controller
             $transaksi->bukti_transaksi = $imagePath;
         }
 
-       
-        
+
+
         $transaksi->save();
         // return response()->json(['success' => 'You have successfully upload transaksi.']);
         return redirect()->route('transaksi.detail', ['id' => $transaksi->id]);
@@ -127,4 +127,24 @@ class TransaksiController extends Controller
     {
         //
     }
+
+
+
+    public function tambahPendapatan()
+    {
+        return view('admin.transaksi.data-pendapatan');
+    }
+    public function tambahPengeluaran()
+    {
+        return view('admin.transaksi.tambah-pengeluaran');
+    }
+    public function wisataTransaksi()
+    {
+        return view('admin.transaksi.wisata-transaksi');
+    }
+    public function layananTransaksi()
+    {
+        return view('admin.transaksi.layanan-transaksi');
+    }
+
 }

@@ -61,6 +61,11 @@ Route::get('/tambahhomestay/fasilitas/', [HomestayController::class, 'tambahFasi
 Route::get('/tambahhomestay/gambar/', [HomestayController::class, 'tambahGambar'])->middleware(['auth']);
 
 Route::post('/transaksi', [TransaksiController::class, 'store'])->name('transaksi.store');
+Route::get('/transaksi', [TransaksiController::class, 'index'])->middleware(['auth']);
+Route::get('/transaksi/pengeluaran', [TransaksiController::class, 'tambahPengeluaran'])->middleware(['auth']);
+Route::get('/transaksi/wisata', [TransaksiController::class, 'layananTransaksi'])->middleware(['auth']);
+Route::get('/transaksi/layanan', [TransaksiController::class, 'index'])->middleware(['auth']);
+Route::get('/transaksi/pendapatan/tambah', [TransaksiController::class, 'tambahPendapatan'])->middleware(['auth']);
 
 
 // Fasilitas Homestay

@@ -1,5 +1,5 @@
 <x-app-layout>
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Homestay /Data Homestay /fasilitas/</span> Homestay
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Homestay /Data Homestay /Gambar/</span> Homestay
         Garden</h4>
     <!-- Bordered Table -->
     <div class="card">

@@ -102,25 +102,30 @@
                     <span class="menu-header-text">Transaksi</span>
                 </li>
                 <li
-                    class="menu-item {{ request()->is('datatransaksi', 'datapengeluaran', 'datapendapatanfee') ? 'active' : '' }}">
+                    class="menu-item {{ request()->is('transaksi', 'transaksi/pengeluaran', 'transaksi/wisata', 'transaksi/layanan') ? 'active' : '' }}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class="menu-icon tf-icons bx bx-dock-top"></i>
                         <div data-i18n="">Transaksi</div>
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="" class="menu-link">
+                            <a href="/transaksi" class="menu-link">
                                 <div data-i18n="">Data Transaksi</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="" class="menu-link">
-                                <div data-i18n="">Data Pengeluaran</div>
+                            <a href="/transaksi/wisata" class="menu-link">
+                                <div data-i18n="">Wisata Transaksi</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="" class="menu-link">
-                                <div data-i18n="">Data Pendapatan Fee</div>
+                            <a href="/transaksi/layanan" class="menu-link">
+                                <div data-i18n="">Layanan Transaksi</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/transaksi/pengeluaran" class="menu-link">
+                                <div data-i18n="">Data Pengeluaran</div>
                             </a>
                         </li>
                     </ul>
@@ -140,15 +145,15 @@
                 {{-- Menu Pemilik Homestay --}}
 
                 {{-- Menu  Customer --}}
-                <li class="menu-header small text-uppercase">
+                {{-- <li class="menu-header small text-uppercase">
                     <span class="menu-header-text">Customer</span>
                 </li>
-                <li class="menu-item {{ request()->is('datacustomer') ? 'active' : '' }}">
-                    <a href="" class="menu-link">
+                <li class="menu-item {{ request()->is('dashboard/customer') ? 'active' : '' }}">
+                    <a href="/dashboard/customer" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-collection"></i>
                         <div data-i18n="Basic">Data Customer</div>
                     </a>
-                </li>
+                </li> --}}
                 {{-- Menu Customer --}}
 
 
