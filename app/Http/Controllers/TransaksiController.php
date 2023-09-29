@@ -14,10 +14,21 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-       $transaksi = Transaksi::all();
-    //    return response()->json($transaksi);
-       return view ('admin.transaksi.data-transaksi',compact('transaksi'));
+        $transaksi = Transaksi::all();
+        $totalHargaSeluruhTransaksi = 0;
+
+        // Menghitung jumlah seluruh data transaksi
+        $jumlahSeluruhTransaksi = $transaksi->count();
+
+        foreach ($transaksi as $trx) {
+            $totalHargaSeluruhTransaksi += $trx->total_harga;
+        }
+
+        // Sekarang, Anda dapat mengirimkan totalHargaSeluruhTransaksi dan jumlahSeluruhTransaksi ke view
+        return view('admin.transaksi.data-transaksi', compact('transaksi', 'totalHargaSeluruhTransaksi', 'jumlahSeluruhTransaksi'));
     }
+
+
 
     /**
      * Show the form for creating a new resource.
