@@ -26,7 +26,7 @@
                 </li>
 
                 {{-- Menu Homestay --}}
-                <li class="menu-header small text-uppercase">
+                {{-- <li class="menu-header small text-uppercase">
                     <span class="menu-header-text">Homestay</span>
                 </li>
                 <li
@@ -52,7 +52,7 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
                 {{-- Menu Homestay --}}
             </ul>
         </aside>

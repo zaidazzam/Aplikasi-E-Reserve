@@ -95,7 +95,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                {{-- <div class="col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="mx-auto mb-3 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="row align-items-center justify-center">
                             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
@@ -114,7 +114,28 @@
                         src="https://maps.google.com/maps?q=kamojang&t=&z=10&ie=UTF8&iwloc=&output=embed"
                         frameborder="0" style="min-height: 250px; border:0;" allowfullscreen="" aria-hidden="false"
                         tabindex="0"></iframe>
+                </div> --}}
+                <div class="col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="mx-auto mb-3 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="row align-items-center justify-content-center">
+                            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                                <label for="datepicker">Pilih Tanggal</label>
+                                <input type="text" id="datepicker" class="btn-outline-primary" />
+                            </div>
+                            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                                <label for="datepicker">Pilih Tanggal</label>
+                                <input type="text" id="datepicker1" class="btn-outline-primary" />
+                            </div>
+                        </div>
+                        <a class="btn btn-primary justify-center py-3 px-5 mt-3" style="width: 100%"
+                            href="{{ url('/beranda/paket') }}">Pesan</a>
+                    </div>
+                    <iframe class="position-relative rounded w-100 h-80"
+                        src="https://maps.google.com/maps?q=kamojang&t=&z=10&ie=UTF8&iwloc=&output=embed"
+                        frameborder="0" style="min-height: 250px; border:0;" allowfullscreen="" aria-hidden="false"
+                        tabindex="0"></iframe>
                 </div>
+
                 <div class="col-lg-6 wow fadeIn rounded-2" data-wow-delay="0.1s">
 
                 </div>

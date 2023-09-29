@@ -93,7 +93,11 @@ Route::get('/dashboard/customer', [CustomerController::class, 'index'])->middlew
 // Transaksi
 Route::get('/dashboard/transaksi/', [TransaksiController::class, 'index'])->middleware(['auth']);
 Route::get('/dashboard/transaksi/pendapatan', [TransaksiController::class, 'pendapatan'])->middleware(['auth']);
+Route::get('/dashboard/transaksi/pendapatan/tambah', [TransaksiController::class, 'tambahPendapatan'])->middleware(['auth']);
 Route::get('/dashboard/transaksi/pengeluaran', [TransaksiController::class, 'pengeluaran'])->middleware(['auth']);
+Route::get('/dashboard/transaksi/pengeluaran/tambah', [TransaksiController::class, 'tambahPengeluaran'])->middleware(['auth']);
+Route::get('/dashboard/transaksi/wisata', [TransaksiController::class, 'wisataTransaksi'])->middleware(['auth']);
+Route::get('/dashboard/transaksi/layanan', [TransaksiController::class, 'serviceTransaksi'])->middleware(['auth']);
 
 
 

@@ -397,8 +397,8 @@
                     </section>
                     <section id="step-3" class="form-step d-none">
                         <div class="container">
-                            <h3 class="title_confirmation text-center mb-4">Thank you. Your order has been
-                                received.
+                            <h3 class="title_confirmation text-center mb-4">Terima kasih. Pesanan Anda telah selesai
+                                diterima.
                             </h3>
                             <div class="row order_d_inner">
                                 <div class="col-lg-6">

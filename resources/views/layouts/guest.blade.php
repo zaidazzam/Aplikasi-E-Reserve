@@ -163,12 +163,29 @@
 <script src="{{ asset('js/main.js') }}"></script>
 
 
-<script>
+{{-- <script>
     $('#datepicker').datepicker({
         uiLibrary: 'bootstrap4'
     });
     $('#datepicker1').datepicker({
         uiLibrary: 'bootstrap4'
+    });
+</script> --}}
+
+<script>
+    $(document).ready(function() {
+        $('#datepicker').datepicker({
+            format: 'yyyy-dd-mm', // Format tanggal: tahun-bulan-tanggal
+            uiLibrary: 'bootstrap4',
+            iconsLibrary: 'fontawesome',
+            // Di sini Anda juga dapat menambahkan opsi lain yang sesuai dengan kebutuhan Anda
+        });
+        $('#datepicker1').datepicker({
+            format: 'yyyy-dd-mm', // Format tanggal: tahun-bulan-tanggal
+            uiLibrary: 'bootstrap4',
+            iconsLibrary: 'fontawesome',
+            // Di sini Anda juga dapat menambahkan opsi lain yang sesuai dengan kebutuhan Anda
+        });
     });
 </script>
 

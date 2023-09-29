@@ -21,10 +21,13 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-default-company">Pemilik</label>
+                            <label class="col-sm-2 col-form-label" for="basic-default-name">Pemilik Homestay</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="basic-default-company"
-                                    placeholder="Bu Nunung" />
+                                <select id="defaultSelect" class="form-select">
+                                    <option>Pilih Pemilik</option>
+                                    <option value="1">Ibu Nunung</option>
+                                    <option value="2">Pak Novi</option>
+                                </select>
                             </div>
                         </div>
                         <div class="row mb-3">
