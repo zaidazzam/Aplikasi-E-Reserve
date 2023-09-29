@@ -162,90 +162,6 @@
             </div>
         </div>
     </div>
-
-
-    {{-- <div class="card ">
-            <h5 class="card-header">Tabel Transaksi</h5>
-            <div class="card-body">
-                <div class="table-responsive text-nowrap">
-                    <table class="table table-bordered mb-4">
-                        <thead>
-                            <tr>
-                                <th>Judul</th>
-                                <th>Rupiah</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    Total Transaksi
-                                </td>
-                                <td>
-                                    Rp. 500,000
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Total Pengeluaran
-                                </td>
-                                <td>
-                                    Rp. 200,000
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Total Pendapatan
-                                </td>
-                                <td>
-                                    Rp. 20,000
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="card ">
-            <h5 class="card-header">Tabel Transaksi</h5>
-            <div class="card-body">
-                <div class="table-responsive text-nowrap">
-                    <table class="table table-bordered mb-4">
-                        <thead>
-                            <tr>
-                                <th>Judul</th>
-                                <th>Jumlah</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    Total Transaksi
-                                </td>
-                                <td>
-                                    10
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Sudah Transfer Pemilik
-                                </td>
-                                <td>
-                                    5
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Selesai Checkin
-                                </td>
-                                <td>
-                                    5
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div> --}}
     </div>
 
     <div class="card">
@@ -306,17 +222,16 @@
                     <thead>
                         <tr>
                             <th>Nomor invoice</th>
-                            <th>User_Id</th>
                             <th>Homestay_Id</th>
                             <th>Checkin</th>
                             <th>Checkout</th>
                             <th>Total Inap</th>
-                            <th>Biayaadmin</th>
+                            <th>Biaya Admin</th>
                             <th>Status_Payment</th>
-                            <th>Status-Checkin</th>
+                            <th>Status-homestay</th>
                             <th>Status-transfer pemilik</th>
                             <th>Total Harga</th>
-                            <th>Bukti</th>
+                            <th>Bukti Transfer</th>
                             <th>No_Referensi</th>
                             <th>Nama</th>
                             <th>No_Telp</th>
@@ -324,6 +239,21 @@
                             <th>Aksi</th>
 
                         </tr>
+                        {{-- 'nomor_invoice' => $generate_number_random,
+                        'homestay_id' => $request->homestay_id,
+                        'check_in' => $request->check_in,
+                        'check_out' => $request->check_out,
+                        'total_harga' => $request->total_harga,
+                        'nama_depan' => $request->nama_depan,
+                        'notelp' => $request->notelp,
+                        'biaya_admin' => $request->biaya_admin,
+                        'email' => $request->email,
+                        'bukti_transaksi' => $request->bukti_transaksi,
+                        'no_referensi' => $request->no_referensi,
+                        'total_masa_inap' => $request->total_masa_inap,
+                        'status_payment' => 'pending',
+                        'status_homestay' => 'open',
+                        'status_transfer_pemilik' => 'belum' --}}
                     </thead>
                     <tbody>
                         <tr>
@@ -331,13 +261,12 @@
                                 T001
                             </td>
                             <td class="text-wrap">01</td>
-                            <td class="text-wrap">02</td>
                             <td class="text-nowrap">21-09-2023</td>
                             <td class="text-nowrap">22-09-2023</td>
                             <td class="text-wrap">3 Malam</td>
                             <td class="text-wrap">20.000</td>
-                            <td class="text-wrap">Lunas</td>
-                            <td class="text-wrap">Sedang</td>
+                            <td class="text-wrap">Pending</td>
+                            <td class="text-wrap">Buka</td>
                             <td class="text-wrap">Belum</td>
                             <td class="text-wrap">Rp. 200.000</td>
                             <td> <img class="img-fluid-gambar" src="{{ asset('img/header/pemandangan2.svg') }}"
@@ -347,17 +276,80 @@
                             <td class="text-wrap">Ziad</td>
                             <td class="text-wrap">089688347718</td>
                             <td class="text-wrap">azzamzaid10@gamil.com</td>
-                            <td class="text-center">
-                                <div class="dropdown">
-                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                        data-bs-toggle="dropdown">
-                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="{{ url('/editartikel') }}"><i
-                                                class="bx bx-edit-alt me-1"></i> Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                class="bx bx-trash me-1"></i> Hapus</a>
+                            <td class="text-wrap">
+                                <div class="row justify-content-start px-4">
+                                    <div class="col-sm-10">
+                                        <!-- Large Modal -->
+                                        <div class="modal fade" id="largeModal" tabindex="-1" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel3">Ubah Status
+                                                        </h5>
+                                                        <button type="button" class="btn-close"
+                                                            data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <table class="table table-bordered ">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="text-center">Nama Status</th>
+                                                                <th class="text-center">Aksi</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td> <strong>Status Payment</strong></td>
+                                                                <td>
+                                                                    <div class="col-sm-10">
+                                                                        <select id="defaultSelect"
+                                                                            class="form-select">
+                                                                            <option>Pilih Status</option>
+                                                                            <option value="1">Pending</option>
+                                                                            <option value="2">Lunas</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </td>
+
+                                                            </tr>
+                                                            <tr>
+                                                                <td> <strong>Status Homestay</strong></td>
+                                                                <td class="text-center">
+                                                                    <div class="col-sm-10">
+                                                                        <select id="defaultSelect"
+                                                                            class="form-select">
+                                                                            <option>Pilih Status</option>
+                                                                            <option value="1">Buka</option>
+                                                                            <option value="2">Rekomendasi</option>
+                                                                            <option value="3">Tutup</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td> <strong>Status Transfer Pemilik</strong></td>
+                                                                <td class="text-center">
+                                                                    <div class="col-sm-10">
+                                                                        <select id="defaultSelect"
+                                                                            class="form-select">
+                                                                            <option>Pilih Status</option>
+                                                                            <option value="1">Belom</option>
+                                                                            <option value="2">Sudah</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-primary">Simpan</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#largeModal">
+                                            Ubah
+                                        </button>
                                     </div>
                                 </div>
                             </td>
