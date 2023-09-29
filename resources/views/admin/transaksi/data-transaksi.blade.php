@@ -62,8 +62,109 @@
             </div>
         </div>
     </div> --}}
-    <div class="d-flex justify-content-around mb-3 me-5">
-        <div class="card ">
+    <div class="mb-2">
+        <div class="col-lg-12 col-md-4 ">
+            <div class="row">
+                <div class="col-lg-4 col-md-12 col-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="../assets/img/icons/unicons/chart-success.png" alt="chart success"
+                                        class="rounded" />
+                                </div>
+
+                            </div>
+                            <span class="fw-semibold d-block mb-1">Total Transaksi</span>
+                            <h3 class="card-title mb-2">Rp. 500,000</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="../assets/img/icons/unicons/paypal.png" alt="Credit Card"
+                                        class="rounded" />
+                                </div>
+
+                            </div>
+                            <span class="fw-semibold d-block mb-1">Total Pengeluaran</span>
+                            <h3 class="card-title mb-2">Rp. 200,000</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="../assets/img/icons/unicons/wallet-info.png" alt="Credit Card"
+                                        class="rounded" />
+                                </div>
+
+                            </div>
+                            <span class="fw-semibold d-block mb-1">Total Pendapatan</span>
+                            <h3 class="card-title mb-2">Rp. 20,000</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-4 order-1">
+            <div class="row">
+                <div class="col-lg-4 col-md-12 col-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="../assets/img/icons/unicons/cc-primary.png" alt="Credit Card"
+                                        class="rounded" />
+                                </div>
+
+                            </div>
+                            <span class="fw-semibold d-block mb-1">Data Transaksi</span>
+                            <h3 class="card-title mb-2">10 </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="../assets/img/icons/unicons/cc-success.png" alt="Credit Card"
+                                        class="rounded" />
+                                </div>
+
+                            </div>
+                            <span class="fw-semibold d-block mb-1">Sudah Transfer Pemilik</span>
+                            <h3 class="card-title mb-2">5</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="../assets/img/icons/unicons/cc-warning.png" alt="Credit Card"
+                                        class="rounded" />
+                                </div>
+
+                            </div>
+                            <span class="fw-semibold d-block mb-1">Selesai Checkin</span>
+                            <h3 class="card-title mb-2">5</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {{-- <div class="card ">
             <h5 class="card-header">Tabel Transaksi</h5>
             <div class="card-body">
                 <div class="table-responsive text-nowrap">
@@ -144,7 +245,7 @@
                     </table>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 
     <div class="card">
