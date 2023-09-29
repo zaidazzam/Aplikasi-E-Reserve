@@ -71,7 +71,7 @@ class HomeStayController extends Controller
 
     public function update(Request $request, $id)
     {
-       
+
         // Validation
         $request->validate([
             'users_id' => 'required|exists:users,id',
@@ -98,5 +98,16 @@ class HomeStayController extends Controller
         $rekomendasi->delete();
 
         return redirect()->route('rekomendasis.index')->with('success', 'Rekomendasi deleted successfully.');
+    }
+
+    public function tambahFasilitas()
+    {
+        return view('admin.homestay.tambah-fasilitas-homestay');
+
+    }
+    public function tambahGambar()
+    {
+        return view('admin.homestay.tambah-gambar-homestay');
+
     }
 }
