@@ -8,14 +8,10 @@ use App\Http\Controllers\HomestayController;
 use App\Http\Controllers\PaketWisataController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\LayananController;
-<<<<<<< HEAD
 use App\Http\Controllers\MitraController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\TransaksiController;
-=======
-use App\Http\Controllers\TransaksiController;
 
->>>>>>> dev/zia
 /*
 |--------------------------------------------------------------------------
 | Web Routes
