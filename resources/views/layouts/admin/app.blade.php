@@ -7,6 +7,15 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script src="{{ asset('js/tinymce/js/tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
+
+    <script>
+        tinymce.init({
+            selector: 'textarea.myeditorinstance',
+            plugins: 'code table lists',
+            toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
+        });
+    </script>
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -211,6 +220,7 @@
     <script src="../assets/vendor/js/bootstrap.js"></script>
     <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script> --}}
     <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
+    <script src="{{ asset('js/tinymce/js/tinymce.min.js') }}" referrerpolicy="origin"></script>
     {{-- <script src="../assets/vendor/js/menu.js"></script> --}}
     <!-- endbuild -->
 

@@ -12,40 +12,19 @@
                             <th>Deskripsi</th>
                             <th>Harga</th>
                             <th>Gambar</th>
-                            <th>Aksi</th>
-
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                Wisata Curug Cihaniwung
-                            </td>
-                            <td class="text-wrap">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod illum
-                                facilis ipsa
-                                quaerat aspernatur tempore ducimus minima voluptates quas, fugit, repudiandae eos a
-                                assumenda soluta? Asperiores repellat assumenda magni distinctio.</td>
-                            <td>
-                                <h6>Rp. 15.000</h6>
-                            </td>
-                            <td> <img class="img-fluid-gambar" src="{{ asset('img/header/pemandangan2.svg') }}"
-                                    alt="">
-                            </td>
-                            <td class="text-center">
-                                <div class="dropdown">
-                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                        data-bs-toggle="dropdown">
-                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="{{ url('/editpaketwisata') }}"><i
-                                                class="bx bx-edit-alt me-1"></i> Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                class="bx bx-trash me-1"></i> Hapus</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
+                        
+                    @foreach ($pakets as $paket)
+                                <tr>
+                                    <td>{{ $paket->judul }}</td>
+                                    <td class="truncate-text">{{ $paket->deskripsi }}</td>
+                                    <td>{{ $paket->harga }}</td>
+                                    <td><img class="img-fluid-gambar" src="{{ asset('storage/' . $paket->image) }}"></td>
+                                   
+                                </tr>
+                            @endforeach
                     </tbody>
                 </table>
             </div>
@@ -55,7 +34,14 @@
 </x-app-layout>
 <style>
     .img-fluid-gambar {
-        width: 25%;
+        width: 50%;
         height: auto;
+    }
+
+    .truncate-text {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 200px; /* Adjust the width as needed */
     }
 </style>

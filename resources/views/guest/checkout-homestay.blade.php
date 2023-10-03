@@ -60,22 +60,23 @@
                         </a>
                     </li>
                     <!-- Step 3 -->
-                    <li class="form-stepper-unfinished text-center form-stepper-list" step="3">
+                    <!-- <li class="form-stepper-unfinished text-center form-stepper-list" step="3">
                         <a class="mx-2">
                             <span class="form-stepper-circle text-muted">
                                 <span>3</span>
                             </span>
                             <div class="label text-muted">Konfirmasi Pembayaran</div>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
                 <!-- Step Wise Form Content -->
-                <form id="userAccountSetupForm" name="userAccountSetupForm" enctype="multipart/form-data"
-                    method="POST">
-                    <!-- Step 1 Content -->
-                    <section id="step-1" class="form-step">
+
+                <!-- Step 1 Content -->
+                <section id="step-1" class="form-step">
+                    <form method="POST" action="{{ route('transaksi.store') }}" enctype="multipart/form-data">
+                        @csrf
                         <div class="d-flex flex-wrap">
-                            <div class="col-lg-8">
+                            <div class="col-lg-12">
                                 <div class="">
                                     <div class="row">
                                         <div class="">
@@ -84,48 +85,80 @@
                                             </center>
                                             <div class="d-flex flex-wrap">
                                                 <div class="col-md-6 form-group p_star">
+                                                    <label for="">Nomor Telepon</label>
                                                     <input type="text" class="form-control" id="first"
-                                                        name="name" placeholder="Nama depan">
+                                                        name="nama_depan" placeholder="Nama depan">
                                                 </div>
-                                                <div class="col-md-6 form-group p_star">
-                                                    <input type="text" class="form-control" id="last"
-                                                        name="name" placeholder="Nama belakang">
+                                                <div class="col-md-6 form-group p_star" style="display:none;">
+                                                    <label for="">ID HOMESTAY</label>
+                                                    <input type="text" class="form-control" id="first"
+                                                        value="{{ $homestay->id }}" name="homestay_id"
+                                                        placeholder="Nama depan">
                                                 </div>
+
+                                                <div class="col-md-6 form-group p_star" style="display:none;">
+                                                    <label for="">checkin</label>
+                                                    <input type="text" class="form-control" id="first"
+                                                        value="{{ $checkin }}" name="check_in"
+                                                        placeholder="check_in">
+                                                </div>
+
+                                                <div class="col-md-6 form-group p_star" style="display:none;">
+                                                    <label for="">checkout</label>
+                                                    <input type="text" class="form-control" id="first"
+                                                        value="{{ $checkout }}" name="check_out"
+                                                        placeholder="check_out">
+                                                </div>
+
+                                                <div class="col-md-6 form-group p_star" style="display:none;">
+                                                    <label for="">total_harga</label>
+                                                    <input type="text" class="form-control" id="first"
+                                                        value="{{ $homestay->harga * $numberOfDays }}"
+                                                        name="total_harga" placeholder="Nama depan">
+                                                </div>
+
+                                                <div class="col-md-6 form-group p_star" style="display:none;">
+                                                    <label for="">biaya_admin</label>
+                                                    <input type="text" class="form-control" id="first"
+                                                        value="{{ $homestay->harga * 0.1 }}" name="biaya_admin"
+                                                        placeholder="Nama depan">
+                                                </div>
+
+
+                                                <div class="col-md-6 form-group p_star" style="display:none;">
+                                                    <label for="">total_masa_inap</label>
+                                                    <input type="text" class="form-control" id="first"
+                                                        value="{{ $numberOfDays }}" name="total_masa_inap"
+                                                        placeholder="Nama depan">
+                                                </div>
+
                                                 <div class="col-md-6 form-group p_star">
+                                                    <label for="">Nomor Telepon</label>
                                                     <input type="text" class="form-control" id="number"
-                                                        name="number" placeholder="Nomor Telephone">
+                                                        name="notelp" placeholder="Nomor Telephone">
                                                 </div>
                                                 <div class="col-md-6 form-group p_star">
+                                                    <label for="">Alamat Email</label>
                                                     <input type="text" class="form-control" id="email"
-                                                        name="compemailany" placeholder="Alamat email">
+                                                        name="email" placeholder="Alamat email">
+                                                </div>
+                                                <div class="col-md-6 form-group p_star">
+                                                    <label for="">Isi jumlah Peserta</label>
+                                                    <input type="number" class="form-control" id="first"
+                                                        name="name" placeholder="Jumlah Peserta">
                                                 </div>
                                             </div>
-                                            <div class="form-group p_star">
-                                                <label for="">Jika Anda memasukkan alamat email Anda,
-                                                    tetapi tidak
-                                                    menyelesaikan proses reservasi, kami dapat mengirimkan pengingat
-                                                    untuk membantu Anda
-                                                    melanjutkan proses pemesanan Anda.</label>
-                                                <select class="form-select border-0 mt-2">
-                                                    <option selected disabled>Wilayah </option>
-                                                    <option value="2">Kota/Kabupaten Garut</option>
-                                                    <option value="2">Kota/Kabupaten Bandung</option>
-                                                    <option value="4">Jawa-Barat</option>
-                                                    <option value="4">Luar Jawa barat</option>
-                                                    <option value="4">Luar Indonesia</option>
-                                                </select>
-                                            </div>
+
                                             <div class="form-group">
                                                 <!-- Default switch -->
-                                                <div class="custom-control custom-switch">
+                                                <!-- <div class="custom-control custom-switch">
                                                     <input type="checkbox" class="custom-control-input"
                                                         id="customSwitches" />
                                                     <label class="custom-control-label" for="customSwitches">
                                                         <h3>Paket Wisata</h3>
                                                     </label>
-                                                </div>
-                                                <div class="">
-                                                    <!-- Default unchecked -->
+                                                </div> -->
+                                                <!-- <div class="">
                                                     <div class="dropdown">
                                                         <label
                                                             class="dropdown-label  text-truncate border rounded">Pilih
@@ -171,16 +204,15 @@
                                                         <input type="number" class="form-control" id="first"
                                                             name="name" placeholder="Jumlah Peserta">
                                                     </div>
-                                                </div>
-                                                <div class="custom-control custom-switch">
+                                                </div> -->
+                                                <!-- <div class="custom-control custom-switch">
                                                     <input type="checkbox" class="custom-control-input"
                                                         id="customSwitches" />
                                                     <label class="custom-control-label" for="customSwitches">
                                                         <h3>Service Tamabahan</h3>
                                                     </label>
-                                                </div>
-                                                <div class="">
-                                                    <!-- Default unchecked -->
+                                                </div> -->
+                                                <!-- <div class="">
                                                     <div class="dropdown">
                                                         <label
                                                             class="dropdown-label  text-truncate border rounded">Pilih
@@ -216,14 +248,10 @@
                                                                     1</label>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-12 form-group p_star">
-                                                        <label for="">Isi jumlah Peserta</label>
-                                                        <input type="number" class="form-control" id="first"
-                                                            name="name" placeholder="Jumlah Peserta">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
+                                                    </div> -->
+
+                                            </div>
+                                            <!-- <div class="form-group">
                                                     <div class="creat_account">
                                                         <h3>Permintaan khusus</h3>
                                                         <label>Kami tidak menjamin permintaan khusus, tapi akomodasi
@@ -240,215 +268,154 @@
                                                                 (opsional)</strong></label>
                                                         <textarea class="form-control bg-light" name="message" id="message" rows="1" placeholder=""></textarea>
                                                     </div>
-                                                </div>
-                                            </div>
+                                                </div> -->
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="order_box">
-                                    <h2>Rincian Pesanan Anda</h2>
-                                    <div class="details_item mb-2">
-                                        <ul class="list list_2">
-                                            <li><a>Check-in <span>Jum, 11 Agu 2023</span></a></li>
-                                            <li><a>Check-out<span>Sab, 12 Agu 2023</span></a></li>
-                                            <li><a>Total Masa inap <span>1 Malam</span></a></li>
-                                        </ul>
-                                    </div>
-                                    <h2>Rincian Biaya Anda</h2>
-                                    <ul class="list list_2">
-                                        <li><a href="">Harga Homestay <span>Rp. 123.567</span></a></li>
-                                        <li><a href="">Biaya Pemesanan <span>Rp. 2.500.</span></a></li>
-                                        <li><a href="">Paket Wisata <span>Rp. 123.500. x 5 </span></a></li>
-                                        <label>Paket wisata akan disesuaikan dengan jumlah peserta untuk memberikan
-                                            pengalaman
-                                            yang lebih memuaskan.</label>
-
-                                        <li><a href="#">Total <span>Rp.2000.0000</span></a></li>
-                                    </ul>
-                                    <div class="creat_account">
-                                        <input type="checkbox" id="f-option4" name="selector">
-                                        <label for="f-option4">Saya telah membaca dan menerima</label>
-                                        <a href="#">syarat & ketentuan*</a>
-                                    </div>
-                                    <a class="primary-btn button btn-navigate-form-step" href="#"
-                                        type="button" step_number="2">Lanjutkan Pembayaran</a>
                                 </div>
                             </div>
                         </div>
-                    </section>
-                    <section id="step-2" class="form-step d-none">
-                        <div class="d-flex flex-wrap">
-                            <div class="col-lg-8">
-                                <center>
-                                    <h3>Pilih Metode</h3>
-                                </center>
-                                <div class="form-pemesan">
-                                    <div class="metode-pembayaran mt-4">
-                                        <div class="pilihan mb-3">
-                                            <div class="e-wallet">
-                                                <h4>Pembayaran E-Wallet</h4>
-                                                <div class="pembayaran ewalet">
-                                                    <h5 class="my-2">Pembayaran Dana</h5>
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="first me-3">
-                                                            <img src="{{ asset('img/logo-pembayaran/Logo_dana_blue.svg.png') }}"
-                                                                alt="Pembayaran Dana" style="max-width: 80px; " />
-                                                        </div>
-                                                        <ul class="m-2">
-                                                            <li>
-                                                                <h6>Nama Dana: Zaid Abdullah Azzam</h6>
-                                                            </li>
-                                                            <li>
-                                                                <h6>Nomor Dana: 089688347718</h6>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div class="bank">
-                                                <h4>Pembayaran Bank</h4>
-                                                <div class="pembayaran ewalet">
-                                                    <h5 class="my-2">Pembayaran BNI</h5>
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="first me-3">
-                                                            <img src="{{ asset('img/logo-pembayaran/bni.svg') }}"
-                                                                alt="Pembayaran Dana" style="max-width: 80px; " />
-                                                        </div>
-                                                        <ul class="m-2">
-                                                            <li>
-                                                                <h6>Nama BNI: Zaid Abdullah Azzam</h6>
-                                                            </li>
-                                                            <li>
-                                                                <h6>Nomor Rekening: 089688347718</h6>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div>
-                                            <form action="" method="post">
-                                                <div>
-                                                    <h5 class="my-2">Masukan No Ref/No Urut/No Transaksi (Jika tidak
-                                                        ada
-                                                        nama pemilik kartu )</h5>
-                                                </div>
-                                                <div class="form-group p_star">
-                                                    <input type="text" class="form-control" id="first"
-                                                        name="no" placeholder="Masukkan Nomor">
-                                                </div>
-                                                <hr>
-                                                <div>
-                                                    <h5 class="my-2">Upload Bukti Transfer (.jpg, .jpeg,
-                                                        .png)</h5>
-                                                    <label for=""></label>
-                                                </div>
-                                                <div class="form-group p_star">
-                                                    <input type="file" class="form-control" id="first"
-                                                        name="no" placeholder="Upload Bukti Transfer">
-                                                </div>
-                                            </form>
-                                            <div class="mt-3">
-                                                <button class="button btn-navigate-form-step" type="button"
-                                                    step_number="1">
-                                                    Kembali
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="order_box">
-                                    <h2>Rincian Pesanan Anda</h2>
-                                    <div class="details_item mb-2">
-                                        <ul class="list list_2">
-                                            <li><a>Check-in <span>Jum, 11 Agu 2023</span></a></li>
-                                            <li><a>Check-out<span>Sab, 12 Agu 2023</span></a></li>
-                                            <li><a>Total Masa inap <span>1 Malam</span></a></li>
-                                        </ul>
-                                    </div>
-                                    <h2>Rincian Biaya Anda</h2>
-                                    <ul class="list list_2">
-                                        <li><a href="">Harga Homestay <span>Rp. 123.567</span></a></li>
-                                        <li><a href="">Biaya Pemesanan <span>Rp. 2.500.</span></a></li>
-                                        <li><a href="">Paket Wisata <span>Rp. 123.500. x 5 </span></a></li>
-                                        <label>Paket wisata akan disesuaikan dengan jumlah peserta untuk memberikan
-                                            pengalaman
-                                            yang lebih memuaskan.</label>
-
-                                        <li><a href="#">Total <span>Rp.2000.0000</span></a></li>
-                                    </ul>
-                                    <div class="creat_account">
-                                        <input type="checkbox" id="f-option4" name="selector">
-                                        <label for="f-option4">Saya telah membaca dan menerima</label>
-                                        <a href="#">syarat & ketentuan*</a>
-                                    </div>
-                                    <a class="primary-btn button btn-navigate-form-step" href="#"
-                                        type="button" step_number="3">Konfirmasi Pembayaran</a>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <section id="step-3" class="form-step d-none">
-                        <div class="container">
-                            <h3 class="title_confirmation text-center mb-4">Terima kasih. Pesanan Anda telah selesai
-                                diterima.
-                            </h3>
-                            <div class="row order_d_inner">
-                                <div class="col-lg-6">
-                                    <div class="details_item">
-                                        <h4>Informasi Pesanan</h4>
-                                        <ul class="list">
-                                            <li><a><span>Nomor Pesanan</span> : 60235</a></li>
-                                            <li><a><span>Tanggal</span> : 20 Oktober 2023</a></li>
-                                            <li><a><span>Total</span> : Rp. 200.000</a></li>
-                                            <li><a><span>Cara Pembayaran</span> : E-Wallet</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mt-2">
-                                    <div class="details_item">
-                                        <h4>Identitas Pemesan</h4>
-                                        <ul class="list">
-                                            <li><a><span>Nama</span> : Zaid Abdullah Azzam</a></li>
-                                            <li><a><span>No telepon</span> : 089688347718</a></li>
-                                            <li><a><span>email</span> : azzamzaid1@gmail.com</a></li>
-                                            <li><a><span>Wilayah</span></span> : Kab.Bandung</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="col-lg-12">
                             <div class="order_box">
                                 <h2>Rincian Pesanan Anda</h2>
                                 <div class="details_item mb-2">
                                     <ul class="list list_2">
-                                        <li><a>Check-in <span>Jum, 11 Agu 2023</span></a></li>
-                                        <li><a>Check-out<span>Sab, 12 Agu 2023</span></a></li>
-                                        <li><a>Total Masa inap <span>1 Malam</span></a></li>
+                                        <li><a>Check-in <span>{{ $checkin }}</span></a></li>
+                                        <li><a>Check-out<span>{{ $checkout }}</span></a></li>
+                                        <li><a>Total Masa inap <span>{{ $numberOfDays }} Hari</span></a></li>
                                     </ul>
                                 </div>
                                 <h2>Rincian Biaya Anda</h2>
                                 <ul class="list list_2">
-                                    <li><a href="">Harga Homestay <span>Rp. 123.567</span></a></li>
-                                    <li><a href="">Biaya Pemesanan <span>Rp. 2.500.</span></a></li>
-                                    <li><a href="">Paket Wisata <span>Rp. 123.500. x 5 </span></a></li>
-                                    <label>Paket wisata akan disesuaikan dengan jumlah peserta untuk memberikan
-                                        pengalaman
-                                        yang lebih memuaskan.</label>
-
-                                    <li><a href="#">Total <span>Rp.2000.0000</span></a></li>
+                                    <li><a href="">Harga Homestay <span>Rp.
+                                                {{ number_format($homestay->harga, 0, ',', '.') }}</span></a></li>
+                                    <li><a href="#">Total <span>Rp.
+                                                {{ number_format($homestay->harga, 0, ',', '.') }}</span></a></li>
                                 </ul>
+                                <div class="creat_account">
+                                    <input type="checkbox" id="f-option4" name="selector">
+                                    <label for="f-option4">Saya telah membaca dan menerima</label>
+                                    <a href="#">syarat & ketentuan*</a>
+                                </div>
+                                <a class="primary-btn button btn-navigate-form-step" href="#" type="button"
+                                    step_number="2">Lanjutkan Pembayaran</a>
                             </div>
                         </div>
-                    </section>
-                </form>
             </div>
+    </section>
+    <section id="step-2" class="form-step d-none">
+        <div class="d-flex flex-wrap">
+            <div class="col-lg-8">
+                <center>
+                    <h3>Pilih Metode</h3>
+                </center>
+                <div class="form-pemesan">
+                    <div class="metode-pembayaran mt-4">
+                        <div class="pilihan mb-3">
+                            <div class="e-wallet">
+                                <h4>Pembayaran E-Wallet</h4>
+                                <div class="pembayaran ewalet">
+                                    <h5 class="my-2">Pembayaran Dana</h5>
+                                    <div class="d-flex align-items-center">
+                                        <div class="first me-3">
+                                            <img src="{{ asset('img/logo-pembayaran/Logo_dana_blue.svg.png') }}"
+                                                alt="Pembayaran Dana" style="max-width: 80px; " />
+                                        </div>
+                                        <ul class="m-2">
+                                            <li>
+                                                <h6>Nama Dana: Zaid Abdullah Azzam</h6>
+                                            </li>
+                                            <li>
+                                                <h6>Nomor Dana: 089688347718</h6>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="bank">
+                                <h4>Pembayaran Bank</h4>
+                                <div class="pembayaran ewalet">
+                                    <h5 class="my-2">Pembayaran BNI</h5>
+                                    <div class="d-flex align-items-center">
+                                        <div class="first me-3">
+                                            <img src="{{ asset('img/logo-pembayaran/bni.svg') }}"
+                                                alt="Pembayaran Dana" style="max-width: 80px; " />
+                                        </div>
+                                        <ul class="m-2">
+                                            <li>
+                                                <h6>Nama BNI: Zaid Abdullah Azzam</h6>
+                                            </li>
+                                            <li>
+                                                <h6>Nomor Rekening: 089688347718</h6>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div>
+                            <div>
+                                <h5 class="my-2">Masukan No Ref/No Urut/No Transaksi (Jika tidak
+                                    ada
+                                    nama pemilik kartu )</h5>
+                            </div>
+                            <div class="form-group p_star">
+                                <input type="text" class="form-control" id="first" name="no_referensi"
+                                    placeholder="Masukkan Nomor">
+                            </div>
+                            <hr>
+                            <div>
+                                <h5 class="my-2">Upload Bukti Transfer (.jpg, .jpeg,
+                                    .png)</h5>
+                                <label for=""></label>
+                            </div>
+                            <div class="form-group p_star">
+                                <input type="file" class="form-control" id="first" name="bukti_transaksi"
+                                    placeholder="Upload Bukti Transfer">
+                            </div>
+                            <div class="mt-3">
+                                <button class="button btn-navigate-form-step" type="button" step_number="1">
+                                    Kembali
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-4">
+                <div class="order_box">
+                    <h2>Rincian Pesanan Anda</h2>
+                    <div class="details_item mb-2">
+                        <ul class="list list_2">
+                            <li><a>Check-in <span>{{ $checkin }}</span></a></li>
+                            <li><a>Check-out<span>{{ $checkout }}</span></a></li>
+                            <li><a>Total Masa inap <span>{{ $numberOfDays }} Hari</span></a></li>
+                        </ul>
+                    </div>
+                    <h2>Rincian Biaya Anda</h2>
+                    <ul class="list list_2">
+                        <li><a href="">Harga Homestay <span>Rp.
+                                    {{ number_format($homestay->harga, 0, ',', '.') }}</span></a></li>
+                        <li><a href="#">Total <span>Rp.
+                                    {{ number_format($homestay->harga, 0, ',', '.') }}</span></a></li>
+                    </ul>
+                    <div class="creat_account">
+                        <input type="checkbox" id="f-option4" name="selector">
+                        <label for="f-option4">Saya telah membaca dan menerima</label>
+                        <a href="#">syarat & ketentuan*</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary"> Lanjutkan Pembayaran</button>
+                    <!-- <button class="primary-btn button btn-navigate-form-step" type="submit">
+                                        Lanjutkan Pembayaran
+                                        </button> -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    </div>
     </section>
     <script src="{{ asset('js/js-pembayaran/main.js') }}"></script>
     <script src="{{ asset('js/js-pembayaran/gmaps.min.js') }}"></script>

@@ -1,70 +1,10 @@
 <x-guest-layout>
     <!-- Header Start -->
-    <div class="container-fluid header bg-white p-0">
-        <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
-            <div class="col-md-6 p-5 mt-lg-5">
-                <h1 class="display-7 animated fadeIn mb-4">Homestay Coffee Garden</h1>
-                <nav aria-label="breadcrumb animated fadeIn">
-                    <ol class="breadcrumb text-uppercase">
-                        <li class="breadcrumb-item"><a href="{{ url('/beranda/homestay') }}">Homestay</a></li>
-                        <li class="breadcrumb-item text-body active" aria-current="page">Detil Homestay</li>
-                    </ol>
-                </nav>
-            </div>
-            <div class="col-md-6 animated fadeIn">
-                <div class="owl-carousel header-carousel">
-                    <div class="owl-carousel-item">
-                        <img class="img-fluid" src="{{ asset('img/header/pemandangan2.svg') }}" alt="">
-                    </div>
-                    <div class="owl-carousel-item">
-                        <img class="img-fluid" src="{{ asset('img/header/pemandangan1.svg') }}" alt="">
-                    </div>
-                    <div class="owl-carousel-item">
-                        <img class="img-fluid" src="{{ asset('img/header/pemandangan8.svg') }}" alt="">
-                    </div>
-                    <div class="owl-carousel-item">
-                        <img class="img-fluid" src="{{ asset('img/header/pemandangan3.svg') }}" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <!-- Header End -->
 
     <!-- Search Start -->
-    <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
-        <div class="container">
-            <div class="row g-2">
-                <div class="col-md-10">
-                    <div class="row g-2">
-                        <div class="col-md-4">
-                            <input type="text" class="form-control border-0 py-3"
-                                placeholder="Mau staycation dimana?">
-                        </div>
-                        <div class="col-md-4">
-                            <select class="form-select border-0 py-3">
-                                <option selected disabled>Kamar</option>
-                                <option value="1">2 Kamar</option>
-                                <option value="2">3 Kamar</option>
-                                <option value="3">4 Kamar</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <select class="form-select border-0 py-3">
-                                <option selected disabled>Kapasitas</option>
-                                <option value="1">Location 1</option>
-                                <option value="2">Location 2</option>
-                                <option value="3">Location 3</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <button class="btn btn-dark border-0 w-100 py-3">Cari</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <!-- Search End -->
 
     <div class="container-xxl py-5">
@@ -74,13 +14,16 @@
                     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner ">
                             <div class="carousel-item active">
-                                <img class="img-fluid rounded-2" src="{{ asset('img/property-1.jpg') }}" alt="">
+                                <img class="img-fluid rounded-2" src="{{ asset('storage/' . $homestay->image) }}"
+                                    style="width:100%;" alt="">
                             </div>
                             <div class="carousel-item">
-                                <img class="img-fluid rounded-2" src="{{ asset('img/property-2.jpg') }}" alt="">
+                                <img class="img-fluid rounded-2" src="{{ asset('storage/' . $homestay->image) }}"
+                                    style="width:100%;" alt="">
                             </div>
                             <div class="carousel-item">
-                                <img class="img-fluid rounded-2" src="{{ asset('img/property-3.jpg') }}" alt="">
+                                <img class="img-fluid rounded-2" src="{{ asset('storage/' . $homestay->image) }}"
+                                    style="width:100%;" alt="">
                             </div>
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
@@ -97,18 +40,20 @@
                 </div>
                 {{-- <div class="col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="mx-auto mb-3 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="row align-items-center justify-center">
-                            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                                <label for="">Checkin</label>
-                                <input id="datepicker" class="btn-outline-primary" width="276" />
-                            </div>
-                            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                                <label for="">Checkin</label>
-                                <input id="datepicker1" class="btn-outline-primary" width="276" />
-                            </div>
+                    <div class="row align-items-center justify-center">
+                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                            <label for="">Checkin</label>
+                            <input id="datepicker" class="btn-outline-primary" width="276" />
+
+                            <input id="homestay_id" value="{{ $homestay->id }}" style ="display:none;" class="btn-outline-primary" width="276" />
                         </div>
-                        <a class="btn btn-primary justify-center py-3 px-5 mt-3" style="width: 100%"
-                            href="{{ url('/beranda/paket') }}">Pesan</a>
+                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                            <label for="">Checkin</label>
+                            <input id="datepicker1" class="btn-outline-primary" width="276" />
+                        </div>
+                    </div>
+                    <a id="bookingLink" class="btn btn-primary justify-center py-3 px-5 mt-3" style="width: 100%" href="{{ url('/beranda/paket/') }}">Pesan</a>
+
                     </div>
                     <iframe class="position-relative rounded w-100 h-80"
                         src="https://maps.google.com/maps?q=kamojang&t=&z=10&ie=UTF8&iwloc=&output=embed"
@@ -171,23 +116,11 @@
                             <h6 class="btn btn-primary" data-bs-toggle="pill" href="#tab-ramah-keluarga">8,6</h6>
                         </div>
                 </div>
-                <h5 class="mb-3">Homestay Coffee Garden</h5>
-                <h5 class="text-warning mb-3">Rp. 1234.567</h5>
-                <p><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Jl. Desa Kamojang
+                <h5 class="mb-3">{{ $homestay->nama }}</h5>
+                <h5 class="text-warning mb-3">Rp. {{ number_format($homestay->harga, 0, ',', '.') }}</h5>
+                <p><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ $homestay->alamat }}
                 </p>
-
-                <p>Parkir mobil dan Wi-Fi selalu gratis, sehingga Anda dapat terus terhubung serta datang dan pergi
-                    kapan saja. Terletak strategis di Seminyak, memungkinkan Anda akses dan jarak yang dekat ke atraksi
-                    dan objek wisata lokal. Jangan pulang dulu sebelum berkunjung ke Sacred Monkey Forest Sanctuary yang
-                    terkenal. Memiliki peringkat bintang-5, properti berkelas ini menyediakan akses ke pijat, kolam
-                    renang dalam ruangan dan kolam air panas untuk para tamu di properti. </p>
-
-
-                <div>
-                    <label for="" class="fw-bold"> Kapasitas Tamu</label>
-                    <p class="me-2"><i class="fa fa-person text-primary me-2"></i> 2 dewasa
-                    </p>
-                </div>
+                <p>{{ $homestay->deskripsi }}</p>
             </div>
 
             <div class=" mx-auto wow fadeInUp bg-white rounded p-3 m-2" data-wow-delay="0.1s" id="tab-fasilitas"
@@ -290,8 +223,8 @@
                 style="max-width: 1200px;" id="tab-informasi-umum">
                 <h2 class="mb-3">Kebijakan</h2>
                 <p>Berikut adalah rapihkan kalimat dengan menggunakan list:</p>
-
-                <ul>
+                {{ $homestay->kebijakan }}
+                <!-- <ul>
                     <li>
                         Check-in:
                         <ul>
@@ -369,7 +302,7 @@
                         </ul>
 
                     </li>
-                </ul>
+                </ul> -->
             </div>
             <div class=" mx-auto wow fadeInUp bg-white rounded p-3" data-wow-delay="0.1s" style="max-width: 1200px;"
                 id="tab-ulasan" id="tab-informasi-umum">

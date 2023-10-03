@@ -1,3 +1,47 @@
+{{-- <x-app-layout>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">List of Homestays</div>
+
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Gambar</th>
+                                <th>Nama Pemilik</th>
+                                <th>Nama</th>
+                                <th>Harga</th>
+                                <th>Alamat</th>
+                                <th>Jumlah Kamar</th>
+                                <th>Kapasitas Kamar</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($homestay as $rekomendasi)
+                                <tr>
+                                    <td><img style="width:" src="{{ asset('storage/' . $rekomendasi->image) }}"></td>
+                                    <td>{{ $rekomendasi->user->name }}</td>
+                                    <td>{{ $rekomendasi->nama }}</td>
+                                    <td>{{ $rekomendasi->harga }}</td>
+                                    <td>{{ $rekomendasi->alamat }}</td>
+                                    <td>{{ $rekomendasi->jumlah_kamar }}</td>
+                                    <td>{{ $rekomendasi->kapasitas_kamar }}</td>
+                                    <td>
+                                        <a href="{{ route('homestays.edit', $rekomendasi->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</x-app-layout> --}}
 <x-app-layout>
     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Homestay /</span> Data Homestay</h4>
     <!-- Bordered Table -->
@@ -15,9 +59,10 @@
                             <th>Kamar</th>
                             <th>Tamu</th>
                             <th>Alamat</th>
-                            <th>Peta</th>
+                            <th>latitude</th>
+                            <th>longitude</th>
                             <th>Gambar</th>
-                            <th>Informasi Umum</th>
+                            <th>Deskripsi</th>
                             <th>Fasilitas</th>
                             <th>Kebijakan</th>
                             <th>Status</th>
@@ -26,7 +71,34 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        @foreach ($homestay as $rekomendasi)
+                            <tr>
+                                <td>ID</td>
+                                <td>{{ $rekomendasi->nama }}</td>
+                                <td>{{ $rekomendasi->users_id }}</td>
+                                <td>{{ $rekomendasi->harga }}</td>
+                                <td>{{ $rekomendasi->jumlah_kamar }}</td>
+                                <td>{{ $rekomendasi->kapasitas_kamar }}</td>
+                                <td>{{ $rekomendasi->alamat }}</td>
+                                <td>{{ $rekomendasi->latitude }}</td>
+                                <td>{{ $rekomendasi->longitude }}</td>
+                                <td class="text-wrap">
+                                    <a href="{{ url('/tambahhomestay/gambar/') }}"> <button
+                                            class="btn btn-outline-primary" type="button"
+                                            id="button-addon1">Gambar</button></a>
+                                </td>
+                                <td>{{ $rekomendasi->deskripsi }}</td>
+                                <td class="text-wrap">
+                                    <a href="{{ url('/tambahhomestay/fasilitas/') }}"> <button
+                                            class="btn btn-outline-primary" type="button" id="button-addon1">
+                                            Fasilitas</button></a>
+                                </td>
+                                <td>{{ $rekomendasi->kebijakan }}</td>
+                                <td><span class="badge bg-label-primary me-1">Rekomendasi</span></td>
+                                <td>Ubah</td>
+                            </tr>
+                        @endforeach
+                        {{-- <tr>
                             <td class="text-nowrap">
                                 H-01
                             </td>
@@ -39,7 +111,8 @@
                             <td class="text-wrap">3</td>
                             <td class="text-wrap">5</td>
                             <td class="text-wrap">Jl Desa Kamojang</td>
-                            <td class="text-wrap">Jl Desa Kamojang</td>
+                            <td class="text-wrap">latidude</td>
+                            <td class="text-wrap">longtitude</td>
                             <td class="text-wrap">
                                 <a href="{{ url('/tambahhomestay/gambar/') }}"> <button class="btn btn-outline-primary"
                                         type="button" id="button-addon1">Gambar</button></a>
@@ -88,71 +161,7 @@
                                     </div>
                                 </div>
                             </td>
-
-                        </tr>
-                        <tr>
-                            <td class="text-nowrap">
-                                H-01
-                            </td>
-                            <td class="text-wrap">
-                                <strong>Homestay Coffee
-                                    Garden</strong>
-                            </td>
-                            <td class="text-wrap">Ibu Nunung</td>
-                            <td class="text-wrap">RP 500.000</td>
-                            <td class="text-wrap">3</td>
-                            <td class="text-wrap">5</td>
-                            <td class="text-wrap">Jl Desa Kamojang</td>
-                            <td class="text-wrap">Jl Desa Kamojang</td>
-                            <td class="text-wrap">
-                                <a href="{{ url('/tambahhomestay/gambar/') }}"> <button class="btn btn-outline-primary"
-                                        type="button" id="button-addon1">Gambar</button></a>
-                            </td>
-                            <td>
-                                <div class="text-wrap">
-                                    Parkir mobil dan Wi-Fi selalu gratis, sehingga Anda dapat terus terhubung serta
-                                    datang
-                                    dan pergi kapan saja. Terletak strategis di Seminyak, memungkinkan Anda akses dan
-                                    jarak
-                                    yang dekat ke atraksi dan objek wisata lokal. Jangan pulang dulu sebelum berkunjung
-                                    ke
-                                    Sacred Monkey Forest Sanctuary yang terkenal. Memiliki peringkat bintang-5, properti
-                                    berkelas ini menyediakan akses ke pijat, kolam renang dalam ruangan dan kolam air
-                                    panas
-                                    untuk para tamu di properti.
-                                </div>
-                            </td>
-                            <td class="text-wrap">
-                                <button class="btn btn-outline-primary" type="button"
-                                    id="button-addon1">Fasilitas</button>
-                            </td>
-                            <td class="text-wrap">
-                                <dl>
-                                    <dt>Check-in:</dt>
-                                    <li>
-                                        Pada pukul 16.00, tamu diharapkan menunjukkan kartu identitas berfoto dan kartu
-                                        kredit saat melakukan proses check-in.</li>
-                                    <dt>Check-out:</dt>
-                                    <li>Sampai pukul 11.00</li>
-                                </dl>
-                            </td>
-                            <td><span class="badge bg-label-primary me-1">Rekomendasi</span></td>
-                            <td>
-                                <div class="dropdown">
-                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                        data-bs-toggle="dropdown">
-                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="{{ url('/edithomestay') }}"><i
-                                                class="bx bx-edit-alt me-1"></i> Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                class="bx bx-trash me-1"></i> Delete</a>
-                                    </div>
-                                </div>
-                            </td>
-
-                        </tr>
+                        </tr> --}}
                     </tbody>
                 </table>
 

@@ -8,9 +8,14 @@ use App\Http\Controllers\HomestayController;
 use App\Http\Controllers\PaketWisataController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\LayananController;
+<<<<<<< HEAD
 use App\Http\Controllers\MitraController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\TransaksiController;
+=======
+use App\Http\Controllers\TransaksiController;
+
+>>>>>>> dev/zia
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,23 +27,23 @@ use App\Http\Controllers\TransaksiController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
 // Guest //
-Route::get('/beranda', [GuestController::class, 'landing']);
+Route::get('/', [GuestController::class, 'landing']);
 Route::get('/beranda/homestay', [GuestController::class, 'categori']);
-Route::get('/beranda/homestay/detail', [GuestController::class, 'homestayDetail']);
-Route::get('/pembayaran', [GuestController::class, 'checkoutHomestay']);
+Route::get('/homestay/detail/{id}', [GuestController::class, 'homestayDetail'])->name('homestay.detail');
+Route::get('/pembayaran/{idhomestay}/{checkin}/{checkout}', [GuestController::class, 'checkoutHomestay']);
 Route::get('/blog', [GuestController::class, 'blog']);
-Route::get('/blog/detail', [GuestController::class, 'blogDetail']);
+Route::get('/blog/detail/{id}', [GuestController::class, 'blogDetail'])->name('blog.detail');
 Route::get('/paket', [GuestController::class, 'pakeHomestay']);
 Route::get('/tentang', [GuestController::class, 'tentang']);
 Route::get('/u-homestay', [GuestController::class, 'mitraHomestay']);
 Route::get('/pembayaran/metode', [GuestController::class, 'pilihMetode']);
-Route::get('/pembayaran/metode/konfirmasi', [GuestController::class, 'konfirmasiPembayaran']);
+Route::get('/transaksi/detail/{id}', [GuestController::class, 'konfirmasiPembayaran'])->name('transaksi.detail');
 
 
 // Route::get('/dashboard', [DashboardController::class, 'konfirmasiPembayaran']);
@@ -51,11 +56,22 @@ Route::get('/dashboard', function () {
 
 
 // Homestay //
-Route::get('/datahomestay', [HomestayController::class, 'index'])->middleware(['auth']);
+Route::get('/datahomestay', [HomestayController::class, 'index'])->name('homestays.index')->middleware(['auth']);
 Route::get('/tambahhomestay', [HomestayController::class, 'create'])->middleware(['auth']);
-Route::get('/edithomestay', [HomestayController::class, 'editHomestay'])->middleware(['auth']);
+Route::post('/homestays', [HomestayController::class, 'store'])->name('homestays.store');
+
+// Display the update form
+Route::get('/homestays/{homestays}/edit', [HomestayController::class, 'edit'])->name('homestays.edit');
+Route::put('/homestays/{homestays}', [HomestayController::class, 'update'])->name('homestays.update');
 Route::get('/tambahhomestay/fasilitas/', [HomestayController::class, 'tambahFasilitas'])->middleware(['auth']);
 Route::get('/tambahhomestay/gambar/', [HomestayController::class, 'tambahGambar'])->middleware(['auth']);
+
+Route::post('/transaksi', [TransaksiController::class, 'store'])->name('transaksi.store');
+Route::get('/transaksi', [TransaksiController::class, 'index'])->middleware(['auth']);
+Route::get('/transaksi/pengeluaran', [TransaksiController::class, 'tambahPengeluaran'])->middleware(['auth']);
+Route::get('/transaksi/wisata', [TransaksiController::class, 'layananTransaksi'])->middleware(['auth']);
+Route::get('/transaksi/layanan', [TransaksiController::class, 'index'])->middleware(['auth']);
+Route::get('/transaksi/pendapatan/tambah', [TransaksiController::class, 'tambahPendapatan'])->middleware(['auth']);
 
 
 // Fasilitas Homestay
@@ -63,14 +79,21 @@ Route::get('/datafasilitas', [FasilitasController::class, 'index'])->middleware(
 Route::get('/tambahfasilitas', [FasilitasController::class, 'tambahFasilitas'])->middleware(['auth']);
 
 // Fasilitas Homestay
-Route::get('/datapaketwisata', [PaketWisataController::class, 'index'])->middleware(['auth']);
+Route::get('/datapaketwisata', [PaketWisataController::class, 'index'])->name('pakets.index')->middleware(['auth']);
+Route::post('/pakets', [PaketWisataController::class, 'store'])->name('pakets.store');
 Route::get('/tambahpaketwisata', [PaketWisataController::class, 'tambahWisata'])->middleware(['auth']);
 Route::get('/editpaketwisata', [PaketWisataController::class, 'editWisata'])->middleware(['auth']);
 
 
 
+<<<<<<< HEAD
 // Fasilitas Artikel
 Route::get('/dataartikel', [ArtikelController::class, 'index'])->middleware(['auth']);
+=======
+// Fasilitas Homestay
+Route::get('/dataartikel', [ArtikelController::class, 'index'])->name('artikels.index')->middleware(['auth']);
+Route::post('/artikels', [ArtikelController::class, 'store'])->name('artikels.store');
+>>>>>>> dev/zia
 Route::get('/tambahartikel', [ArtikelController::class, 'tambahArtikel'])->middleware(['auth']);
 Route::get('/editartikel', [ArtikelController::class, 'editArtikel'])->middleware(['auth']);
 

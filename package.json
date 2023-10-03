@@ -23,7 +23,10 @@
         "vite": "^4.4.7"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-build-classic": "^39.0.2",
+        "ckeditor4": "^4.23.0",
         "flowbite": "^1.8.1",
+        "tinymce": "^6.7.0",
         "tw-elements": "^1.0.0-beta3"
     }
 }

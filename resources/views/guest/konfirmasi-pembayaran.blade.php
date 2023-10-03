@@ -76,10 +76,10 @@
                     <div class="details_item">
                         <h4>Informasi Pesanan</h4>
                         <ul class="list">
-                            <li><a><span>Nomor Pesanan</span> : 60235</a></li>
-                            <li><a><span>Tanggal</span> : 20 Oktober 2023</a></li>
-                            <li><a><span>Total</span> : Rp. 200.000</a></li>
-                            <li><a><span>Status Pembayaran</span> : Lunas</a></li>
+                            <li><a><span>Nomor Pesanan</span> : {{ $detail_transaksi->nomor_invoice }}</a></li>
+                            <li><a><span>Tanggal</span> : {{ $detail_transaksi->created_at }}</a></li>
+                            <li><a><span>Total</span> : {{ $detail_transaksi->total_harga }}</a></li>
+                            <li><a><span>Status Pembayaran</span> : {{ $detail_transaksi->status_payment }}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -87,10 +87,9 @@
                     <div class="details_item">
                         <h4>Identitas Pemesan</h4>
                         <ul class="list">
-                            <li><a><span>Nama</span> : Zaid Abdullah Azzam</a></li>
-                            <li><a><span>No telepon</span> : 089688347718</a></li>
-                            <li><a><span>email</span> : azzamzaid1@gmail.com</a></li>
-                            <li><a><span>email</span> : azzamzaid1@gmail.com</a></li>
+                            <li><a><span>Nama</span> : {{ $detail_transaksi->nama_depan }}</a></li>
+                            <li><a><span>No telepon</span> : {{ $detail_transaksi->notelp }}</a></li>
+                            <li><a><span>email</span> : {{ $detail_transaksi->email }}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -99,23 +98,22 @@
                 <h2>Rincian Pesanan Anda</h2>
                 <div class="details_item mb-2">
                     <ul class="list list_2">
-                        <li><a>Homestay <span>Homestay Umaran</span></a></li>
-                        <li><a>Alamat Homestay <span>Jl. Kamojang</span></a></li>
-                        <li><a>Check-in <span>Jum, 11 Agu 2023</span></a></li>
-                        <li><a>Check-out<span>Sab, 12 Agu 2023</span></a></li>
-                        <li><a>Total Masa inap <span>1 Malam</span></a></li>
+                        <li><a>Check-in <span>{{ $detail_transaksi->check_in }}</span></a></li>
+                        <li><a>Check-out<span>{{ $detail_transaksi->check_out }}</span></a></li>
+                        <li><a>Total Masa inap <span>{{ $detail_transaksi->total_masa_inap }} Hari </span></a></li>
                     </ul>
                 </div>
                 <h2>Rincian Biaya Anda</h2>
                 <ul class="list list_2">
-                    <li><a href="">Harga Homestay <span>Rp. 123.567</span></a></li>
-                    <li><a href="">Biaya Pemesanan <span>Rp. 2.500.</span></a></li>
-                    <li><a href="">Paket Wisata <span>Rp. 123.500. x 5 </span></a></li>
+                    <li><a href="">Harga Homestay <span>Rp.
+                                {{ number_format($detail_transaksi->total_harga, 0, ',', '.') }}</span></a></li>
+                    <!-- <li><a href="">Biaya Pemesanan <span>Rp. 2.500.</span></a></li> -->
+                    <!-- <li><a href="">Paket Wisata <span>Rp. 123.500. x 5 </span></a></li>
                     <label>Paket wisata akan disesuaikan dengan jumlah peserta untuk memberikan
                         pengalaman
                         yang lebih memuaskan.</label>
 
-                    <li><a href="#">Total <span>Rp.2000.0000</span></a></li>
+                    <li><a href="#">Total <span>Rp.2000.0000</span></a></li> -->
                 </ul>
             </div>
         </div>
