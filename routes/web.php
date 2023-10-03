@@ -82,14 +82,9 @@ Route::get('/editpaketwisata', [PaketWisataController::class, 'editWisata'])->mi
 
 
 
-<<<<<<< HEAD
-// Fasilitas Artikel
-Route::get('/dataartikel', [ArtikelController::class, 'index'])->middleware(['auth']);
-=======
 // Fasilitas Homestay
 Route::get('/dataartikel', [ArtikelController::class, 'index'])->name('artikels.index')->middleware(['auth']);
 Route::post('/artikels', [ArtikelController::class, 'store'])->name('artikels.store');
->>>>>>> dev/zia
 Route::get('/tambahartikel', [ArtikelController::class, 'tambahArtikel'])->middleware(['auth']);
 Route::get('/editartikel', [ArtikelController::class, 'editArtikel'])->middleware(['auth']);
 
