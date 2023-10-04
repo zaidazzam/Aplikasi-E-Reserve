@@ -6,7 +6,7 @@
                   <img class="" src="{{ asset('img/group12.svg') }}" alt="Icon"
                       style="width: 45px; height: 45px;">
               </div>
-              <h3 class="m-0 text-primary">E-Reserve</h3>
+              <h3 class="m-0 text-primary">Kamojang.id</h3>
           </a>
           <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
               <span class="navbar-toggler-icon"></span>
