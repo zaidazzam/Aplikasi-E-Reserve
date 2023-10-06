@@ -187,7 +187,7 @@
                 {{-- Menu Artikel --}}
 
                 {{-- Menu Service Tambahan --}}
-                <li class="menu-header small text-uppercase">
+                {{-- <li class="menu-header small text-uppercase">
                     <span class="menu-header-text">Layanan Tambahan</span>
                 </li>
                 <li class="menu-item {{ request()->is('datalayanan', 'tambahlayanan') ? 'active' : '' }}">
@@ -208,7 +208,7 @@
                         </li>
 
                     </ul>
-                </li>
+                </li> --}}
                 {{-- Menu Service Tambahan --}}
             </ul>
         </aside>

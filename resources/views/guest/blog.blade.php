@@ -67,45 +67,22 @@
     <div class="tab-content">
         <div id="blog" class="tab-pane fade show p-0 active">
             <div class="row g-4">
-                <div class="col-md-6 col-lg-4 d-flex">
-                    <div class="card flex-fill">
-                        <a href="#">
-                            <img class="card-img-top" src="{{ asset('img/property-1.jpg') }}" alt="Gambar Blog">
-                        </a>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="#">Judul Blog</a></h5>
-                            <p class="card-text">Deskripsi blog singkat...</p>
-                            <a href="{{ url('/blog/detail') }}" class="btn btn-primary">Baca Selengkapnya</a>
+                @foreach ($artikel as $item)
+                    <div class="col-md-6 col-lg-4 d-flex">
+                        <div class="card flex-fill">
+
+                            <a href="#">
+                                <img class="card-img-top" alt="Gambar Blog" src="{{ asset('storage/' . $item->image) }}"
+                                    style="width: 100%; height: 70%;" alt="">
+                                <div class="card-body">
+                                    <h5 class="card-title"><a href="#">{{ $item->judul }}</a></h5>
+                                    <a href="{{ route('blog.detail', ['id' => $item->id]) }}"
+                                        class="btn btn-primary">Baca Selengkapnya</a>
+                                </div>
+                            </a>
                         </div>
                     </div>
-                </div>
-                <!-- Tambahkan blog lainnya di sini -->
-                <div class="col-md-6 col-lg-4 d-flex">
-                    <div class="card flex-fill">
-                        <a href="#">
-                            <img class="card-img-top" src="{{ asset('img/property-1.jpg') }}" alt="Gambar Blog">
-                        </a>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="#">Judul Blog</a></h5>
-                            <p class="card-text">Deskripsi blog singkat...</p>
-                            <a href="{{ url('/blog/detail') }}" class="btn btn-primary">Baca Selengkapnya</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Tambahkan blog lainnya di sini -->
-                <div class="col-md-6 col-lg-4 d-flex">
-                    <div class="card flex-fill">
-                        <a href="#">
-                            <img class="card-img-top" src="{{ asset('img/property-1.jpg') }}" alt="Gambar Blog">
-                        </a>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="#">Judul Blog</a></h5>
-                            <p class="card-text">Deskripsi blog singkat...</p>
-                            <a href="{{ url('/blog/detail') }}" class="btn btn-primary">Baca Selengkapnya</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Tambahkan blog lainnya di sini -->
+                @endforeach
             </div>
         </div>
     </div>

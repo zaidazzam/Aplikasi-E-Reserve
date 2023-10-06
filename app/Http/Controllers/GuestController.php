@@ -18,7 +18,7 @@ class GuestController extends Controller
         $artikel = Artikel::all();
         return view ('guest.landing-page', compact('homestay','pakets','artikel'));
     }
-    
+
     public function categori()
     {
         return view ('guest.categori-homestay');
@@ -31,15 +31,18 @@ class GuestController extends Controller
     }
     public function checkoutHomestay($idhomestay,$checkin,$checkout){
         $checkin_new = Carbon::parse($checkin); // Replace with your check-in date
-        $checkout_new = Carbon::parse($checkout); 
+        $checkout_new = Carbon::parse($checkout);
+        $pakets = Paket::all();
         $numberOfDays = $checkout_new->diffInDays($checkin_new);
 
         $homestay = Homestay::find($idhomestay);
-        return view ('guest.checkout-homestay',compact('homestay','checkin','checkout','numberOfDays'));
+        return view ('guest.checkout-homestay',compact('homestay','checkin','checkout','numberOfDays', 'pakets'));
         return view ('guest.checkout-homestay');
     }
     public function blog(){
-        return view ('guest.blog');
+        $artikel = Artikel::all();
+
+        return view ('guest.blog', compact('artikel'));
     }
     public function blogDetail($id){
         $list_article = Artikel::latest()->take(3)->get();
@@ -50,7 +53,15 @@ class GuestController extends Controller
         return view ('guest.blog-detail',compact('item','list_article'));
     }
     public function pakeHomestay(){
-        return view ('guest.paket-homestay');
+        $pakets = Paket::all();
+        return view ('guest.paket-homestay',compact('pakets',));
+    }
+    public function detailPaket($id){
+        $item = Paket::find($id);
+        if (!$item) {
+            abort(404);
+        }
+        return view ('guest.paket-detail',compact('item'));
     }
     public function tentang(){
         return view ('guest.tentang');
@@ -63,6 +74,7 @@ class GuestController extends Controller
     }
     public function konfirmasiPembayaran($id){
         $detail_transaksi = Transaksi::find($id);
-        return view ('guest.konfirmasi-pembayaran',compact('detail_transaksi'));
+        $pakets = Paket::all();
+        return view ('guest.konfirmasi-pembayaran',compact('detail_transaksi', 'pakets'));
     }
 }
