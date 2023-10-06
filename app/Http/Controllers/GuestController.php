@@ -6,6 +6,7 @@ use App\Models\Paket;
 use App\Models\Artikel;
 use Carbon\Carbon;
 use App\Models\Transaksi;
+use App\Models\image_homestay;
 
 use Illuminate\Http\Request;
 
@@ -24,7 +25,9 @@ class GuestController extends Controller
     }
     public function homestayDetail($id){
         $homestay = Homestay::find($id);
-        return view ('guest.detail-homestay',compact('homestay'));
+        //show aa list image home stay by homestay id @param $id
+        $list_image_homestay = image_homestay::where('homestay_id',$id)->get();
+        return view ('guest.detail-homestay',compact('homestay','list_image_homestay'));
     }
     public function checkoutHomestay($idhomestay,$checkin,$checkout){
         $checkin_new = Carbon::parse($checkin); // Replace with your check-in date

@@ -71,6 +71,34 @@
 
 
     <style>
+        /* CSS for the zoom effect */
+            .zoomed-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            }
+
+            .zoomed-image img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+            }
+
+            .zoomed-image.zoom-out img {
+            transform: scale(1);
+            }
+
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap');
 
         .icon {
@@ -241,15 +269,104 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+<script>
+    $(document).ready(function() {
 
-    <script>
+        $("#addHomestay").click(function() {
+            const formData = new FormData(imageForm);
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+            console.log(formData);
+            $.ajax({
+                url: "/image/homestay", 
+                method: "POST",
+                data: formData,
+                headers: {
+                        'X-CSRF-TOKEN': csrfToken
+                },
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    location.reload();
+                    // You can perform any actions you need here after a successful upload.
+                },
+                error: function(error) {
+                    // Handle error response
+                    console.error("Error uploading image(s):", error);
+                }
+            });
+        });
+        // When the "Ubah" button is clicked
+        $('.updateTransaksiButton').click(function() {
+            var transaksiId = $(this).data('transaksi-id');
+            var namaDepan = $(this).data('nama-depan');
+            var notelp = $(this).data('notelp');
+            var checkIn = $(this).data('check-in');
+            var checkOut = $(this).data('check-out');
+            var totalMasaInap = $(this).data('total-masa-inap');
+            var noReferensi = $(this).data('no-referensi');
+            var statusPayment = $(this).data('status-payment');
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+            // Populate the form fields in the modal with the data
+            $('#updateTransaksiModal').find('#status_payment').val(statusPayment);
+            // Populate other fields as needed
+
+            // When the "Save changes" button in the modal is clicked
+            $('#updateTransaksiButton').click(function() {
+                // Get the updated data from the form
+                var updatedData = {
+                    status_payment: $('#updateTransaksiModal').find('#status_payment').val(),
+                    // Get other fields as needed
+                };
+
+                // Send an AJAX request to update the transaksi data
+                $.ajax({
+                    url: '/update_transaksi/' + transaksiId, // Replace with your controller route
+                    method: 'PUT',
+                    data: updatedData,
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken
+                    },
+                    success: function(response) {
+                        // Handle the success response, e.g., close the modal
+                        $('#updateTransaksiModal').modal('hide');
+                        location.reload();
+                    },
+                    error: function(error) {
+                        // Handle any errors, e.g., display an error message
+                    }
+                });
+            });
+        });
+    });
+</script>
+
+<script>
+        const images = document.querySelectorAll("td img");
+        images.forEach((image) => {
+        image.addEventListener("click", () => {
+            const zoomedImage = document.createElement("div");
+            zoomedImage.className = "zoomed-image";
+
+            const clone = image.cloneNode();
+            clone.style.cursor = "zoom-out";
+
+            zoomedImage.appendChild(clone);
+
+            document.body.appendChild(zoomedImage);
+
+            // Close the zoomed image when clicked
+            zoomedImage.addEventListener("click", () => {
+            zoomedImage.classList.add("zoom-out");
+            setTimeout(() => {
+                zoomedImage.remove();
+            }, 300); // Adjust the timing to match your CSS transition duration
+            });
+        });
+        });
+
         $(document).ready(function() {
-
-
-
-
             var down = false;
-
             $('#bell').click(function(e) {
 
                 var color = $(this).text();

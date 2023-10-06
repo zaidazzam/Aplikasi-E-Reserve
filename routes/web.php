@@ -9,6 +9,7 @@ use App\Http\Controllers\PaketWisataController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\ImageHomestayController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,14 +59,18 @@ Route::post('/homestays', [HomestayController::class, 'store'])->name('homestays
 Route::get('/homestays/{homestays}/edit', [HomestayController::class, 'edit'])->name('homestays.edit');
 Route::put('/homestays/{homestays}', [HomestayController::class, 'update'])->name('homestays.update');
 Route::get('/tambahhomestay/fasilitas/', [HomestayController::class, 'tambahFasilitas'])->middleware(['auth']);
-Route::get('/tambahhomestay/gambar/', [HomestayController::class, 'tambahGambar'])->middleware(['auth']);
+Route::get('/tambahhomestay/gambar/{homestays}', [HomestayController::class, 'tambahGambar'])->name('homestays.image')->middleware(['auth']);
 
 Route::post('/transaksi', [TransaksiController::class, 'store'])->name('transaksi.store');
+Route::post('/image/homestay', [ImageHomestayController::class, 'store'])->name('image_homestay.store')->middleware(['auth']);
 Route::get('/transaksi', [TransaksiController::class, 'index'])->middleware(['auth']);
+Route::get('/transaksi/history', [TransaksiController::class, 'history'])->middleware(['auth']);
+
 Route::get('/transaksi/pengeluaran', [TransaksiController::class, 'tambahPengeluaran'])->middleware(['auth']);
 Route::get('/transaksi/wisata', [TransaksiController::class, 'layananTransaksi'])->middleware(['auth']);
 Route::get('/transaksi/layanan', [TransaksiController::class, 'index'])->middleware(['auth']);
 Route::get('/transaksi/pendapatan/tambah', [TransaksiController::class, 'tambahPendapatan'])->middleware(['auth']);
+Route::put('/update_transaksi/{id}',  [TransaksiController::class, 'update_with_json'])->middleware(['auth']);
 
 
 // Fasilitas Homestay
