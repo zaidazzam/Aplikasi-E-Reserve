@@ -25,4 +25,10 @@ class Transaksi extends Model
         'status_homestay',
         'status_transfer_pemilik',
     ];
+    
+    //include homestay
+    public function homestay()
+    {
+        return $this->belongsTo(Homestay::class);
+    }
 }

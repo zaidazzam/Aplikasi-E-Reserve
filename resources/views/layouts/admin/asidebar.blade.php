@@ -114,6 +114,11 @@
                             </a>
                         </li>
                         <li class="menu-item">
+                            <a href="/transaksi/history" class="menu-link">
+                                <div data-i18n="">History Transaksi</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
                             <a href="/transaksi/wisata" class="menu-link">
                                 <div data-i18n="">Wisata Transaksi</div>
                             </a>

@@ -17,6 +17,7 @@
                                 <img class="img-fluid rounded-2" src="{{ asset('storage/' . $homestay->image) }}"
                                     style="width:100%;" alt="">
                             </div>
+                            @foreach ($list_image_homestay as $image)
                             <div class="carousel-item">
                                 <img class="img-fluid rounded-2" src="{{ asset('storage/' . $homestay->image) }}"
                                     style="width:100%;" alt="">
@@ -25,6 +26,7 @@
                                 <img class="img-fluid rounded-2" src="{{ asset('storage/' . $homestay->image) }}"
                                     style="width:100%;" alt="">
                             </div>
+                            @endforeach
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
                             data-bs-slide="prev">

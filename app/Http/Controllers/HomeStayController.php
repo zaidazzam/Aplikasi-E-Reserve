@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Homestay;
 use Illuminate\Support\Facades\Auth;
+use App\Models\image_homestay;
 
 class HomeStayController extends Controller
 {
     public function index()
     {
-        $homestay = Homestay::all();
+        $homestay = Homestay::simplePaginate(10);
         return view('admin.homestay.data-homestay', compact('homestay'));
 
     }
@@ -105,9 +106,12 @@ class HomeStayController extends Controller
         return view('admin.homestay.tambah-fasilitas-homestay');
 
     }
-    public function tambahGambar()
+    public function tambahGambar($homestay)
     {
-        return view('admin.homestay.tambah-gambar-homestay');
+        // show all gambar where homestay_id = homestay
+        $image_homestay = image_homestay::where('homestay_id', $homestay)->get();
+        $homestay = Homestay::findOrFail($homestay);
+        return view('admin.homestay.tambah-gambar-homestay', compact('image_homestay', 'homestay'));
 
     }
 }
