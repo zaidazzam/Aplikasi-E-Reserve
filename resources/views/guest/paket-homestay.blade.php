@@ -112,90 +112,25 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="team-item rounded overflow-hidden">
-                    <div class="position-relative">
-                        <a href="link-ke-blog-1">
-                            <img class="img-fluid" src={{ asset('img/pake-wisata/PaketWisata.png') }} alt="">
+            @foreach ($pakets as $paket)
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="team-item rounded overflow-hidden">
+
+                        <a href="{{ route('pakets.detail', ['id' => $paket->id]) }}">
+                            <div class="position-relative">
+                                <img class="img-fluid" src="{{ asset('storage/' . $paket->image) }}">
+                                <h3></h3>
+                            </div>
+                            <div class="text-center p-2 ">
+                                <h5 class="fw-bold mb-1">{{ $paket->judul }}</h5>
+                                <h6 class="text-warning">Rp {{ number_format($paket->harga, 0, ',', '.') }} /Orang</h6>
+                            </div>
                         </a>
-                        <h3></h3>
+
                     </div>
-                    <div class="text-center p-2 ">
-                        <h5 class="fw-bold mb-1">Wisata Curug Cinulang</h5>
-                        <h6 class="text-warning">Rp. 15.000/orang</h6>
-                    </div>
+
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="team-item rounded overflow-hidden">
-                    <div class="position-relative">
-                        <a href="link-ke-blog-1">
-                            <img class="img-fluid" src={{ asset('img/pake-wisata/PaketWisata.png') }} alt="">
-                        </a>
-                        <h3></h3>
-                    </div>
-                    <div class="text-center p-2 ">
-                        <h5 class="fw-bold mb-1">Wisata Curug Cinulang</h5>
-                        <h6 class="text-warning">Rp. 15.000/orang</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="team-item rounded overflow-hidden">
-                    <div class="position-relative">
-                        <a href="link-ke-blog-1">
-                            <img class="img-fluid" src={{ asset('img/pake-wisata/PaketWisata.png') }} alt="">
-                        </a>
-                        <h3></h3>
-                    </div>
-                    <div class="text-center p-2 ">
-                        <h5 class="fw-bold mb-1">Wisata Curug Cinulang</h5>
-                        <h6 class="text-warning">Rp. 15.000/orang</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="team-item rounded overflow-hidden">
-                    <div class="position-relative">
-                        <a href="link-ke-blog-1">
-                            <img class="img-fluid" src={{ asset('img/pake-wisata/PaketWisata.png') }} alt="">
-                        </a>
-                        <h3></h3>
-                    </div>
-                    <div class="text-center p-2 ">
-                        <h5 class="fw-bold mb-1">Wisata Curug Cinulang</h5>
-                        <h6 class="text-warning">Rp. 15.000/orang</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="team-item rounded overflow-hidden">
-                    <div class="position-relative">
-                        <a href="link-ke-blog-1">
-                            <img class="img-fluid" src={{ asset('img/pake-wisata/PaketWisata.png') }} alt="">
-                        </a>
-                        <h3></h3>
-                    </div>
-                    <div class="text-center p-2 ">
-                        <h5 class="fw-bold mb-1">Wisata Curug Cinulang</h5>
-                        <h6 class="text-warning">Rp. 15.000/orang</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="team-item rounded overflow-hidden">
-                    <div class="position-relative">
-                        <a href="link-ke-blog-1">
-                            <img class="img-fluid" src={{ asset('img/pake-wisata/PaketWisata.png') }} alt="">
-                        </a>
-                        <h3></h3>
-                    </div>
-                    <div class="text-center p-2 ">
-                        <h5 class="fw-bold mb-1">Wisata Curug Cinulang</h5>
-                        <h6 class="text-warning">Rp. 15.000/orang</h6>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
     <!-- Destinasi List End -->

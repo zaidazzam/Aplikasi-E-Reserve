@@ -75,7 +75,7 @@
                 <section id="step-1" class="form-step">
                     <form method="POST" action="{{ route('transaksi.store') }}" enctype="multipart/form-data">
                         @csrf
-                        <div class="d-flex flex-wrap">
+                        {{-- <div class="d-flex flex-wrap">
                             <div class="col-lg-12">
                                 <div class="">
                                     <div class="row">
@@ -250,8 +250,8 @@
                                                         </div>
                                                     </div> -->
 
-                                            </div>
-                                            <!-- <div class="form-group">
+                                                </div>
+                                                <!-- <div class="form-group">
                                                     <div class="creat_account">
                                                         <h3>Permintaan khusus</h3>
                                                         <label>Kami tidak menjamin permintaan khusus, tapi akomodasi
@@ -273,36 +273,213 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="order_box">
-                                <h2>Rincian Pesanan Anda</h2>
-                                <div class="details_item mb-2">
+                            <div class="col-lg-12">
+                                <div class="order_box">
+                                    <h2>Rincian Pesanan Anda</h2>
+                                    <div class="details_item mb-2">
+                                        <ul class="list list_2">
+                                            <li><a>Check-in <span>{{ $checkin }}</span></a></li>
+                                            <li><a>Check-out<span>{{ $checkout }}</span></a></li>
+                                            <li><a>Total Masa inap <span>{{ $numberOfDays }} Hari</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <h2>Rincian Biaya Anda</h2>
                                     <ul class="list list_2">
-                                        <li><a>Check-in <span>{{ $checkin }}</span></a></li>
-                                        <li><a>Check-out<span>{{ $checkout }}</span></a></li>
-                                        <li><a>Total Masa inap <span>{{ $numberOfDays }} Hari</span></a></li>
+                                        <li><a href="">Harga Homestay <span>Rp. {{ number_format($homestay->harga, 0, ',', '.'); }}</span></a></li>
+                                        <li><a href="#">Total <span>Rp. {{ number_format($homestay->harga, 0, ',', '.'); }}</span></a></li>
                                     </ul>
+                                    <div class="creat_account">
+                                        <input type="checkbox" id="f-option4" name="selector">
+                                        <label for="f-option4">Saya telah membaca dan menerima</label>
+                                        <a href="#">syarat & ketentuan*</a>
+                                    </div>
+                                    <a class="primary-btn button btn-navigate-form-step" href="#"
+                                        type="button" step_number="2">Lanjutkan Pembayaran</a>
                                 </div>
-                                <h2>Rincian Biaya Anda</h2>
-                                <ul class="list list_2">
-                                    <li><a href="">Harga Homestay <span>Rp.
-                                                {{ number_format($homestay->harga, 0, ',', '.') }}</span></a></li>
-                                    <li><a href="#">Total <span>Rp.
-                                                {{ number_format($homestay->harga, 0, ',', '.') }}</span></a></li>
-                                </ul>
-                                <div class="creat_account">
-                                    <input type="checkbox" id="f-option4" name="selector">
-                                    <label for="f-option4">Saya telah membaca dan menerima</label>
-                                    <a href="#">syarat & ketentuan*</a>
+                            </div>
+                        </div> --}}
+                        <div class="d-flex flex-wrap">
+                            <div class="col-lg-8">
+                                <div class="">
+                                    <div class="row">
+                                        <div class="">
+                                            <center>
+                                                <h3>Masukkan rincian Anda</h3>
+                                            </center>
+                                            <div class="d-flex flex-wrap">
+                                                <div class="col-md-6 form-group p_star">
+                                                    <input type="text" class="form-control" id="first"
+                                                        name="name" placeholder="Nama depan">
+                                                </div>
+                                                <div class="col-md-6 form-group p_star" style="display:none;">
+                                                    <label for="">ID HOMESTAY</label>
+                                                    <input type="text" class="form-control" id="first"
+                                                        value="{{ $homestay->id }}" name="homestay_id"
+                                                        placeholder="Nama depan">
+                                                </div>
+                                                <div class="col-md-6 form-group p_star" style="display:none;">
+                                                    <label for="">checkin</label>
+                                                    <input type="text" class="form-control" id="first"
+                                                        value="{{ $checkin }}" name="check_in"
+                                                        placeholder="check_in">
+                                                </div>
+                                                <div class="col-md-6 form-group p_star" style="display:none;">
+                                                    <label for="">checkout</label>
+                                                    <input type="text" class="form-control" id="first"
+                                                        value="{{ $checkout }}" name="check_out"
+                                                        placeholder="check_out">
+                                                </div>
+                                                <div class="col-md-6 form-group p_star" style="display:none;">
+                                                    <label for="">total_harga</label>
+                                                    <input type="text" class="form-control" id="first"
+                                                        value="{{ $homestay->harga * $numberOfDays }}"
+                                                        name="total_harga" placeholder="Nama depan">
+                                                </div>
+                                                <div class="col-md-6 form-group p_star" style="display:none;">
+                                                    <label for="">biaya_admin</label>
+                                                    <input type="text" class="form-control" id="first"
+                                                        value="{{ $homestay->harga * 0.1 }}" name="biaya_admin"
+                                                        placeholder="Nama depan">
+                                                </div>
+                                                <div class="col-md-6 form-group p_star" style="display:none;">
+                                                    <label for="">total_masa_inap</label>
+                                                    <input type="text" class="form-control" id="first"
+                                                        value="{{ $numberOfDays }}" name="total_masa_inap"
+                                                        placeholder="Nama depan">
+                                                </div>
+
+                                                <div class="col-md-6 form-group p_star">
+                                                    <input type="text" class="form-control" id="number"
+                                                        name="number" placeholder="Nomor Telephone">
+                                                </div>
+                                                <div class="col-md-6 form-group p_star">
+                                                    <input type="text" class="form-control" id="email"
+                                                        name="compemailany" placeholder="Alamat email">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <!-- Default switch -->
+                                                <div>
+                                                    <h3>Tambah Layanan Tambahan</h3>
+                                                    <label for="">Nikmati Liburan Tanpa Batas! Gabungkan
+                                                        Penginapan Anda dengan Petualangan Tak Terlupakan! Pilihlah dari
+                                                        Beragam Pilihan Wisata yang Kami Tawarkan dan Bayar Saat
+                                                        Check-out di Homestay Anda. Mulai Rasakan Sensasi Baru Liburan
+                                                        yang Menakjubkan!</label>
+                                                </div>
+                                                <div class="">
+                                                    <!-- Default unchecked -->
+                                                    <div class="dropdown">
+                                                        <label
+                                                            class="dropdown-label  text-truncate border rounded">Pilih
+                                                            Wisata</label>
+
+                                                        <div class="dropdown-list">
+                                                            <div class="checkbox">
+                                                                <input type="checkbox" name="dropdown-group-all"
+                                                                    class="check-all checkbox-custom "
+                                                                    id="checkbox-main" />
+                                                                <label for="checkbox-main"
+                                                                    class="checkbox-custom-label ">Selection
+                                                                    All</label>
+                                                            </div>
+                                                            @foreach ($pakets as $paket)
+                                                                <div class="checkbox">
+                                                                    <input type="checkbox" name="dropdown-group"
+                                                                        class="check " id="checkbox-custom_01" />
+                                                                    <label for="checkbox-custom_01"
+                                                                        class="checkbox-custom-label">
+                                                                        {{ $paket->judul }} Rp.
+                                                                        {{ number_format($paket->harga, 0, ',', '.') }}</label>
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 form-group p_star">
+                                                        <label for="">Isi jumlah peserta yang akan ikut serta
+                                                            dalam petualangan ini, karena harga yang Anda bayar akan
+                                                            disesuaikan dengan jumlah peserta dan harga wisata</label>
+                                                        <input type="number" class="form-control" id="first"
+                                                            name="name" placeholder="Jumlah Peserta">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="creat_account">
+                                                        <h3>Permintaan khusus</h3>
+                                                        <label>Kami tidak menjamin permintaan khusus, tapi akomodasi
+                                                            akan
+                                                            berupaya memenuhi
+                                                            kebutuhan Anda. Anda selalu bisa membuat permintaan khusus
+                                                            setelah
+                                                            menyelesaikan
+                                                            pemesanan.</label>
+                                                        <label class="mt-2"><strong>Harap tulis permintaan Anda dalam
+                                                                Bahasa
+                                                                Inggris atau Bahasa
+                                                                Indonesia.
+                                                                (opsional)</strong></label>
+                                                        <textarea class="form-control bg-light" name="message" id="message" rows="1" placeholder=""></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <a class="primary-btn button btn-navigate-form-step" href="#" type="button"
-                                    step_number="2">Lanjutkan Pembayaran</a>
                             </div>
                         </div>
             </div>
     </section>
     <section id="step-2" class="form-step d-none">
+        <div class="d-flex flex-wrap">
+            <div class="col-lg-8">
+                <center>
+                    <h3>Pilih Metode</h3>
+                </center>
+                <div class="form-pemesan">
+                    <div class="metode-pembayaran mt-4">
+                        <div class="pilihan mb-3">
+                            <div class="e-wallet">
+                                <h4>Pembayaran E-Wallet</h4>
+                                <div class="pembayaran ewalet">
+                                    <h5 class="my-2">Pembayaran Dana</h5>
+                                    <div class="d-flex align-items-center">
+                                        <div class="first me-3">
+                                            <img src="{{ asset('img/logo-pembayaran/Logo_dana_blue.svg.png') }}"
+                                                alt="Pembayaran Dana" style="max-width: 80px; " />
+                                        </div>
+                                        <ul class="m-2">
+                                            <li>
+                                                <h6>Nama Dana: Zaid Abdullah Azzam</h6>
+                                            </li>
+                                            <li>
+                                                <h6>Nomor Dana: 089688347718</h6>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <h2>Rincian Biaya Anda</h2>
+                                    <ul class="list list_2">
+                                        <li><a href="">Harga Homestay <span>Rp.
+                                                    {{ number_format($homestay->harga, 0, ',', '.') }}</span></a></li>
+                                        <li><a href="#">Total <span>Rp.
+                                                    {{ number_format($homestay->harga, 0, ',', '.') }}</span></a></li>
+                                    </ul>
+                                    <div class="creat_account">
+                                        <input type="checkbox" id="f-option4" name="selector">
+                                        <label for="f-option4">Saya telah membaca dan menerima</label>
+                                        <a href="#">syarat & ketentuan*</a>
+                                    </div>
+                                    <a class="primary-btn button btn-navigate-form-step" href="#"
+                                        type="button" step_number="2">Lanjutkan Pembayaran</a>
+                                </div>
+                            </div>
+                        </div>
+    </section>
+    <section id="step-2" class="form-step d-none">
+        <div class="mt-3 ">
+            <button class="button btn-navigate-form-step" type="button" step_number="1">
+                Kembali
+            </button>
+        </div>
         <div class="d-flex flex-wrap">
             <div class="col-lg-8">
                 <center>
@@ -374,11 +551,7 @@
                                 <input type="file" class="form-control" id="first" name="bukti_transaksi"
                                     placeholder="Upload Bukti Transfer">
                             </div>
-                            <div class="mt-3">
-                                <button class="button btn-navigate-form-step" type="button" step_number="1">
-                                    Kembali
-                                </button>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -406,14 +579,17 @@
                         <label for="f-option4">Saya telah membaca dan menerima</label>
                         <a href="#">syarat & ketentuan*</a>
                     </div>
-                    <button type="submit" class="btn btn-primary"> Lanjutkan Pembayaran</button>
-                    <!-- <button class="primary-btn button btn-navigate-form-step" type="submit">
+                    <a class="primary-btn button btn-navigate-form-step" href="#" type="button"
+                        step_number="2">Lanjutkan Pembayaran</a> <!-- <button class="primary-btn button btn-navigate-form-step" type="submit">
                                         Lanjutkan Pembayaran
                                         </button> -->
                     </form>
                 </div>
             </div>
         </div>
+    </section>
+    </div>
+    </div>
     </section>
     </div>
     </section>

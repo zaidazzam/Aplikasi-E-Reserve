@@ -13,6 +13,6 @@ class MitraLayout extends Component
      */
     public function render()
     {
-        return view('layouts.mitra');
+        return view('layouts.mitra.mitra');
     }
 }

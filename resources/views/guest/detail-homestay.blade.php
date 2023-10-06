@@ -40,19 +40,21 @@
                 </div>
                 {{-- <div class="col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="mx-auto mb-3 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="row align-items-center justify-center">
-                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                            <label for="">Checkin</label>
-                            <input id="datepicker" class="btn-outline-primary" width="276" />
+                        <div class="row align-items-center justify-center">
+                            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                                <label for="">Checkin</label>
+                                <input id="datepicker" class="btn-outline-primary" width="276" />
 
-                            <input id="homestay_id" value="{{ $homestay->id }}" style ="display:none;" class="btn-outline-primary" width="276" />
+                                <input id="homestay_id" value="{{ $homestay->id }}" style="display:none;"
+                                    class="btn-outline-primary" width="276" />
+                            </div>
+                            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                                <label for="">Checkin</label>
+                                <input id="datepicker1" class="btn-outline-primary" width="276" />
+                            </div>
                         </div>
-                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                            <label for="">Checkin</label>
-                            <input id="datepicker1" class="btn-outline-primary" width="276" />
-                        </div>
-                    </div>
-                    <a id="bookingLink" class="btn btn-primary justify-center py-3 px-5 mt-3" style="width: 100%" href="{{ url('/beranda/paket/') }}">Pesan</a>
+                        <a id="bookingLink" class="btn btn-primary justify-center py-3 px-5 mt-3" style="width: 100%"
+                            href="{{ url('/beranda/paket/') }}">Pesan</a>
 
                     </div>
                     <iframe class="position-relative rounded w-100 h-80"
