@@ -43,7 +43,7 @@
     <!-- Header End -->
 
     <!-- Search Start -->
-    <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
+    <div class="container-fluid bg-primary wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
         <div class="container">
         </div>
     </div>
@@ -98,188 +98,195 @@
             <div class="tab-content">
                 <div id="" class="tab-pane fade show p-0 active">
                     <div class="row g-4">
+                        @php $counter = 0 @endphp
                         @foreach ($homestay as $item)
-                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                                <div class="property-item rounded overflow-hidden">
-                                    <div class="position-relative overflow-hidden">
-                                        <a href="{{ route('homestay.detail', ['id' => $item->id]) }}">
-                                            <img class="img-fluid" src={{ asset('img/destinasi/PKEK.PNG') }}
-                                                alt="">
-                                            {{-- <img
+                            @if ($counter < 3)
+                                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                                    <div class="property-item rounded overflow-hidden">
+                                        <div class="position-relative overflow-hidden">
+                                            <a href="{{ route('homestay.detail', ['id' => $item->id]) }}">
+                                                <img class="img-fluid" src="{{ asset('storage/' . $item->image) }}"
+                                                    alt="">
+                                                {{-- <img
                                                 class="img-fluid" style="width:100%; height:50%;"
                                                 src="{{ asset('storage/' . $item->image) }}" alt=""></a> --}}
-                                            <div
-                                                class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                                                Rekomendasi</div>
-                                            <div
-                                                class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                                                8,6
-                                            </div>
+                                                <div
+                                                    class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
+                                                    Rekomendasi</div>
+                                                <div
+                                                    class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
+                                                    8,6
+                                                </div>
+                                        </div>
+                                        <div class="p-4 pb-0">
+                                            <h5 class="text-primary mb-3">Rp.
+                                                {{ number_format($item->harga, 0, ',', '.') }} / malam</h5>
+                                            <a class="d-block h5 mb-2"
+                                                href="{{ route('homestay.detail', ['id' => $item->id]) }}">{{ $item->nama }}</a>
+                                            <p><i
+                                                    class="fa fa-map-marker-alt text-primary me-2"></i>{{ $item->alamat }}
+                                            </p>
+                                        </div>
+                                        <div class="d-flex border-top">
+                                            <small class="flex-fill text-center border-end py-2"><i
+                                                    class="fa-solid fa-kitchen-set text-primary me-2"></i> Dapur</small>
+                                            <small class="flex-fill text-center border-end py-2"><i
+                                                    class="fa fa-bed text-primary me-2"></i> Kasur</small>
+                                            <small class="flex-fill text-center py-2"><i
+                                                    class="fa fa-bath text-primary me-2"></i>Toilet</small>
+                                        </div>
                                     </div>
-                                    <div class="p-4 pb-0">
-                                        <h5 class="text-primary mb-3">Rp.
-                                            {{ number_format($item->harga, 0, ',', '.') }}</h5>
-                                        <a class="d-block h5 mb-2"
-                                            href="{{ route('homestay.detail', ['id' => $item->id]) }}">{{ $item->nama }}</a>
-                                        <p><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ $item->alamat }}
-                                        </p>
-                                    </div>
-                                    <div class="d-flex border-top">
-                                        <small class="flex-fill text-center border-end py-2"><i
-                                                class="fa-solid fa-kitchen-set text-primary me-2"></i>1 Dapur</small>
-                                        <small class="flex-fill text-center border-end py-2"><i
-                                                class="fa fa-bed text-primary me-2"></i>3 Kasur</small>
-                                        <small class="flex-fill text-center py-2"><i
-                                                class="fa fa-bath text-primary me-2"></i>2 Toilet</small>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
+                                    @php $counter++ @endphp
+                                @else
+                                @break
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+            <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
+                <a class="btn btn-primary py-3 px-5" href="{{ url('/homestay') }}">Lihat
+                    Selanjutnya</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- Property List End -->
+
+
+<!-- Paket start -->
+<div class="container-xxl py-5">
+    <div class="row g-4">
+        <div class="row g-0 gx-5 align-items-end">
+            <div class="col-lg-12">
+                <div class="text-start mx-auto mb-2 wow slideInLeft" data-wow-delay="0.1s">
+                    <h1 class="">Paket Wisata</h1>
+                    <p class="text-white-500">Nikmati Liburan Tanpa Batas! Gabungkan Penginapan Anda
+                        dengan
+                        Petualangan
+                        Tak Terlupakan!
+                        Pilihlah dari Beragam Pilihan Wisata yang Kami Tawarkan dan Bayar Saat Check-out di Homestay
+                        Anda. Mulai Rasakan Sensasi Baru Liburan yang Menakjubkan!</p>
+                </div>
+            </div>
+        </div>
+        @php $count = 0 @endphp
+        @foreach ($pakets as $paket)
+            @if ($count < 3)
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="team-item rounded overflow-hidden">
+                        <div class="position-relative">
+                            <a href="{{ route('pakets.detail', ['id' => $paket->id]) }}">
+                                <img src="{{ asset('storage/' . $paket->image) }}" alt="Gambar Blog"
+                                    class="img-fluid">
+                            </a>
+                        </div>
+                        <div class="text-center p-2 ">
+                            <h5 class="fw-bold mb-1">{{ $paket->judul }}</h5>
+                            <h6 class="text-warning">Rp. {{ number_format($paket->harga, 0, ',', '.') }}</h6>
+                        </div>
                     </div>
-                    <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
-                        <a class="btn btn-primary py-3 px-5" href="{{ url('/homestay') }}">Lihat
-                            Selanjutnya</a>
+                </div>
+                @php $count++ @endphp
+            @endif
+        @endforeach
+
+    </div>
+</div>
+<!-- Paket List End -->
+
+<!-- Call to Action Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="bg-light rounded p-3">
+            <div class="bg-white rounded p-4" style="border: 1px dashed rgba(0, 185, 142, .3)">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                        <img class="img-fluid rounded w-100" src="img/call-to-action.jpg" alt="">
+                    </div>
+                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                        <div class="mb-4">
+                            <h1 class="mb-3">Gabung Mitra Kamojang.id</h1>
+                            <p>Rumah impianmu bisa jadi homestay menarik! Nikmati penghasilan tambahan dengan
+                                mengubah rumah menjadi destinasi homestay yang mengagumkan. Hubungi kami sekarang
+                                untuk info lebih lanjut!</p>
+                        </div>
+                        <a href="" class="btn btn-primary py-3 px-4 me-2"><i
+                                class="fa fa-house-user me-2"></i>Daftar</a>
+                        <a href="https://api.whatsapp.com/send?phone=6289688347718&text=Halo%21%20Saya%20ingin%20mendapatkan%20informasi%20lebih%20lanjut%20tentang%20U-Homestay%20."
+                            class="btn btn-dark py-3 px-4">
+                            <i class="fa fa-whatsapp me-2"></i>Hubungi Kami</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+<!-- Call to Action End -->
 
-    <!-- Property List End -->
-
-
-    <!-- Paket start -->
-    <div class="container-xxl py-5">
-        <div class="row g-4">
-            <div class="row g-0 gx-5 align-items-end">
-                <div class="col-lg-12">
-                    <div class="text-start mx-auto mb-2 wow slideInLeft" data-wow-delay="0.1s">
-                        <h1 class="">Paket Wisata</h1>
-                        <p class="text-white-500">Nikmati Liburan Tanpa Batas! Gabungkan Penginapan Anda
-                            dengan
-                            Petualangan
-                            Tak Terlupakan!
-                            Pilihlah dari Beragam Pilihan Wisata yang Kami Tawarkan dan Bayar Saat Check-out di Homestay
-                            Anda. Mulai Rasakan Sensasi Baru Liburan yang Menakjubkan!</p>
-                    </div>
-                </div>
-            </div>
-            @php $count = 0 @endphp
-            @foreach ($pakets as $paket)
-                @if ($count < 3)
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="team-item rounded overflow-hidden">
-                            <div class="position-relative">
-                                <a href="{{ route('pakets.detail', ['id' => $paket->id]) }}">
-                                    <img src="{{ asset('storage/' . $paket->image) }}" alt="Gambar Blog"
-                                        class="img-fluid">
-                                </a>
-                            </div>
-                            <div class="text-center p-2 ">
-                                <h5 class="fw-bold mb-1">{{ $paket->judul }}</h5>
-                                <h6 class="text-warning">Rp. {{ number_format($paket->harga, 0, ',', '.') }}</h6>
-                            </div>
-                        </div>
-                    </div>
-                    @php $count++ @endphp
-                @endif
-            @endforeach
-
+<!-- Testimonial Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h1 class="mb-3">Testimonial</h1>
+            <p></p>
         </div>
-    </div>
-    <!-- Paket List End -->
-
-    <!-- Call to Action Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="bg-light rounded p-3">
-                <div class="bg-white rounded p-4" style="border: 1px dashed rgba(0, 185, 142, .3)">
-                    <div class="row g-5 align-items-center">
-                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                            <img class="img-fluid rounded w-100" src="img/call-to-action.jpg" alt="">
-                        </div>
-                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                            <div class="mb-4">
-                                <h1 class="mb-3">Gabung Mitra Kamojang.id</h1>
-                                <p>Rumah impianmu bisa jadi homestay menarik! Nikmati penghasilan tambahan dengan
-                                    mengubah rumah menjadi destinasi homestay yang mengagumkan. Hubungi kami sekarang
-                                    untuk info lebih lanjut!</p>
-                            </div>
-                            <a href="" class="btn btn-primary py-3 px-4 me-2"><i
-                                    class="fa fa-house-user me-2"></i>Daftar</a>
-                            <a href="https://api.whatsapp.com/send?phone=6289688347718&text=Halo%21%20Saya%20ingin%20mendapatkan%20informasi%20lebih%20lanjut%20tentang%20U-Homestay%20."
-                                class="btn btn-dark py-3 px-4">
-                                <i class="fa fa-whatsapp me-2"></i>Hubungi Kami</a>
+        <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
+            <div class="testimonial-item bg-light rounded p-3">
+                <div class="bg-white border rounded p-4">
+                    <p>Saya merasa sangat beruntung bisa bergabung dengan Mitra Kamojang.id. Melalui platform
+                        mereka,
+                        saya bisa mencapai audiens internasional dan menarik banyak tamu berkualitas. Sistem
+                        pemesanan mereka sangat lancar, dan kepuasan tamu meningkat berkat dukungan dan panduan dari
+                        tim Kamojang.id.</p>
+                    <div class="d-flex align-items-center">
+                        <img class="img-fluid flex-shrink-0 rounded" src="{{ asset('img/testimonial-2.jpg') }}"
+                            style="width: 45px; height: 45px;">
+                        <div class="ps-3">
+                            <h6 class="fw-bold mb-1">Ibu Siti Nurhalizah</h6>
+                            <small>Pemilik Homestay Garden</small>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- Call to Action End -->
-
-    <!-- Testimonial Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                <h1 class="mb-3">Testimonial</h1>
-                <p></p>
+            <div class="testimonial-item bg-light rounded p-3">
+                <div class="bg-white border rounded p-4">
+                    <p>Sejak bergabung dengan Mitra Kamojang.id, bisnis homestay saya semakin berkembang pesat!
+                        Mereka memberikan platform yang mudah digunakan, dan tim mereka selalu siap membantu dengan
+                        pertanyaan dan permintaan saya. Pengalaman kerja sama dengan Kamojang.id sungguh
+                        menyenangkan
+                        dan membawa kesuksesan bagi bisnis saya.</p>
+                    <div class="d-flex align-items-center">
+                        <img class="img-fluid flex-shrink-0 rounded" src="{{ asset('img/testimonial-2.jpg') }}"
+                            style="width: 45px; height: 45px;">
+                        <div class="ps-3">
+                            <h6 class="fw-bold mb-1">Bapak Zaenal Nurharifin</h6>
+                            <small>Pemilik Homestay Castil</small>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
-                <div class="testimonial-item bg-light rounded p-3">
-                    <div class="bg-white border rounded p-4">
-                        <p>Saya merasa sangat beruntung bisa bergabung dengan Mitra Kamojang.id. Melalui platform
-                            mereka,
-                            saya bisa mencapai audiens internasional dan menarik banyak tamu berkualitas. Sistem
-                            pemesanan mereka sangat lancar, dan kepuasan tamu meningkat berkat dukungan dan panduan dari
-                            tim Kamojang.id.</p>
-                        <div class="d-flex align-items-center">
-                            <img class="img-fluid flex-shrink-0 rounded" src="{{ asset('img/testimonial-2.jpg') }}"
-                                style="width: 45px; height: 45px;">
-                            <div class="ps-3">
-                                <h6 class="fw-bold mb-1">Ibu Siti Nurhalizah</h6>
-                                <small>Pemilik Homestay Garden</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-item bg-light rounded p-3">
-                    <div class="bg-white border rounded p-4">
-                        <p>Sejak bergabung dengan Mitra Kamojang.id, bisnis homestay saya semakin berkembang pesat!
-                            Mereka memberikan platform yang mudah digunakan, dan tim mereka selalu siap membantu dengan
-                            pertanyaan dan permintaan saya. Pengalaman kerja sama dengan Kamojang.id sungguh
-                            menyenangkan
-                            dan membawa kesuksesan bagi bisnis saya.</p>
-                        <div class="d-flex align-items-center">
-                            <img class="img-fluid flex-shrink-0 rounded" src="{{ asset('img/testimonial-2.jpg') }}"
-                                style="width: 45px; height: 45px;">
-                            <div class="ps-3">
-                                <h6 class="fw-bold mb-1">Bapak Zaenal Nurharifin</h6>
-                                <small>Pemilik Homestay Castil</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-item bg-light rounded p-3">
-                    <div class="bg-white border rounded p-4">
-                        <p>Testimoni positif untuk Kamojang.id! Bergabung dengan mereka adalah keputusan yang tepat.
-                            Dengan pemasaran yang efektif dan platform yang canggih, homestay saya sekarang lebih
-                            dikenal dan lebih dicari oleh para traveler. Mereka benar-benar peduli pada kesuksesan mitra
-                            mereka, dan saya bangga menjadi bagian dari komunitas Kamojang.id.</p>
-                        <div class="d-flex align-items-center">
-                            <img class="img-fluid flex-shrink-0 rounded" src="{{ asset('img/testimonial-2.jpg') }}"
-                                style="width: 45px; height: 45px;">
-                            <div class="ps-3">
-                                <h6 class="fw-bold mb-1">Bapak Dedi Sukaedi</h6>
-                                <small>Pemilik Homestay Mawar</small>
-                            </div>
+            <div class="testimonial-item bg-light rounded p-3">
+                <div class="bg-white border rounded p-4">
+                    <p>Testimoni positif untuk Kamojang.id! Bergabung dengan mereka adalah keputusan yang tepat.
+                        Dengan pemasaran yang efektif dan platform yang canggih, homestay saya sekarang lebih
+                        dikenal dan lebih dicari oleh para traveler. Mereka benar-benar peduli pada kesuksesan mitra
+                        mereka, dan saya bangga menjadi bagian dari komunitas Kamojang.id.</p>
+                    <div class="d-flex align-items-center">
+                        <img class="img-fluid flex-shrink-0 rounded" src="{{ asset('img/testimonial-2.jpg') }}"
+                            style="width: 45px; height: 45px;">
+                        <div class="ps-3">
+                            <h6 class="fw-bold mb-1">Bapak Dedi Sukaedi</h6>
+                            <small>Pemilik Homestay Mawar</small>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Testimonial End -->
+</div>
+<!-- Testimonial End -->
 
 
 
