@@ -94,7 +94,7 @@
                     <div class="team-item rounded overflow-hidden">
                         <div class="position-relative">
                             <a href="{{ route('blog.detail', ['id' => $item->id]) }}">
-                                <img class="img-fluid" src={{ asset('img/header/pemandangan2.svg') }} alt="">
+                                <img class="img-fluid" src={{ asset('img/destinasi/PKEK.PNG') }} alt="">
                                 {{-- <img class="img-fluid" src="{{ asset('storage/' . $item->image) }}"
                                     style="width: 100%; height: 70%;" alt=""> --}}
                             </a>
@@ -129,7 +129,7 @@
                                 <div class="property-item rounded overflow-hidden">
                                     <div class="position-relative overflow-hidden">
                                         <a href="{{ route('homestay.detail', ['id' => $item->id]) }}">
-                                            <img class="img-fluid" src={{ asset('img/header/pemandangan2.svg') }}
+                                            <img class="img-fluid" src={{ asset('img/destinasi/PKEK.PNG') }}
                                                 alt="">
                                             {{-- <img
                                                 class="img-fluid" style="width:100%; height:50%;"
@@ -195,7 +195,7 @@
                     <div class="team-item rounded overflow-hidden">
                         <div class="position-relative">
                             <a href="{{ route('pakets.detail', ['id' => $paket->id]) }}">
-                                <img class="img-fluid" src={{ asset('img/pake-wisata/PaketWisata.png') }}
+                                <img class="img-fluid" src={{ asset('img/pake-wisata/wista-tirta.png') }}
                                     alt="">
                             </a>
                             <h3></h3>

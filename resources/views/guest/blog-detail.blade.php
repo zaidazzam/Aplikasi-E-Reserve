@@ -14,7 +14,7 @@
                             style="width:100%; heigth:70%;" class="img-fluid mb-4">
                         <h5 class="mb-3">{{ $item->judul }}</h5>
                         <p class="text-muted">{{ $item->created_at }}</p>
-                        <p>{{ $item->deskripsi }}</p>
+                        <p>{!! nl2br(e($item->deskripsi)) !!}</p>
                     </div>
                 </div>
                 <div class="col-lg-4">
