@@ -21,7 +21,9 @@ class GuestController extends Controller
 
     public function categori()
     {
-        return view ('guest.categori-homestay');
+        $homestay = Homestay::all();
+
+        return view ('guest.categori-homestay', compact('homestay'));
     }
     public function homestayDetail($id){
         $homestay = Homestay::find($id);

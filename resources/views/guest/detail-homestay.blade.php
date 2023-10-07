@@ -60,7 +60,7 @@
 
                     </div>
                     <iframe class="position-relative rounded w-100 h-80"
-                        src="https://maps.google.com/maps?q=kamojang&t=&z=10&ie=UTF8&iwloc=&output=embed"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8649.598104399105!2d107.78751214419822!3d-7.147394391675426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68b954430835ed%3A0x274367db0d38da6!2sDesa%20wisata%20laksana!5e1!3m2!1sid!2sid!4v1696668283425!5m2!1sid!2sid"
                         frameborder="0" style="min-height: 250px; border:0;" allowfullscreen="" aria-hidden="false"
                         tabindex="0"></iframe>
                 </div> --}}
@@ -84,11 +84,6 @@
                         frameborder="0" style="min-height: 250px; border:0;" allowfullscreen="" aria-hidden="false"
                         tabindex="0"></iframe>
                 </div>
-
-                <div class="col-lg-6 wow fadeIn rounded-2" data-wow-delay="0.1s">
-
-                </div>
-
             </div>
         </div>
     </div>
@@ -121,7 +116,7 @@
                         </div>
                 </div>
                 <h5 class="mb-3">{{ $homestay->nama }}</h5>
-                <h5 class="text-warning mb-3">Rp. {{ number_format($homestay->harga, 0, ',', '.') }}</h5>
+                <h5 class="text-warning mb-3">Rp. {{ number_format($homestay->harga, 0, ',', '.') }} / malam</h5>
                 <p><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ $homestay->alamat }}
                 </p>
                 <p>{!! nl2br(e($homestay->deskripsi)) !!}</p>
@@ -151,7 +146,7 @@
                                     <div class="icon me-3" style="width: 20px; height: 20px;">
                                         <i class="fa fa-bed text-primary"></i>
                                     </div>
-                                    <span>3 Kamar + Extrabed </span>
+                                    <span>{{ $homestay->jumlah_kamar }} Kamar </span>
                                 </div>
                             </div>
                         </div>
@@ -162,7 +157,7 @@
                                     <div class="icon me-3" style="width: 20px; height: 20px;">
                                         <i class="fa fa-bath text-primary"></i>
                                     </div>
-                                    <span>2 Kamar mandi + bath up</span>
+                                    <span>Kamar mandi</span>
                                 </div>
                             </div>
                         </div>
@@ -173,11 +168,11 @@
                                     <div class="icon me-3" style="width: 20px; height: 20px;">
                                         <i class="fa-solid fa-warehouse text-primary"></i>
                                     </div>
-                                    <span>Garasi</span>
+                                    <span>Tempat Parkir</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
+                        {{-- <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
                             <div class="rounded ">
                                 <div class="d-flex align-items-center bg-white rounded p-2"
                                     style="border: 1px dashed rgba(0, 185, 142, .3)">
@@ -187,7 +182,7 @@
                                     <span>Kolam Renang</span>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
                             <div class="rounded ">
                                 <div class="d-flex align-items-center bg-white rounded p-2"
@@ -210,17 +205,17 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
+                        {{-- <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
                             <div class="rounded ">
                                 <div class="d-flex align-items-center bg-white rounded p-2"
                                     style="border: 1px dashed rgba(0, 185, 142, .3)">
                                     <div class="icon me-3" style="width: 20px; height: 20px;">
                                         <i class="fa-solid fa-fan text-primary"></i>
                                     </div>
-                                    <span>AC/Kipas</span>
+                                    <span>Kipas</span>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -365,7 +360,6 @@
 </x-guest-layout>
 
 <script>
-    // JavaScript (gunakan jQuery UI datepicker)
     $(function() {
         // Mendapatkan tanggal saat ini
         var currentDate = new Date();
@@ -373,12 +367,20 @@
         // Mengatur batasan tanggal min pada datepicker
         $('#datepicker').datepicker({
             minDate: currentDate, // Tanggal saat ini
-            dateFormat: 'yy-mm-dd' // Format tanggal (sesuaikan)
+            dateFormat: 'yy-mm-dd', // Format tanggal (sesuaikan)
+            beforeShowDay: function(date) {
+                // Mengembalikan true jika tanggal yang dipilih lebih besar dari atau sama dengan tanggal saat ini
+                return date.valueOf() >= currentDate.valueOf();
+            }
         });
 
         $('#datepicker1').datepicker({
             minDate: currentDate, // Tanggal saat ini
-            dateFormat: 'yy-mm-dd' // Format tanggal (sesuaikan)
+            dateFormat: 'yy-mm-dd', // Format tanggal (sesuaikan)
+            beforeShowDay: function(date) {
+                // Mengembalikan true jika tanggal yang dipilih lebih besar dari atau sama dengan tanggal saat ini
+                return date.valueOf() >= currentDate.valueOf();
+            }
         });
     });
 </script>
