@@ -3,6 +3,7 @@
     data-theme="theme-default" data-assets-path="../assets/" data-template="vertical-menu-template-free"">
 
 <head>
+    <title>Kamojang.id</title>
     <meta charset="utf-8" />
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
@@ -316,14 +317,14 @@
                     // Get the updated data from the form
                     var updatedData = {
                         status_payment: $('#updateTransaksiModal').find('#status_payment')
-                        .val(),
+                            .val(),
                         // Get other fields as needed
                     };
 
                     // Send an AJAX request to update the transaksi data
                     $.ajax({
                         url: '/update_transaksi/' +
-                        transaksiId, // Replace with your controller route
+                            transaksiId, // Replace with your controller route
                         method: 'PUT',
                         data: updatedData,
                         headers: {
