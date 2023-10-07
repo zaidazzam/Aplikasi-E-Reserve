@@ -17,14 +17,16 @@
                                 <img class="img-fluid rounded-2" src="{{ asset('storage/' . $homestay->image) }}"
                                     style="width:100%;" alt="">
                             </div>
-                            <div class="carousel-item">
-                                <img class="img-fluid rounded-2" src="{{ asset('storage/' . $homestay->image) }}"
-                                    style="width:100%;" alt="">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="img-fluid rounded-2" src="{{ asset('storage/' . $homestay->image) }}"
-                                    style="width:100%;" alt="">
-                            </div>
+                            @foreach ($list_image_homestay as $image)
+                                <div class="carousel-item">
+                                    <img class="img-fluid rounded-2" src="{{ asset('storage/' . $homestay->image) }}"
+                                        style="width:100%;" alt="">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="img-fluid rounded-2" src="{{ asset('storage/' . $homestay->image) }}"
+                                        style="width:100%;" alt="">
+                                </div>
+                            @endforeach
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
                             data-bs-slide="prev">
@@ -49,7 +51,7 @@
                                     class="btn-outline-primary" width="276" />
                             </div>
                             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                                <label for="">Checkin</label>
+                                <label for="">Checkout</label>
                                 <input id="datepicker1" class="btn-outline-primary" width="276" />
                             </div>
                         </div>
@@ -122,7 +124,8 @@
                 <h5 class="text-warning mb-3">Rp. {{ number_format($homestay->harga, 0, ',', '.') }}</h5>
                 <p><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ $homestay->alamat }}
                 </p>
-                <p>{{ $homestay->deskripsi }}</p>
+                <p>{!! nl2br(e($homestay->deskripsi)) !!}</p>
+
             </div>
 
             <div class=" mx-auto wow fadeInUp bg-white rounded p-3 m-2" data-wow-delay="0.1s" id="tab-fasilitas"
@@ -225,7 +228,8 @@
                 style="max-width: 1200px;" id="tab-informasi-umum">
                 <h2 class="mb-3">Kebijakan</h2>
                 <p>Berikut adalah rapihkan kalimat dengan menggunakan list:</p>
-                {{ $homestay->kebijakan }}
+                <p>{!! nl2br(e($homestay->kebijakan)) !!}</p>
+
                 <!-- <ul>
                     <li>
                         Check-in:
@@ -358,14 +362,26 @@
     </div>
     <!-- Testimonial End -->
 
-
-
-
-
-
-
-
 </x-guest-layout>
+
+<script>
+    // JavaScript (gunakan jQuery UI datepicker)
+    $(function() {
+        // Mendapatkan tanggal saat ini
+        var currentDate = new Date();
+
+        // Mengatur batasan tanggal min pada datepicker
+        $('#datepicker').datepicker({
+            minDate: currentDate, // Tanggal saat ini
+            dateFormat: 'yy-mm-dd' // Format tanggal (sesuaikan)
+        });
+
+        $('#datepicker1').datepicker({
+            minDate: currentDate, // Tanggal saat ini
+            dateFormat: 'yy-mm-dd' // Format tanggal (sesuaikan)
+        });
+    });
+</script>
 
 <style>
     .gj-icon {

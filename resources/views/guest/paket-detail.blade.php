@@ -15,7 +15,7 @@
                         <h5 class="mb-3">{{ $item->judul }}</h5>
                         <h6 class="text-warning">Rp {{ number_format($item->harga, 0, ',', '.') }} /Orang</h6>
                         <p class="text-muted">{{ $item->created_at }}</p>
-                        <p>{{ $item->deskripsi }}</p>
+                        <p>{!! nl2br(e($item->deskripsi)) !!}</p>
                     </div>
                 </div>
             </div>

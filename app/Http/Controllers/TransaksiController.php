@@ -14,22 +14,52 @@ class TransaksiController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $transaksi = Transaksi::all();
+    { 
+        $transaksi = Transaksi::where('status_payment', 'pending')->with('homestay')->latest()->simplePaginate(5);
         $totalHargaSeluruhTransaksi = 0;
-
-        // Menghitung jumlah seluruh data transaksi
         $jumlahSeluruhTransaksi = $transaksi->count();
-
         foreach ($transaksi as $trx) {
             $totalHargaSeluruhTransaksi += $trx->total_harga;
         }
+        //sum biaya_admin in transaksi
+        $sum_biaya_admin = Transaksi::sum('biaya_admin');
+        return view('admin.transaksi.data-transaksi', compact('transaksi', 'totalHargaSeluruhTransaksi', 'jumlahSeluruhTransaksi','sum_biaya_admin'));
+    }
 
-        // Sekarang, Anda dapat mengirimkan totalHargaSeluruhTransaksi dan jumlahSeluruhTransaksi ke view
-        return view('admin.transaksi.data-transaksi', compact('transaksi', 'totalHargaSeluruhTransaksi', 'jumlahSeluruhTransaksi'));
+    public function history()
+    { 
+        $transaksi = Transaksi::where('status_payment', 'success')->with('homestay')->latest()->simplePaginate(5);
+        $totalHargaSeluruhTransaksi = 0;
+        $jumlahSeluruhTransaksi = $transaksi->count();
+        foreach ($transaksi as $trx) {
+            $totalHargaSeluruhTransaksi += $trx->total_harga;
+        }
+        $sum_biaya_admin = Transaksi::sum('biaya_admin');
+
+        return view('admin.transaksi.data-transaksi', compact('transaksi', 'totalHargaSeluruhTransaksi', 'jumlahSeluruhTransaksi','sum_biaya_admin'));
     }
 
 
+    public function index_api()
+    { 
+        //include homestay
+        $transaksi = Transaksi::with('homestay')->get();
+        return response()->json([
+            'success' => true,
+            'message' => 'Daftar data transaksi',
+            'data' => $transaksi
+        ], 200);
+    }
+
+    public function update_with_json(Request $request, $id) {
+        // Validate and update the transaksi data
+        // Example:
+        $transaksi = Transaksi::find($id);
+        $transaksi->status_payment = $request->input('status_payment');
+        $transaksi->save();
+        return response()->json(['message' => 'Transaksi updated successfully']);
+    }
+    
 
     /**
      * Show the form for creating a new resource.

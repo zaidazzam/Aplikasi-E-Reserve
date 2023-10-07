@@ -83,7 +83,7 @@
                                 <td>{{ $rekomendasi->latitude }}</td>
                                 <td>{{ $rekomendasi->longitude }}</td>
                                 <td class="text-wrap">
-                                    <a href="{{ url('/tambahhomestay/gambar/') }}"> <button
+                                    <a href="{{ route('homestays.image', ['homestays' => $rekomendasi->id]) }}"> <button
                                             class="btn btn-outline-primary" type="button"
                                             id="button-addon1">Gambar</button></a>
                                 </td>
@@ -165,41 +165,7 @@
                     </tbody>
                 </table>
 
-                <nav aria-label="Page navigation">
-                    <ul class="pagination">
-                        <li class="page-item first">
-                            <a class="page-link" href="javascript:void(0);"><i
-                                    class="tf-icon bx bx-chevrons-left"></i></a>
-                        </li>
-                        <li class="page-item prev">
-                            <a class="page-link" href="javascript:void(0);"><i
-                                    class="tf-icon bx bx-chevron-left"></i></a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="javascript:void(0);">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="javascript:void(0);">2</a>
-                        </li>
-                        <li class="page-item active">
-                            <a class="page-link" href="javascript:void(0);">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="javascript:void(0);">4</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="javascript:void(0);">5</a>
-                        </li>
-                        <li class="page-item next">
-                            <a class="page-link" href="javascript:void(0);"><i
-                                    class="tf-icon bx bx-chevron-right"></i></a>
-                        </li>
-                        <li class="page-item last">
-                            <a class="page-link" href="javascript:void(0);"><i
-                                    class="tf-icon bx bx-chevrons-right"></i></a>
-                        </li>
-                    </ul>
-                </nav>
+                {{ $homestay->links()  }}
             </div>
         </div>
     </div>
