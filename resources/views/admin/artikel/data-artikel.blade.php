@@ -11,18 +11,16 @@
                             <th>Judul</th>
                             <th>Deskripsi</th>
                             <th>Gambar</th>
-                            <th>Aksi</th>
 
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($artikels as $artikel)
-                        <tr>
-                            <td>{{ $artikel->judul }}</td>
-                            <td class="truncate-text">{{ $artikel->deskripsi }}</td>
-                            <td><img class="img-fluid-gambar" src="{{ asset('storage/' . $artikel->image) }}"></td>
-                           
-                        </tr>
+                            <tr>
+                                <td>{{ $artikel->judul }}</td>
+                                <td class="text-wrap">{{ $artikel->deskripsi }}</td>
+                                <td><img class="img-fluid-gambar" src="{{ asset('storage/' . $artikel->image) }}"></td>
+                            </tr>
                         @endforeach
                 </table>
             </div>

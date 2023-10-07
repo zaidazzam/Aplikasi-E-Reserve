@@ -81,7 +81,7 @@
                             </a>
                         </div>
                         <!-- /Logo -->
-                        <h4 class="mb-4">Selamat Datang di E-Reserve! 👋</h4>
+                        <h4 class="mb-4">Selamat Datang di Kamojang.id! 👋</h4>
 
                         <form method="POST" action="{{ route('login') }}">
                             @csrf

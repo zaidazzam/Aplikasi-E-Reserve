@@ -18,7 +18,7 @@ class ArtikelController extends Controller
         $request->validate([
             'judul' => 'required|string',
             'deskripsi' => 'required|string',
-            'image' => 'image|mimes:svg,jpeg,png,jpg,gif|max:2048', // Example validation rule for image uploads
+            'image' => 'image|mimes:svg,jpeg,png,jpg,gif|max:5000', // Example validation rule for image uploads
         ]);
         $rekomendasi = new Artikel([
             'judul' => $request->judul,

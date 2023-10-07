@@ -6,7 +6,7 @@
                         <img class="" src="{{ asset('img/group12.svg') }}" alt="Icon"
                             style="width: 40px; height: 40px;">
                     </div>
-                    <span class=" menu-text fw-bolder ms-2">E-Reserve</span>
+                    <span class=" menu-text fw-bolder ms-2">Kamojang.id</span>
                 </a>
 
                 <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
