@@ -59,7 +59,8 @@
                                 <td> <img class="img-fluid-gambar" src="{{ asset('storage/' . $rekomendasi->image) }}"
                                         alt="">
                                 </td>
-                                <td class="text-center"> <button type="submit" class="btn btn-danger">Hapus</button>
+                                <td class="text-center">
+                                    <button class="btn btn-danger delete-image" data-id="{{ $rekomendasi->id }}">Hapus</button>
                                 </td>
                             
                         </tr>

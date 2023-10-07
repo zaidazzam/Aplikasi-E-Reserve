@@ -1,0 +1,289 @@
+<x-app-layout>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Pengeluaran</span> Data Pengeluaran</h4>
+    <!-- Bordered Table -->
+
+    {{-- <div class="mb-3">
+        <div class="col-md-4 col-xl-12">
+            <div class="d-flex justify-content-between">
+                <div class="card bg-primary text-white mb-3 " style="width: 250px">
+                    <div class="card-header">
+                        <h5 class="card-title text-white">Total Transaksi</h5>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-text text-white">Rp 5.000.000</h3>
+                    </div>
+                </div>
+                <div class="card bg-primary text-white mb-3 " style="width: 250px">
+                    <div class="card-header">
+                        <h5 class="card-title text-white">Total Pengeluaran</h5>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-text text-white">Rp 5.000.000</h3>
+                    </div>
+                </div>
+                <div class="card bg-primary text-white mb-3 " style="width: 250px">
+                    <div class="card-header">
+                        <h5 class="card-title text-white">Total Pendapatan</h5>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-text text-white">Rp 5.000.000</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <div class="col-md-4 col-xl-12">
+            <div class="d-flex justify-content-between">
+               
+                <div class="card bg-primary text-white mb-3 " style="width: 250px">
+                   
+                    <div class="card-body">
+                        <h3 class="card-text text-white text-center">5</h3>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div> --}}
+    <div class="mb-2">
+        <div class="col-lg-12 col-md-4 ">
+            <div class="row">
+                <div class="col-lg-4 col-md-12 col-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="../assets/img/icons/unicons/chart-success.png" alt="chart success"
+                                        class="rounded" />
+                                </div>
+
+                            </div>
+                            <span class="fw-semibold d-block mb-1">Total Pendapatan</span>
+                            <h3 class="card-title mb-2">Rp {{ number_format($sum_biaya_admin, 0, ',', '.') }}
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="../assets/img/icons/unicons/paypal.png" alt="Credit Card"
+                                        class="rounded" />
+                                </div>
+
+                            </div>
+                            <span class="fw-semibold d-block mb-1">Total Pengeluaran</span>
+                            <h3 class="card-title mb-2">Rp {{ number_format($pengeluaran, 0, ',', '.') }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="../assets/img/icons/unicons/wallet-info.png" alt="Credit Card"
+                                        class="rounded" />
+                                </div>
+                            </div>
+                            <span class="fw-semibold d-block mb-1">Kas Saat Ini </span>
+                            <h3 class="card-title mb-2"> Rp {{ number_format($sum_biaya_admin - $pengeluaran, 0, ',', '.') }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-4 order-1">
+            <div class="row">
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="card">
+
+        <h5 class="card-header">Tabel Data Pengeluaran</h5>
+        <div class="mb-3 ">
+            <div class="col-md-4 col-xl-12">
+                <div class="d-flex justify-content-between">
+
+                <div class="modal fade" id="addPengeluara" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel3">Tambah Gambar</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="imagePengeluaran" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="label_file" class="form-label">Nama Pengeluaran</label>
+                                            <input class="form-control" type="text" placeholder="Nama Pengeluaran" id="label_file" name="nama_pengeluaran" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="label_file" class="form-label">Biaya</label>
+                                            <input class="form-control" type="number" placeholder="Biaya" id="label_file" name="harga" />
+                                        </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="label_file" class="form-label">Keterangan</label>
+                                            <input class="form-control" type="text" placeholder="Keterangan" id="label_file" name="keterangan" />
+                                        </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="label_file" class="form-label">Upload Gambar</label>
+                                            <input class="form-control" type="file" placeholder="Pilih gambar" id="label_file" name="nota" multiple />
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                    Tutup
+                                </button>
+                                <button type="button" id="addPengeluara" class="btn btn-primary">Simpan</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPengeluara">
+                    Tambah Pengeluaran
+                </button>
+                    <!-- <div class="input-group input-group-merge me-4" style="width: 500px">
+                        <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
+                        <input type="text" class="form-control" placeholder="Search..." aria-label="Search..."
+                            aria-describedby="basic-addon-search31" />
+                    </div> -->
+                    <!-- <div class=" justify-content-end">
+                        <div class="btn-group me-4">
+                            <button type="button" class="btn btn-outline-primary dropdown-toggle"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Status Payment
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="javascript:void(0);">Belum</a></li>
+                                <li><a class="dropdown-item" href="javascript:void(0);">Luna</a></li>
+                            </ul>
+                        </div>
+                        <div class="btn-group me-4">
+                            <button type="button" class="btn btn-outline-primary dropdown-toggle"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Status Checkin
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="javascript:void(0);">Belum</a></li>
+                                <li><a class="dropdown-item" href="javascript:void(0);">Sedang</a></li>
+                                <li><a class="dropdown-item" href="javascript:void(0);">Selesai</a></li>
+
+                            </ul>
+                        </div>
+                        <div class="btn-group me-4">
+                            <button type="button" class="btn btn-outline-primary dropdown-toggle"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Status Transfer Pemilik
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="javascript:void(0);">Belum</a></li>
+                                <li><a class="dropdown-item" href="javascript:void(0);">Sudah</a></li>
+
+                            </ul>
+                        </div>
+                    </div> -->
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive text-nowrap">
+                <table class="table table-bordered mb-4">
+                    <thead>
+                        <tr>
+                            <th>Nama Pengeluaran</th>
+                            <th>Biaya</th>
+                            <th>Nota</th>
+                            <th>Keterangan</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($pengeluaran_transaksi as $pengeluaran_transaksis)
+                            <tr>
+                                <td>{{ $pengeluaran_transaksis->nama_pengeluaran }}</td>
+                                <td>{{ $pengeluaran_transaksis->harga }}</td>
+                                <td>{{ $pengeluaran_transaksis->keterangan }}</td>                          
+                                <td><img style="width:50%" src="{{ asset('storage/' . $pengeluaran_transaksis->nota) }}"></td>
+                                <td class="text-wrap">
+                            <div class="row justify-content-start px-4">
+                                <div class="col-12">
+                                <button class="btn btn-danger delete-pengeluaran" data-id="{{ $pengeluaran_transaksis->id }}">Hapus</button>
+                                </div>
+                            </div>
+                        </td>
+
+                            </tr>
+                        @endforeach
+
+                    </tbody>
+                </table>
+                {!! $pengeluaran_transaksi->render() !!}
+                
+          <!-- Modal for updating transaksi -->
+                <div class="modal fade" id="updateTransaksiModal" tabindex="-1" aria-labelledby="updateTransaksiModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="updateTransaksiModalLabel">Update Transaksi</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Add your form fields for updating transaksi data here -->
+                                <!-- For example: -->
+                                <form id="updateTransaksiForm">
+                                @csrf
+                                    <div class="mb-3">
+                                    <label for="status_payment" class="form-label">Status Payment</label>
+                                        <select class="form-select" id="status_payment" name="status_payment">
+                                            <option value="pending">Pending</option>
+                                            <option value="success">success</option>
+                                            <option value="failed">Tolak / Refund</option>
+                                        </select>
+                                    </div>
+                                    <!-- Add more fields as needed -->
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" id="updateTransaksiHistoryButton">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+    
+    <!--/ Bordered Table -->
+</x-app-layout>
+<style>
+    .img-fluid-gambar {
+        width: 25%;
+        height: auto;
+    }
+</style>

@@ -48,7 +48,15 @@
                     </ul>
                 </li>
                 {{-- Menu Homestay --}}
-
+                <li class="menu-header small text-uppercase">
+                    <span class="menu-header-text">Service Tambahan</span>
+                </li>
+                <li class="menu-item {{ request()->is('') ? 'active' : '' }}">
+                    <a href="/service" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-collection"></i>
+                        <div data-i18n="Basic">Data Service</div>
+                    </a>
+                </li>
                 {{-- Menu Fasilitas --}}
                 <li class="menu-header small text-uppercase">
                     <span class="menu-header-text">Fasilitas</span>
@@ -119,20 +127,21 @@
                             </a>
                         </li>
                         <li class="menu-item">
+                            <a href="/transaksi/refund" class="menu-link">
+                                <div data-i18n="">Refund Transaksi</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
                             <a href="/transaksi/wisata" class="menu-link">
                                 <div data-i18n="">Wisata Transaksi</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="/transaksi/layanan" class="menu-link">
-                                <div data-i18n="">Layanan Transaksi</div>
+                            <a href="/transaksi/service" class="menu-link">
+                                <div data-i18n="">Service Transaksi</div>
                             </a>
                         </li>
-                        <li class="menu-item">
-                            <a href="/transaksi/pengeluaran" class="menu-link">
-                                <div data-i18n="">Data Pengeluaran</div>
-                            </a>
-                        </li>
+                        
                     </ul>
                 </li>
                 {{-- Menu Transaksi --}}
@@ -144,7 +153,19 @@
                 <li class="menu-item {{ request()->is('datapemilikhomestay') ? 'active' : '' }}">
                     <a href="" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-collection"></i>
-                        <div data-i18n="Basic">Data Pemilik Homestay</div>
+                        <div data-i18n="Basic">Data [Pemilik Homestay]</div>
+                    </a>
+                </li>
+                {{-- Menu Pemilik Homestay --}}
+
+                {{-- Menu Pemilik Homestay --}}
+                <li class="menu-header small text-uppercase">
+                    <span class="menu-header-text">Pengeluaran</span>
+                </li>
+                <li class="menu-item {{ request()->is('') ? 'active' : '' }}">
+                    <a href="/pengeluaran" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-collection"></i>
+                        <div data-i18n="Basic">Data Pengeluaran</div>
                     </a>
                 </li>
                 {{-- Menu Pemilik Homestay --}}

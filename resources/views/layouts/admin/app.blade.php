@@ -272,6 +272,80 @@
 <script>
     $(document).ready(function() {
 
+        $("#addPengeluara").click(function() {
+            const formData = new FormData(imagePengeluaran);
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+            console.log(formData);
+            $.ajax({
+                url: "/pengeluaran", 
+                method: "POST",
+                data: formData,
+                headers: {
+                        'X-CSRF-TOKEN': csrfToken
+                },
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    location.reload();
+                    // You can perform any actions you need here after a successful upload.
+                },
+                error: function(error) {
+                    // Handle error response
+                    console.error("Error uploading image(s):", error);
+                }
+            });
+        });
+        
+
+        $('.delete-image').click(function() {
+            var imageId = $(this).data('id');
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+            // Confirm the delete action if needed
+            if (confirm('Are you sure you want to delete this image?')) {
+                $.ajax({
+                    type: 'DELETE',
+                    url: '/image/delete/' + imageId,
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken
+                    },
+                    success: function(response) {
+                        if (response.success) { 
+                            location.reload(); 
+                        } else {
+                            location.reload();                        }
+                    },
+                    error: function() {
+                        alert('An error occurred while deleting the image.');
+                    }
+                });
+            }
+        });
+        
+
+        $('.delete-pengeluaran').click(function() {
+            var imageId = $(this).data('id');
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+            // Confirm the delete action if needed
+            if (confirm('Are you sure you want to delete this image?')) {
+                $.ajax({
+                    type: 'DELETE',
+                    url: '/pengeluaran/delete/' + imageId,
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken
+                    },
+                    success: function(response) {
+                        if (response.success) { 
+                            location.reload(); 
+                        } else {
+                            location.reload();                        }
+                    },
+                    error: function() {
+                        alert('An error occurred while deleting the image.');
+                    }
+                });
+            }
+        });
+
         $("#addHomestay").click(function() {
             const formData = new FormData(imageForm);
             var csrfToken = $('meta[name="csrf-token"]').attr('content');
@@ -295,7 +369,74 @@
                 }
             });
         });
+
+        $("#addServiceButton").click(function() {
+            const formData = new FormData(imageService);
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+            console.log(formData);
+            $.ajax({
+                url: "/service", 
+                method: "POST",
+                data: formData,
+                headers: {
+                        'X-CSRF-TOKEN': csrfToken
+                },
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    location.reload();
+                    // You can perform any actions you need here after a successful upload.
+                },
+                error: function(error) {
+                    // Handle error response
+                    console.error("Error uploading image(s):", error);
+                }
+            });
+        });
+
         // When the "Ubah" button is clicked
+        $('.updateTransaksiHistoryButton').click(function() {
+            var transaksiId = $(this).data('transaksi-id');
+            var namaDepan = $(this).data('nama-depan');
+            var notelp = $(this).data('notelp');
+            var checkIn = $(this).data('check-in');
+            var checkOut = $(this).data('check-out');
+            var totalMasaInap = $(this).data('total-masa-inap');
+            var noReferensi = $(this).data('no-referensi');
+            var status_transfer_pemilik = $(this).data('status_transfer_pemilik');
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+            // Populate the form fields in the modal with the data
+            $('#updateTransaksiHistoryButton').find('#status_transfer_pemilik').val(status_transfer_pemilik);
+            // Populate other fields as needed
+
+            // When the "Save changes" button in the modal is clicked
+            $('#updateTransaksiHistoryButton').click(function() {
+                // Get the updated data from the form
+                var updatedData = {
+                    status_transfer_pemilik: $('#updateTransaksiHistoryModal').find('#status_transfer_pemilik').val(),
+                    // Get other fields as needed
+                };
+                // Send an AJAX request to update the transaksi data
+                $.ajax({
+                    url: '/update_trf/' + transaksiId, // Replace with your controller route
+                    method: 'PUT',
+                    data: updatedData,
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken
+                    },
+                    success: function(response) {
+                        // Handle the success response, e.g., close the modal
+                        $('#updateTransaksiHistoryModal').modal('hide');
+                        location.reload();
+                    },
+                    error: function(error) {
+                        // Handle any errors, e.g., display an error message
+                    }
+                });
+            });
+        });
+
         $('.updateTransaksiButton').click(function() {
             var transaksiId = $(this).data('transaksi-id');
             var namaDepan = $(this).data('nama-depan');

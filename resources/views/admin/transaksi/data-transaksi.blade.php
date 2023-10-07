@@ -169,6 +169,7 @@
                             <th>Checkout</th>
                             <th>Total Inap</th>
                             <th>Total Harga</th>
+                            <th>Pendapatan Admin</th>
                             <th>Bukti Trf</th>
                             <th>Nomor Referensi</th>
                             <th>Status_Payment</th>
@@ -185,6 +186,7 @@
                                 <td>{{ $transaksis->check_out }}</td>
                                 <td>{{ $transaksis->total_masa_inap }}</td>
                                 <td>Rp. {{ number_format($transaksis->total_harga, 0, ',', '.'); }}</td>
+                                <td>Rp. {{ number_format($transaksis->biaya_admin, 0, ',', '.'); }}</td>
                                 <td><img style="width:50%" src="{{ asset('storage/' . $transaksis->bukti_transaksi) }}"></td>
                                 <td>{{ $transaksis->no_referensi }}</td>
                                 <td>{{ $transaksis->status_payment }}</td>
@@ -232,7 +234,7 @@
                                         <select class="form-select" id="status_payment" name="status_payment">
                                             <option value="pending">Pending</option>
                                             <option value="success">success</option>
-                                            <option value="failed">failed</option>
+                                            <option value="failed">Tolak / Refund</option>
                                         </select>
                                     </div>
                                     <!-- Add more fields as needed -->

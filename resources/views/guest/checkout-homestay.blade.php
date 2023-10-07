@@ -148,6 +148,58 @@
                                                             name="name" placeholder="Jumlah Peserta">
                                                 </div>
                                             </div>
+                                            <div class="">
+                                                    <!-- Default unchecked -->
+                                                    <div class="dropdown">
+                                                        <label
+                                                            class="dropdown-label  text-truncate border rounded">Pilih
+                                                            Wisata</label>
+
+                                                        <div class="dropdown-list">
+                                                            <div class="checkbox">
+                                                                <input type="checkbox" name="dropdown-group-all"
+                                                                    class="check-all checkbox-custom "
+                                                                    id="checkbox-main" />
+                                                                <label for="checkbox-main"
+                                                                    class="checkbox-custom-label ">Selection
+                                                                    All</label>
+                                                            </div>
+                                                            @foreach ($pakets as $paket)
+                                                                <div class="checkbox">
+                                                                    <input type="checkbox" name="dropdown-group[]" class="check" id="checkbox-custom_{{ $paket->id }}" value="{{ $paket->id }}" />
+                                                                    <label for="checkbox-custom_{{ $paket->id }}" class="checkbox-custom-label">
+                                                                        {{ $paket->judul }} Rp. {{ number_format($paket->harga, 0, ',', '.') }}
+                                                                    </label>
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="dropdown">
+                                                        <label
+                                                            class="dropdown-label  text-truncate border rounded">Pilih
+                                                            Service tambahan</label>
+
+                                                        <div class="dropdown-list">
+                                                            <div class="checkbox">
+                                                                <input type="checkbox" name="dropdown-group-all"
+                                                                    class="check-all checkbox-custom "
+                                                                    id="checkbox-main" />
+                                                                <label for="checkbox-main"
+                                                                    class="checkbox-custom-label ">Selection
+                                                                    All</label>
+                                                            </div>
+                                                            @foreach ($service_tambahan as $service)
+                                                                <div class="checkbox">
+                                                                    <input type="checkbox" name="dropdown-group-service[]" class="check" id="checkbox-custom_{{ $service->id }}" value="{{ $service->id }}" />
+                                                                    <label for="checkbox-custom_{{ $service->id }}" class="checkbox-custom-label">
+                                                                        {{ $service->nama_service_tambahan }} Rp. {{ number_format($service->harga, 0, ',', '.') }}
+                                                                    </label>
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                 
                                             
                                             <div class="form-group">
                                                 <!-- Default switch -->

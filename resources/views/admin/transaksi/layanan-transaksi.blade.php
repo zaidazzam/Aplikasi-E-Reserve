@@ -9,7 +9,7 @@
                     <h5 class="card-title text-white">Total Layanan Transaksi</h5>
                 </div>
                 <div class="card-body">
-                    <h2 class="card-text text-white">Rp 120.000</h2>
+                    <h2 class="card-text text-white">Rp {{ number_format($total_paket, 0, ',', '.') }}</h2>
                 </div>
             </div>
         </div>
@@ -21,78 +21,26 @@
                 <table class="table table-bordered mb-4">
                     <thead>
                         <tr>
-                            <th>Homestay_id</th>
-                            </th>
-                            <th>Transaksi_id</th>
-                            </th>
-                            <th>Total Harga Layanan Dipilih</th>
-                            </th>
-                            </th>
-                            <th>Jumlah Perserta</th>
-                            <th>Total Pembayaran</th>
+                            <th>Nama Paket Wisata</th>
+                            
+                            <th>Harga</th>
 
+                            <th>Tanggal</th>
+                           
 
                         </tr>
                     </thead>
                     <tbody>
+                    @foreach ($paket_transaksi as $item)
                         <tr>
-                            <td class="text-wrap">HSTY-01</td>
-                            <td class="text-wrap">TS-01</td>
-                            <td class="text-wrap">Rp. 30.000</td>
-                            <td class="text-wrap">4</td>
-                            <td class="text-wrap">Rp. 120.000</td>
-                            <td class="text-center">
-                                <div class="dropdown">
-                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                        data-bs-toggle="dropdown">
-                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="{{ url('/editartikel') }}"><i
-                                                class="bx bx-edit-alt me-1"></i> Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                class="bx bx-trash me-1"></i> Hapus</a>
-                                    </div>
-                                </div>
-                            </td>
+                            <td class="text-wrap">{{$item->paket->judul}}</td>
+                            <td class="text-wrap">{{$item->paket->harga}}</td>
+                            <td class="text-wrap">{{$item->paket->created_at}}</td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
-                <nav aria-label="Page navigation">
-                    <ul class="pagination">
-                        <li class="page-item first">
-                            <a class="page-link" href="javascript:void(0);"><i
-                                    class="tf-icon bx bx-chevrons-left"></i></a>
-                        </li>
-                        <li class="page-item prev">
-                            <a class="page-link" href="javascript:void(0);"><i
-                                    class="tf-icon bx bx-chevron-left"></i></a>
-                        </li>
-                        <li class="page-item active">
-                            <a class="page-link" href="javascript:void(0);">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="javascript:void(0);">2</a>
-                        </li>
-                        <li class="page-item ">
-                            <a class="page-link" href="javascript:void(0);">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="javascript:void(0);">4</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="javascript:void(0);">5</a>
-                        </li>
-                        <li class="page-item next">
-                            <a class="page-link" href="javascript:void(0);"><i
-                                    class="tf-icon bx bx-chevron-right"></i></a>
-                        </li>
-                        <li class="page-item last">
-                            <a class="page-link" href="javascript:void(0);"><i
-                                    class="tf-icon bx bx-chevrons-right"></i></a>
-                        </li>
-                    </ul>
-                </nav>
+               
             </div>
         </div>
 

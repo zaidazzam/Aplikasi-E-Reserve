@@ -78,7 +78,7 @@
                         <ul class="list">
                             <li><a><span>Nomor Pesanan</span> : {{ $detail_transaksi->nomor_invoice }}</a></li>
                             <li><a><span>Tanggal</span> : {{ $detail_transaksi->created_at }}</a></li>
-                            <li><a><span>Total</span> :  {{ $detail_transaksi->total_harga }}</a></li>
+                            <li><a><span>Total</span> : Rp. {{ number_format($detail_transaksi->total_harga, 0, ',', '.'); }}</a></li>
                             <li><a><span>Status Pembayaran</span> : {{ $detail_transaksi->status_payment }}</a></li>
                         </ul>
                     </div>
@@ -103,16 +103,27 @@
                         <li><a>Total Masa inap <span>{{ $detail_transaksi->total_masa_inap }} Hari </span></a></li>
                     </ul>
                 </div>
-                <h2>Rincian Biaya Anda</h2>
+                <h2>Rincian Biaya Homestay</h2>
                 <ul class="list list_2">
                     <li><a href="">Harga Homestay <span>Rp. {{ number_format($detail_transaksi->total_harga, 0, ',', '.'); }}</span></a></li>
-                    <!-- <li><a href="">Biaya Pemesanan <span>Rp. 2.500.</span></a></li> -->
-                    <!-- <li><a href="">Paket Wisata <span>Rp. 123.500. x 5 </span></a></li>
-                    <label>Paket wisata akan disesuaikan dengan jumlah peserta untuk memberikan
-                        pengalaman
-                        yang lebih memuaskan.</label>
+                   
+                </ul>
 
-                    <li><a href="#">Total <span>Rp.2000.0000</span></a></li> -->
+                <h2>Rincian Biaya Paket Wisata</h2>
+                <ul class="list list_2">
+                    <li><a href="">Harga TOTAL <span> Rp. {{ number_format($total_harga, 0, ',', '.'); }} </span></a></li>
+                    @foreach ($list_paket_transaksi as $selectedPaket)
+                        <li><a href=""> {{ $selectedPaket->paket->judul }}<span>Rp. {{ number_format($selectedPaket->paket->harga, 0, ',', '.') }}</span></a></li>
+                    @endforeach
+                   
+                </ul>
+                <h2>Rincian Biaya Service Tambahan</h2>
+                <ul class="list list_2">
+                    <li><a href="">Harga TOTAL <span> Rp. {{ number_format($total_harga_service, 0, ',', '.'); }} </span></a></li>
+                    @foreach ($list_service_transaksi as $selectedPaket)
+                        <li><a href=""> {{ $selectedPaket->service_tambahan->nama_service_tambahan }}<span>Rp. {{ number_format($selectedPaket->service_tambahan->harga, 0, ',', '.') }}</span></a></li>
+                    @endforeach
+                   
                 </ul>
             </div>
         </div>

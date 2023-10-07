@@ -44,7 +44,7 @@
                             <input id="homestay_id" value="{{ $homestay->id }}" style ="display:none;" class="btn-outline-primary" width="276" />
                         </div>
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                            <label for="">Checkin</label>
+                            <label for="">CheckOut</label>
                             <input id="datepicker1" class="btn-outline-primary" width="276" />
                         </div>
                     </div>

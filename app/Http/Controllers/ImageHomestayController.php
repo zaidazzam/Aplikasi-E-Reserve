@@ -96,8 +96,11 @@ class ImageHomestayController extends Controller
      * @param  \App\Models\image_homestay  $image_homestay
      * @return \Illuminate\Http\Response
      */
-    public function destroy(image_homestay $image_homestay)
+    public function destroy($id)
     {
-        //
+        $image = image_homestay::find($id);
+        $image->delete();       
+        return response()->json(['message' => 'Images delete successfully']);
+ 
     }
 }
