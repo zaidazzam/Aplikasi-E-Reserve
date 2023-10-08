@@ -1,19 +1,3 @@
-<style>
-    .team-item {
-        position: relative;
-        overflow: hidden;
-        transition: transform 0.3s ease;
-    }
-
-    .team-item:hover {
-        transform: scale(1.05);
-    }
-
-    .team-item img {
-        max-width: 100%;
-        height: auto;
-    }
-</style>
 <x-guest-layout>
     <!-- Header Start -->
     <div class="container-fluid header bg-white p-0">
@@ -25,16 +9,16 @@
             <div class="col-md-6 animated fadeIn">
                 <div class="owl-carousel header-carousel">
                     <div class="owl-carousel-item">
-                        <img class="img-fluid" src="{{ asset('img/header/pemandangan2.svg') }}" alt="">
+                        <img class="img-fluid" src="{{ asset('img/header/fillage.png') }}" alt="">
                     </div>
                     <div class="owl-carousel-item">
-                        <img class="img-fluid" src="{{ asset('img/header/pemandangan1.svg') }}" alt="">
+                        <img class="img-fluid" src="{{ asset('img/header/jembatan.png') }}" alt="">
                     </div>
                     <div class="owl-carousel-item">
-                        <img class="img-fluid" src="{{ asset('img/header/pemandangan8.svg') }}" alt="">
+                        <img class="img-fluid" src="{{ asset('img/header/Danau.png') }}" alt="">
                     </div>
                     <div class="owl-carousel-item">
-                        <img class="img-fluid" src="{{ asset('img/header/pemandangan3.svg') }}" alt="">
+                        <img class="img-fluid" src="{{ asset('img/header/elang.png') }}" alt="">
                     </div>
                 </div>
             </div>
@@ -43,87 +27,49 @@
     <!-- Header End -->
 
     <!-- Search Start -->
-    <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
+    <div class="container-fluid bg-primary wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
         <div class="container">
-            <div class="row g-2">
-                <div class="col-md-10">
-                    <div class="row g-2">
-                        <div class="col-md-4">
-                            <input type="text" class="form-control border-0 py-3"
-                                placeholder="Mau staycation dimana?">
-                        </div>
-                        <div class="col-md-4">
-                            <select class="form-select border-0 py-3">
-                                <option selected disabled>Kamar</option>
-                                <option value="1">2 Kamar</option>
-                                <option value="2">3 Kamar</option>
-                                <option value="3">4 Kamar</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <select class="form-select border-0 py-3">
-                                <option selected disabled>Kapasitas</option>
-                                <option value="1">Location 1</option>
-                                <option value="2">Location 2</option>
-                                <option value="3">Location 3</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <button class="btn btn-dark border-0 w-100 py-3">Cari</button>
-                </div>
-            </div>
         </div>
     </div>
     <!-- Search End -->
-
     <!-- Destinasi start -->
-    <div class="container">
+    <div class="container py-5">
         <div class="row g-4">
             <div class="row g-0 gx-5 align-items-end">
                 <div class="col-lg-6">
-                    <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
-                        <h1 class="mb-">Destinasi trending</h1>
+                    <div class="text-start mx-auto  wow slideInLeft" data-wow-delay="0.1s">
+                        <h1 class="">Destinasi trending</h1>
                         <p class="text-white-500">Pilihan terpopuler untuk traveler dari Indonesia</p>
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="team-item rounded overflow-hidden">
-                    <div class="position-relative">
-                        <a href="link-ke-blog-1">
-                            <img class="img-fluid" src="{{ asset('img/destinasi/KamojangFillage.svg') }}"
-                                alt="">
-                        </a>
-                    </div>
-                    <div class="text-center p-4 mt-3">
-                        <h5 class="fw-bold mb-0">Kamodjan Fillage</h5>
-                    </div>
-                </div>
-            </div> -->
+            @php $count = 0 @endphp
             @foreach ($artikel as $item)
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="team-item rounded overflow-hidden">
-                    <div class="position-relative">
-                        <a href="{{ route('blog.detail', ['id' => $item->id]) }}">
-                            <img class="img-fluid" src="{{ asset('storage/' . $item->image) }}" style="width: 100%; height: 70%;"
-                                alt="">
-                        </a>
+                @if ($count < 4)
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="team-item rounded overflow-hidden">
+                            <div class="position-relative">
+                                <a href="{{ route('blog.detail', ['id' => $item->id]) }}">
+                                    {{-- <img class="img-fluid" src={{ asset('img/destinasi/PKEK.PNG') }} alt=""> --}}
+                                    <img class="img-fluid" src="{{ asset('storage/' . $item->image) }}" alt="">
+                                </a>
+                            </div>
+                            <div class="text-center p-4">
+                                <h5 class="fw-bold mb-0">{{ $item->judul }}</h5>
+                            </div>
+                        </div>
                     </div>
-                    <div class="text-center p-4 mt-3">
-                        <h5 class="fw-bold mb-0">{{ $item->judul }}</h5>
-                    </div>
-                </div>
-            </div>
+                    @php $count++ @endphp
+                @endif
             @endforeach
+
             <!-- Tambahkan elemen lainnya dengan struktur yang sama -->
         </div>
     </div>
     <!-- Destinasi List End -->
 
     <!-- Property List Start -->
-    <div class="container-xxl py-5">
+    <div class="container-xxl">
         <div class="container">
             <div class="row g-0 gx-5 align-items-end">
                 <div class="col-lg-6">
@@ -133,279 +79,90 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="row g-0 gx-5 align-items-end">
-                <div class="col-lg-6">
-                    <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
-                        <h1 class="mb-3">Rekomendasi Terbaik</h1>
-                        <p class="text-white-500">Homestay Rekomendasi ini punya banyak hal yang menarik</p>
-                    </div>
-                </div>
-            </div> --}}
             <div class="tab-content">
-                <div id="tab-1" class="tab-pane fade show p-0 active">
+                <div id="" class="tab-pane fade show p-0 active">
                     <div class="row g-4">
+                        @php $counter = 0 @endphp
                         @foreach ($homestay as $item)
-                        
-                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                            <div class="property-item rounded overflow-hidden">
-                                <div class="position-relative overflow-hidden">
-                                    <a href="{{ route('homestay.detail', ['id' => $item->id]) }}"><img class="img-fluid" style="width:100%; height:50%;" src="{{ asset('storage/' . $item->image) }}"
-                                            alt=""></a>
-                                    <div
-                                        class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                                        Rekomendasi</div>
-                                    <div
-                                        class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                                        8,6
+                            @if ($counter < 3)
+                                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                                    <div class="property-item rounded overflow-hidden">
+                                        <div class="position-relative overflow-hidden">
+                                            <a href="{{ route('homestay.detail', ['id' => $item->id]) }}">
+                                                <img class="img-fluid" src="{{ asset('storage/' . $item->image) }}"
+                                                    alt="">
+                                            </a>
+                                        </div>
+                                        <div class="p-4 pb-0">
+                                            <h5 class="text-primary mb-3">Rp.
+                                                {{ number_format($item->harga, 0, ',', '.') }} / malam</h5>
+                                            <a class="d-block h5 mb-2"
+                                                href="{{ route('homestay.detail', ['id' => $item->id]) }}">{{ $item->nama }}</a>
+                                            <p><i
+                                                    class="fa fa-map-marker-alt text-primary me-2"></i>{{ $item->alamat }}
+                                            </p>
+                                        </div>
+                                        <div class="d-flex border-top">
+                                            <small class="flex-fill text-center border-end py-2"><i
+                                                    class="fa-solid fa-kitchen-set text-primary me-2"></i> Dapur</small>
+                                            <small class="flex-fill text-center border-end py-2"><i
+                                                    class="fa fa-bed text-primary me-2"></i> Kasur</small>
+                                            <small class="flex-fill text-center py-2"><i
+                                                    class="fa fa-bath text-primary me-2"></i> Toilet</small>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="p-4 pb-0">
-                                    <h5 class="text-primary mb-3">Rp. {{ number_format($item->harga, 0, ',', '.'); }}</h5>
-                                    <a class="d-block h5 mb-2" href="{{ route('homestay.detail', ['id' => $item->id]) }}">{{ $item->nama }}</a>
-                                    <p><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ $item->alamat }}
-                                    </p>
-                                </div>
-                                <div class="d-flex border-top">
-                                    <small class="flex-fill text-center border-end py-2"><i
-                                            class="fa-solid fa-kitchen-set text-primary me-2"></i>1 Dapur</small>
-                                    <small class="flex-fill text-center border-end py-2"><i
-                                            class="fa fa-bed text-primary me-2"></i>3 Kasur</small>
-                                    <small class="flex-fill text-center py-2"><i
-                                            class="fa fa-bath text-primary me-2"></i>2 Toilet</small>
-                                </div>
-                            </div>
-                        </div>
+                                @php $counter++ @endphp
+                            @endif
                         @endforeach
-                       
-                       
-                        
-                        <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
-                            <a class="btn btn-primary py-3 px-5" href="{{ url('/beranda/homestay') }}">Lihat
-                                Selanjutnya</a>
-                        </div>
                     </div>
                 </div>
-                <div id="tab-3" class="tab-pane fade show p-0">
-                    <div class="row g-4">
-                        <div class="col-lg-4 col-md-6">
-                            <div class="property-item rounded overflow-hidden">
-                                <div class="position-relative overflow-hidden">
-                                    <a href=""><img class="img-fluid" src="img/property-6.jpg"
-                                            alt=""></a>
-                                    <div
-                                        class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                                        Terlaris</div>
-                                    <div
-                                        class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                                        8,6
-                                    </div>
-                                </div>
-                                <div class="p-4 pb-0">
-                                    <h5 class="text-primary mb-3">Rp. 1234.567</h5>
-                                    <a class="d-block h5 mb-2" href="">Homestay Coffee Garden</a>
-                                    <p><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Jl. Desa Kamojang
-                                    </p>
-                                </div>
-                                <div class="d-flex border-top">
-                                    <small class="flex-fill text-center border-end py-2"><i
-                                            class="fa-solid fa-kitchen-set text-primary me-2"></i>1 Dapur</small>
-                                    <small class="flex-fill text-center border-end py-2"><i
-                                            class="fa fa-bed text-primary me-2"></i>3 Kasur</small>
-                                    <small class="flex-fill text-center py-2"><i
-                                            class="fa fa-bath text-primary me-2"></i>2 Toliet</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="property-item rounded overflow-hidden">
-                                <div class="position-relative overflow-hidden">
-                                    <a href=""><img class="img-fluid" src="img/property-1.jpg"
-                                            alt=""></a>
-                                    <div
-                                        class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                                        Terlaris</div>
-                                    <div
-                                        class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                                        8,6
-                                    </div>
-                                </div>
-                                <div class="p-4 pb-0">
-                                    <h5 class="text-primary mb-3">Rp. 1234.567</h5>
-                                    <a class="d-block h5 mb-2" href="">Homestay Coffee Garden</a>
-                                    <p><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Jl. Desa Kamojang
-                                    </p>
-                                </div>
-                                <div class="d-flex border-top">
-                                    <small class="flex-fill text-center border-end py-2"><i
-                                            class="fa-solid fa-kitchen-set text-primary me-2"></i>1 Dapur</small>
-                                    <small class="flex-fill text-center border-end py-2"><i
-                                            class="fa fa-bed text-primary me-2"></i>3 Kasur</small>
-                                    <small class="flex-fill text-center py-2"><i
-                                            class="fa fa-bath text-primary me-2"></i>2 Toliet</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="property-item rounded overflow-hidden">
-                                <div class="position-relative overflow-hidden">
-                                    <a href=""><img class="img-fluid" src="img/property-2.jpg"
-                                            alt=""></a>
-                                    <div
-                                        class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                                        Terlaris</div>
-                                    <div
-                                        class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                                        8,6
-                                    </div>
-                                </div>
-                                <div class="p-4 pb-0">
-                                    <h5 class="text-primary mb-3">Rp. 1234.567</h5>
-                                    <a class="d-block h5 mb-2" href="">Homestay Coffee Garden</a>
-                                    <p><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Jl. Desa Kamojang
-                                    </p>
-                                </div>
-                                <div class="d-flex border-top">
-                                    <small class="flex-fill text-center border-end py-2"><i
-                                            class="fa-solid fa-kitchen-set text-primary me-2"></i>1 Dapur</small>
-                                    <small class="flex-fill text-center border-end py-2"><i
-                                            class="fa fa-bed text-primary me-2"></i>3 Kasur</small>
-                                    <small class="flex-fill text-center py-2"><i
-                                            class="fa fa-bath text-primary me-2"></i>2 Toliet</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="property-item rounded overflow-hidden">
-                                <div class="position-relative overflow-hidden">
-                                    <a href=""><img class="img-fluid" src="img/property-3.jpg"
-                                            alt=""></a>
-                                    <div
-                                        class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                                        Terlaris</div>
-                                    <div
-                                        class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                                        8,6
-                                    </div>
-                                </div>
-                                <div class="p-4 pb-0">
-                                    <h5 class="text-primary mb-3">Rp. 1234.567</h5>
-                                    <a class="d-block h5 mb-2" href="">Homestay Coffee Garden</a>
-                                    <p><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Jl. Desa Kamojang
-                                    </p>
-                                </div>
-                                <div class="d-flex border-top">
-                                    <small class="flex-fill text-center border-end py-2"><i
-                                            class="fa-solid fa-kitchen-set text-primary me-2"></i>1 Dapur</small>
-                                    <small class="flex-fill text-center border-end py-2"><i
-                                            class="fa fa-bed text-primary me-2"></i>3 Kasur</small>
-                                    <small class="flex-fill text-center py-2"><i
-                                            class="fa fa-bath text-primary me-2"></i>2 Toliet</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="property-item rounded overflow-hidden">
-                                <div class="position-relative overflow-hidden">
-                                    <a href=""><img class="img-fluid" src="img/property-4.jpg"
-                                            alt=""></a>
-                                    <div
-                                        class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                                        Terlaris</div>
-                                    <div
-                                        class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                                        8,6
-                                    </div>
-                                </div>
-                                <div class="p-4 pb-0">
-                                    <h5 class="text-primary mb-3">Rp. 1234.567</h5>
-                                    <a class="d-block h5 mb-2" href="">Homestay Coffee Garden</a>
-                                    <p><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Jl. Desa Kamojang
-                                    </p>
-                                </div>
-                                <div class="d-flex border-top">
-                                    <small class="flex-fill text-center border-end py-2"><i
-                                            class="fa-solid fa-kitchen-set text-primary me-2"></i>1 Dapur</small>
-                                    <small class="flex-fill text-center border-end py-2"><i
-                                            class="fa fa-bed text-primary me-2"></i>3 Kasur</small>
-                                    <small class="flex-fill text-center py-2"><i
-                                            class="fa fa-bath text-primary me-2"></i>2 Toliet</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="property-item rounded overflow-hidden">
-                                <div class="position-relative overflow-hidden">
-                                    <a href=""><img class="img-fluid" src="img/property-5.jpg"
-                                            alt=""></a>
-                                    <div
-                                        class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                                        Terlaris</div>
-                                    <div
-                                        class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                                        8,6
-                                    </div>
-                                </div>
-                                <div class="p-4 pb-0">
-                                    <h5 class="text-primary mb-3">Rp. 1234.567</h5>
-                                    <a class="d-block h5 mb-2" href="">Homestay Coffee Garden</a>
-                                    <p><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Jl. Desa Kamojang
-                                    </p>
-                                </div>
-                                <div class="d-flex border-top">
-                                    <small class="flex-fill text-center border-end py-2"><i
-                                            class="fa-solid fa-kitchen-set text-primary me-2"></i>1 Dapur</small>
-                                    <small class="flex-fill text-center border-end py-2"><i
-                                            class="fa fa-bed text-primary me-2"></i>3 Kasur</small>
-                                    <small class="flex-fill text-center py-2"><i
-                                            class="fa fa-bath text-primary me-2"></i>2 Toliet</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 text-center">
-                            <a class="btn btn-primary py-3 px-5" href="">Lihat Selanjutnya</a>
-                        </div>
-                    </div>
+                <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <a class="btn btn-primary py-3 px-5" href="{{ url('/homestay') }}">Lihat
+                        Selanjutnya</a>
                 </div>
             </div>
         </div>
     </div>
+    </div>
+
     <!-- Property List End -->
 
 
     <!-- Paket start -->
     <div class="container-xxl py-5">
         <div class="row g-4">
-            <div class="row g-0 gx-5 align-items-end">
-                <div class="col-lg-12">
-                    <div class="text-start mx-auto mb-2 wow slideInLeft" data-wow-delay="0.1s">
-                        <h1 class="">Paket Wisata</h1>
-                        <p class="text-white-500">Nikmati Liburan Tanpa Batas! Gabungkan Penginapan Anda
-                            dengan
-                            Petualangan
-                            Tak Terlupakan!
-                            Pilihlah dari Beragam Pilihan Wisata yang Kami Tawarkan dan Bayar Saat Check-out di Homestay
-                            Anda. Mulai Rasakan Sensasi Baru Liburan yang Menakjubkan!</p>
-                    </div>
+            <div class="col-lg-12">
+                <div class="text-start mx-auto mb-2 wow slideInLeft" data-wow-delay="0.1s">
+                    <h1 class="">Paket Wisata</h1>
+                    <p class="text-white-500">Nikmati Liburan Tanpa Batas! Gabungkan Penginapan Anda
+                        dengan Petualangan Tak Terlupakan! Pilihlah dari Beragam Pilihan Wisata yang Kami Tawarkan dan
+                        Bayar Saat Check-out di Homestay Anda. Mulai Rasakan Sensasi Baru Liburan yang Menakjubkan!</p>
                 </div>
             </div>
+            @php $count = 0 @endphp
             @foreach ($pakets as $paket)
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="team-item rounded overflow-hidden">
-                    <div class="position-relative">
-                        <a href="link-ke-blog-1">
-                            <img class="img-fluid" src={{ asset('img/pake-wisata/PaketWisata.png') }} alt="">
-                        </a>
-                        <h3></h3>
+                @if ($count < 3)
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="team-item rounded overflow-hidden">
+                            <div class="position-relative">
+                                <a href="{{ route('pakets.detail', ['id' => $paket->id]) }}">
+                                    <img src="{{ asset('storage/' . $paket->image) }}" alt="Gambar Paket"
+                                        class="img-fluid">
+                                </a>
+                            </div>
+                            <div class="text-center p-2 ">
+                                <h5 class="fw-bold mb-1">{{ $paket->judul }}</h5>
+                                <h6 class="text-warning">Rp. {{ number_format($paket->harga, 0, ',', '.') }}</h6>
+                            </div>
+                        </div>
                     </div>
-                    <div class="text-center p-2 ">
-                        <h5 class="fw-bold mb-1">{{ $paket->judul }}</h5>
-                        <h6 class="text-warning">Rp. {{ number_format($paket->harga, 0, ',', '.'); }}</h6>
-                    </div>
-                </div>
-            </div>
+                    @php $count++ @endphp
+                @endif
             @endforeach
         </div>
     </div>
+
     <!-- Paket List End -->
 
     <!-- Call to Action Start -->
@@ -419,7 +176,7 @@
                         </div>
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                             <div class="mb-4">
-                                <h1 class="mb-3">Gabung Mitra E-Reserve</h1>
+                                <h1 class="mb-3">Gabung Mitra Kamojang.id</h1>
                                 <p>Rumah impianmu bisa jadi homestay menarik! Nikmati penghasilan tambahan dengan
                                     mengubah rumah menjadi destinasi homestay yang mengagumkan. Hubungi kami sekarang
                                     untuk info lebih lanjut!</p>
@@ -447,10 +204,11 @@
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
                 <div class="testimonial-item bg-light rounded p-3">
                     <div class="bg-white border rounded p-4">
-                        <p>Saya merasa sangat beruntung bisa bergabung dengan Mitra E-Reserve. Melalui platform mereka,
+                        <p>Saya merasa sangat beruntung bisa bergabung dengan Mitra Kamojang.id. Melalui platform
+                            mereka,
                             saya bisa mencapai audiens internasional dan menarik banyak tamu berkualitas. Sistem
                             pemesanan mereka sangat lancar, dan kepuasan tamu meningkat berkat dukungan dan panduan dari
-                            tim E-Reserve.</p>
+                            tim Kamojang.id.</p>
                         <div class="d-flex align-items-center">
                             <img class="img-fluid flex-shrink-0 rounded" src="{{ asset('img/testimonial-2.jpg') }}"
                                 style="width: 45px; height: 45px;">
@@ -463,9 +221,10 @@
                 </div>
                 <div class="testimonial-item bg-light rounded p-3">
                     <div class="bg-white border rounded p-4">
-                        <p>Sejak bergabung dengan Mitra E-Reserve, bisnis homestay saya semakin berkembang pesat!
+                        <p>Sejak bergabung dengan Mitra Kamojang.id, bisnis homestay saya semakin berkembang pesat!
                             Mereka memberikan platform yang mudah digunakan, dan tim mereka selalu siap membantu dengan
-                            pertanyaan dan permintaan saya. Pengalaman kerja sama dengan E-Reserve sungguh menyenangkan
+                            pertanyaan dan permintaan saya. Pengalaman kerja sama dengan Kamojang.id sungguh
+                            menyenangkan
                             dan membawa kesuksesan bagi bisnis saya.</p>
                         <div class="d-flex align-items-center">
                             <img class="img-fluid flex-shrink-0 rounded" src="{{ asset('img/testimonial-2.jpg') }}"
@@ -479,10 +238,10 @@
                 </div>
                 <div class="testimonial-item bg-light rounded p-3">
                     <div class="bg-white border rounded p-4">
-                        <p>Testimoni positif untuk E-Reserve! Bergabung dengan mereka adalah keputusan yang tepat.
+                        <p>Testimoni positif untuk Kamojang.id! Bergabung dengan mereka adalah keputusan yang tepat.
                             Dengan pemasaran yang efektif dan platform yang canggih, homestay saya sekarang lebih
                             dikenal dan lebih dicari oleh para traveler. Mereka benar-benar peduli pada kesuksesan mitra
-                            mereka, dan saya bangga menjadi bagian dari komunitas E-Reserve.</p>
+                            mereka, dan saya bangga menjadi bagian dari komunitas Kamojang.id.</p>
                         <div class="d-flex align-items-center">
                             <img class="img-fluid flex-shrink-0 rounded" src="{{ asset('img/testimonial-2.jpg') }}"
                                 style="width: 45px; height: 45px;">

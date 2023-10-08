@@ -15,16 +15,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
-                    @foreach ($pakets as $paket)
-                                <tr>
-                                    <td>{{ $paket->judul }}</td>
-                                    <td class="truncate-text">{{ $paket->deskripsi }}</td>
-                                    <td>{{ $paket->harga }}</td>
-                                    <td><img class="img-fluid-gambar" src="{{ asset('storage/' . $paket->image) }}"></td>
-                                   
-                                </tr>
-                            @endforeach
+
+                        @foreach ($pakets as $paket)
+                            <tr>
+                                <td>{{ $paket->judul }}</td>
+                                <td class="text-wrap">{{ $paket->deskripsi }}</td>
+                                <td>{{ $paket->harga }}</td>
+                                <td><img class="img-fluid-gambar" src="{{ asset('storage/' . $paket->image) }}"></td>
+
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -39,9 +39,10 @@
     }
 
     .truncate-text {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    width: 200px; /* Adjust the width as needed */
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 200px;
+        /* Adjust the width as needed */
     }
 </style>

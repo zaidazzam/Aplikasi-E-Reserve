@@ -32,11 +32,12 @@ use App\Http\Controllers\ServiceTambahanController;
 
 // Guest //
 Route::get('/', [GuestController::class, 'landing']);
-Route::get('/beranda/homestay', [GuestController::class, 'categori']);
+Route::get('/homestay', [GuestController::class, 'categori']);
 Route::get('/homestay/detail/{id}', [GuestController::class, 'homestayDetail'])->name('homestay.detail');
 Route::get('/pembayaran/{idhomestay}/{checkin}/{checkout}', [GuestController::class, 'checkoutHomestay']);
 Route::get('/blog', [GuestController::class, 'blog']);
 Route::get('/blog/detail/{id}', [GuestController::class, 'blogDetail'])->name('blog.detail');
+Route::get('/paket/detail/{id}', [GuestController::class, 'detailPaket'])->name('pakets.detail');
 Route::get('/paket', [GuestController::class, 'pakeHomestay']);
 Route::get('/tentang', [GuestController::class, 'tentang']);
 Route::get('/u-homestay', [GuestController::class, 'mitraHomestay']);

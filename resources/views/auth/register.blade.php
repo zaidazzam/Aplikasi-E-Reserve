@@ -13,7 +13,7 @@
     <!-- Scripts -->
     @vite('resources/js/app.js', 'vendor/courier/build')
 
-    <title>Dashboard</title>
+    <title>Kamojang.id</title>
 
     <meta name="description" content="" />
 
@@ -80,7 +80,7 @@
                             </a>
 
                         </div>
-                        <h4 class="mb-4">Selamat Datang di E-Reserve! 👋</h4>
+                        <h4 class="mb-4">Selamat Datang di Kamojang.id! 👋</h4>
 
                         <!-- /Logo -->
                         <form method="POST" action="{{ route('register') }}">

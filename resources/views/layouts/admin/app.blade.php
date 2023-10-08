@@ -20,7 +20,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    @vite('resources/js/app.js', 'vendor/courier/build')
+    {{-- @vite('resources/js/app.js', 'vendor/courier/build') --}}
 
     <title>Dashboard</title>
 
@@ -72,7 +72,7 @@
 
     <style>
         /* CSS for the zoom effect */
-            .zoomed-image {
+        .zoomed-image {
             position: fixed;
             top: 0;
             left: 0;
@@ -86,18 +86,18 @@
             overflow: hidden;
             transition: transform 0.3s ease;
             cursor: pointer;
-            }
+        }
 
-            .zoomed-image img {
+        .zoomed-image img {
             max-width: 90%;
             max-height: 90%;
             object-fit: contain;
             transition: transform 0.3s ease;
-            }
+        }
 
-            .zoomed-image.zoom-out img {
+        .zoomed-image.zoom-out img {
             transform: scale(1);
-            }
+        }
 
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap');
 
@@ -269,241 +269,248 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-<script>
-    $(document).ready(function() {
+    <script>
+        $(document).ready(function() {
 
-        $("#addPengeluara").click(function() {
-            const formData = new FormData(imagePengeluaran);
-            var csrfToken = $('meta[name="csrf-token"]').attr('content');
-            console.log(formData);
-            $.ajax({
-                url: "/pengeluaran", 
-                method: "POST",
-                data: formData,
-                headers: {
-                        'X-CSRF-TOKEN': csrfToken
-                },
-                contentType: false,
-                processData: false,
-                success: function(response) {
-                    location.reload();
-                    // You can perform any actions you need here after a successful upload.
-                },
-                error: function(error) {
-                    // Handle error response
-                    console.error("Error uploading image(s):", error);
-                }
-            });
-        });
-        
-
-        $('.delete-image').click(function() {
-            var imageId = $(this).data('id');
-            var csrfToken = $('meta[name="csrf-token"]').attr('content');
-            // Confirm the delete action if needed
-            if (confirm('Are you sure you want to delete this image?')) {
+            $("#addPengeluara").click(function() {
+                const formData = new FormData(imagePengeluaran);
+                var csrfToken = $('meta[name="csrf-token"]').attr('content');
+                console.log(formData);
                 $.ajax({
-                    type: 'DELETE',
-                    url: '/image/delete/' + imageId,
+                    url: "/pengeluaran",
+                    method: "POST",
+                    data: formData,
                     headers: {
                         'X-CSRF-TOKEN': csrfToken
                     },
+                    contentType: false,
+                    processData: false,
                     success: function(response) {
-                        if (response.success) { 
-                            location.reload(); 
-                        } else {
-                            location.reload();                        }
-                    },
-                    error: function() {
-                        alert('An error occurred while deleting the image.');
-                    }
-                });
-            }
-        });
-        
-
-        $('.delete-pengeluaran').click(function() {
-            var imageId = $(this).data('id');
-            var csrfToken = $('meta[name="csrf-token"]').attr('content');
-            // Confirm the delete action if needed
-            if (confirm('Are you sure you want to delete this image?')) {
-                $.ajax({
-                    type: 'DELETE',
-                    url: '/pengeluaran/delete/' + imageId,
-                    headers: {
-                        'X-CSRF-TOKEN': csrfToken
-                    },
-                    success: function(response) {
-                        if (response.success) { 
-                            location.reload(); 
-                        } else {
-                            location.reload();                        }
-                    },
-                    error: function() {
-                        alert('An error occurred while deleting the image.');
-                    }
-                });
-            }
-        });
-
-        $("#addHomestay").click(function() {
-            const formData = new FormData(imageForm);
-            var csrfToken = $('meta[name="csrf-token"]').attr('content');
-            console.log(formData);
-            $.ajax({
-                url: "/image/homestay", 
-                method: "POST",
-                data: formData,
-                headers: {
-                        'X-CSRF-TOKEN': csrfToken
-                },
-                contentType: false,
-                processData: false,
-                success: function(response) {
-                    location.reload();
-                    // You can perform any actions you need here after a successful upload.
-                },
-                error: function(error) {
-                    // Handle error response
-                    console.error("Error uploading image(s):", error);
-                }
-            });
-        });
-
-        $("#addServiceButton").click(function() {
-            const formData = new FormData(imageService);
-            var csrfToken = $('meta[name="csrf-token"]').attr('content');
-            console.log(formData);
-            $.ajax({
-                url: "/service", 
-                method: "POST",
-                data: formData,
-                headers: {
-                        'X-CSRF-TOKEN': csrfToken
-                },
-                contentType: false,
-                processData: false,
-                success: function(response) {
-                    location.reload();
-                    // You can perform any actions you need here after a successful upload.
-                },
-                error: function(error) {
-                    // Handle error response
-                    console.error("Error uploading image(s):", error);
-                }
-            });
-        });
-
-        // When the "Ubah" button is clicked
-        $('.updateTransaksiHistoryButton').click(function() {
-            var transaksiId = $(this).data('transaksi-id');
-            var namaDepan = $(this).data('nama-depan');
-            var notelp = $(this).data('notelp');
-            var checkIn = $(this).data('check-in');
-            var checkOut = $(this).data('check-out');
-            var totalMasaInap = $(this).data('total-masa-inap');
-            var noReferensi = $(this).data('no-referensi');
-            var status_transfer_pemilik = $(this).data('status_transfer_pemilik');
-            var csrfToken = $('meta[name="csrf-token"]').attr('content');
-
-            // Populate the form fields in the modal with the data
-            $('#updateTransaksiHistoryButton').find('#status_transfer_pemilik').val(status_transfer_pemilik);
-            // Populate other fields as needed
-
-            // When the "Save changes" button in the modal is clicked
-            $('#updateTransaksiHistoryButton').click(function() {
-                // Get the updated data from the form
-                var updatedData = {
-                    status_transfer_pemilik: $('#updateTransaksiHistoryModal').find('#status_transfer_pemilik').val(),
-                    // Get other fields as needed
-                };
-                // Send an AJAX request to update the transaksi data
-                $.ajax({
-                    url: '/update_trf/' + transaksiId, // Replace with your controller route
-                    method: 'PUT',
-                    data: updatedData,
-                    headers: {
-                        'X-CSRF-TOKEN': csrfToken
-                    },
-                    success: function(response) {
-                        // Handle the success response, e.g., close the modal
-                        $('#updateTransaksiHistoryModal').modal('hide');
                         location.reload();
+                        // You can perform any actions you need here after a successful upload.
                     },
                     error: function(error) {
-                        // Handle any errors, e.g., display an error message
+                        // Handle error response
+                        console.error("Error uploading image(s):", error);
                     }
                 });
             });
-        });
 
-        $('.updateTransaksiButton').click(function() {
-            var transaksiId = $(this).data('transaksi-id');
-            var namaDepan = $(this).data('nama-depan');
-            var notelp = $(this).data('notelp');
-            var checkIn = $(this).data('check-in');
-            var checkOut = $(this).data('check-out');
-            var totalMasaInap = $(this).data('total-masa-inap');
-            var noReferensi = $(this).data('no-referensi');
-            var statusPayment = $(this).data('status-payment');
-            var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-            // Populate the form fields in the modal with the data
-            $('#updateTransaksiModal').find('#status_payment').val(statusPayment);
-            // Populate other fields as needed
+            $('.delete-image').click(function() {
+                var imageId = $(this).data('id');
+                var csrfToken = $('meta[name="csrf-token"]').attr('content');
+                // Confirm the delete action if needed
+                if (confirm('Are you sure you want to delete this image?')) {
+                    $.ajax({
+                        type: 'DELETE',
+                        url: '/image/delete/' + imageId,
+                        headers: {
+                            'X-CSRF-TOKEN': csrfToken
+                        },
+                        success: function(response) {
+                            if (response.success) {
+                                location.reload();
+                            } else {
+                                location.reload();
+                            }
+                        },
+                        error: function() {
+                            alert('An error occurred while deleting the image.');
+                        }
+                    });
+                }
+            });
 
-            // When the "Save changes" button in the modal is clicked
-            $('#updateTransaksiButton').click(function() {
-                // Get the updated data from the form
-                var updatedData = {
-                    status_payment: $('#updateTransaksiModal').find('#status_payment').val(),
-                    // Get other fields as needed
-                };
 
-                // Send an AJAX request to update the transaksi data
+            $('.delete-pengeluaran').click(function() {
+                var imageId = $(this).data('id');
+                var csrfToken = $('meta[name="csrf-token"]').attr('content');
+                // Confirm the delete action if needed
+                if (confirm('Are you sure you want to delete this image?')) {
+                    $.ajax({
+                        type: 'DELETE',
+                        url: '/pengeluaran/delete/' + imageId,
+                        headers: {
+                            'X-CSRF-TOKEN': csrfToken
+                        },
+                        success: function(response) {
+                            if (response.success) {
+                                location.reload();
+                            } else {
+                                location.reload();
+                            }
+                        },
+                        error: function() {
+                            alert('An error occurred while deleting the image.');
+                        }
+                    });
+                }
+            });
+
+            $("#addHomestay").click(function() {
+                const formData = new FormData(imageForm);
+                var csrfToken = $('meta[name="csrf-token"]').attr('content');
+                console.log(formData);
                 $.ajax({
-                    url: '/update_transaksi/' + transaksiId, // Replace with your controller route
-                    method: 'PUT',
-                    data: updatedData,
+                    url: "/image/homestay",
+                    method: "POST",
+                    data: formData,
                     headers: {
                         'X-CSRF-TOKEN': csrfToken
                     },
+                    contentType: false,
+                    processData: false,
                     success: function(response) {
-                        // Handle the success response, e.g., close the modal
-                        $('#updateTransaksiModal').modal('hide');
                         location.reload();
+                        // You can perform any actions you need here after a successful upload.
                     },
                     error: function(error) {
-                        // Handle any errors, e.g., display an error message
+                        // Handle error response
+                        console.error("Error uploading image(s):", error);
                     }
                 });
             });
-        });
-    });
-</script>
 
-<script>
+            $("#addServiceButton").click(function() {
+                const formData = new FormData(imageService);
+                var csrfToken = $('meta[name="csrf-token"]').attr('content');
+                console.log(formData);
+                $.ajax({
+                    url: "/service",
+                    method: "POST",
+                    data: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken
+                    },
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        location.reload();
+                        // You can perform any actions you need here after a successful upload.
+                    },
+                    error: function(error) {
+                        // Handle error response
+                        console.error("Error uploading image(s):", error);
+                    }
+                });
+            });
+
+            // When the "Ubah" button is clicked
+            $('.updateTransaksiHistoryButton').click(function() {
+                var transaksiId = $(this).data('transaksi-id');
+                var namaDepan = $(this).data('nama-depan');
+                var notelp = $(this).data('notelp');
+                var checkIn = $(this).data('check-in');
+                var checkOut = $(this).data('check-out');
+                var totalMasaInap = $(this).data('total-masa-inap');
+                var noReferensi = $(this).data('no-referensi');
+                var status_transfer_pemilik = $(this).data('status_transfer_pemilik');
+                var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+                // Populate the form fields in the modal with the data
+                $('#updateTransaksiHistoryButton').find('#status_transfer_pemilik').val(
+                    status_transfer_pemilik);
+                // Populate other fields as needed
+
+                // When the "Save changes" button in the modal is clicked
+                $('#updateTransaksiHistoryButton').click(function() {
+                    // Get the updated data from the form
+                    var updatedData = {
+                        status_transfer_pemilik: $('#updateTransaksiHistoryModal').find(
+                            '#status_transfer_pemilik').val(),
+                        // Get other fields as needed
+                    };
+                    // Send an AJAX request to update the transaksi data
+                    $.ajax({
+                        url: '/update_trf/' +
+                        transaksiId, // Replace with your controller route
+                        method: 'PUT',
+                        data: updatedData,
+                        headers: {
+                            'X-CSRF-TOKEN': csrfToken
+                        },
+                        success: function(response) {
+                            // Handle the success response, e.g., close the modal
+                            $('#updateTransaksiHistoryModal').modal('hide');
+                            location.reload();
+                        },
+                        error: function(error) {
+                            // Handle any errors, e.g., display an error message
+                        }
+                    });
+                });
+            });
+
+            $('.updateTransaksiButton').click(function() {
+                var transaksiId = $(this).data('transaksi-id');
+                var namaDepan = $(this).data('nama-depan');
+                var notelp = $(this).data('notelp');
+                var checkIn = $(this).data('check-in');
+                var checkOut = $(this).data('check-out');
+                var totalMasaInap = $(this).data('total-masa-inap');
+                var noReferensi = $(this).data('no-referensi');
+                var statusPayment = $(this).data('status-payment');
+                var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+                // Populate the form fields in the modal with the data
+                $('#updateTransaksiModal').find('#status_payment').val(statusPayment);
+                // Populate other fields as needed
+
+                // When the "Save changes" button in the modal is clicked
+                $('#updateTransaksiButton').click(function() {
+                    // Get the updated data from the form
+                    var updatedData = {
+                        status_payment: $('#updateTransaksiModal').find('#status_payment')
+                        .val(),
+                        // Get other fields as needed
+                    };
+
+                    // Send an AJAX request to update the transaksi data
+                    $.ajax({
+                        url: '/update_transaksi/' +
+                        transaksiId, // Replace with your controller route
+                        method: 'PUT',
+                        data: updatedData,
+                        headers: {
+                            'X-CSRF-TOKEN': csrfToken
+                        },
+                        success: function(response) {
+                            // Handle the success response, e.g., close the modal
+                            $('#updateTransaksiModal').modal('hide');
+                            location.reload();
+                        },
+                        error: function(error) {
+                            // Handle any errors, e.g., display an error message
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+    <script>
         const images = document.querySelectorAll("td img");
         images.forEach((image) => {
-        image.addEventListener("click", () => {
-            const zoomedImage = document.createElement("div");
-            zoomedImage.className = "zoomed-image";
+            image.addEventListener("click", () => {
+                const zoomedImage = document.createElement("div");
+                zoomedImage.className = "zoomed-image";
 
-            const clone = image.cloneNode();
-            clone.style.cursor = "zoom-out";
+                const clone = image.cloneNode();
+                clone.style.cursor = "zoom-out";
 
-            zoomedImage.appendChild(clone);
+                zoomedImage.appendChild(clone);
 
-            document.body.appendChild(zoomedImage);
+                document.body.appendChild(zoomedImage);
 
-            // Close the zoomed image when clicked
-            zoomedImage.addEventListener("click", () => {
-            zoomedImage.classList.add("zoom-out");
-            setTimeout(() => {
-                zoomedImage.remove();
-            }, 300); // Adjust the timing to match your CSS transition duration
+                // Close the zoomed image when clicked
+                zoomedImage.addEventListener("click", () => {
+                    zoomedImage.classList.add("zoom-out");
+                    setTimeout(() => {
+                        zoomedImage.remove();
+                    }, 300); // Adjust the timing to match your CSS transition duration
+                });
             });
-        });
         });
 
         $(document).ready(function() {

@@ -13,20 +13,9 @@
                         <img src="{{ asset('storage/' . $item->image) }}" alt="Gambar Blog"
                             style="width:100%; heigth:70%;" class="img-fluid mb-4">
                         <h5 class="mb-3">{{ $item->judul }}</h5>
+                        <h6 class="text-warning">Rp {{ number_format($item->harga, 0, ',', '.') }} /Orang</h6>
                         <p class="text-muted">{{ $item->created_at }}</p>
                         <p>{!! nl2br(e($item->deskripsi)) !!}</p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="related-blogs">
-                        <h3>Artikel Terkait</h3>
-                        <div class="list-group">
-                            @foreach ($list_article as $item)
-                                <a href="{{ route('blog.detail', ['id' => $item->id]) }}"
-                                    class="list-group-item">{{ $item->judul }}</a>
-                                <!-- Tambahkan artikel terkait lainnya di sini -->
-                            @endforeach
-                        </div>
                     </div>
                 </div>
             </div>

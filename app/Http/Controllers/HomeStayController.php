@@ -35,7 +35,7 @@ class HomeStayController extends Controller
             'kebijakan' => 'required|string',
             'jumlah_kamar' => 'required|integer',
             'kapasitas_kamar' => 'required|string',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Example validation rule for image uploads
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:5000', // Example validation rule for image uploads
         ]);
         $user = Auth::user();
         $rekomendasi = new Homestay([

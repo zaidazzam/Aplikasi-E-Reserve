@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    @vite('resources/js/app.js', 'vendor/courier/build')
+    {{-- @vite('resources/js/app.js', 'vendor/courier/build') --}}
 
     <title>Dashboard</title>
 
@@ -81,7 +81,7 @@
                             </a>
                         </div>
                         <!-- /Logo -->
-                        <h4 class="mb-4">Selamat Datang di E-Reserve! 👋</h4>
+                        <h4 class="mb-4">Selamat Datang di Kamojang.id! 👋</h4>
 
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
