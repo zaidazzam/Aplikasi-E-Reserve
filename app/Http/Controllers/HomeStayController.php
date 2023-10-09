@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Homestay;
-use Illuminate\Support\Facades\Auth;
 use App\Models\image_homestay;
 
 class HomeStayController extends Controller
