@@ -42,10 +42,6 @@ Route::get('/pembayaran/{idhomestay}/{checkin}/{checkout}', [GuestController::cl
 Route::get('/blog', [GuestController::class, 'blog']);
 Route::get('/blog/detail/{id}', [GuestController::class, 'blogDetail'])->name('blog.detail');
 Route::get('/paket/detail/{id}', [GuestController::class, 'detailPaket'])->name('pakets.detail');
-<<<<<<< HEAD
-Route::get('/layanan/detail/{id}', [GuestController::class, 'paketDetail'])->name('paket.detail');
-=======
->>>>>>> 9761801db5ae2c99ad8be80af0dde4805c37df04
 Route::get('/paket', [GuestController::class, 'pakeHomestay']);
 Route::get('/tentang', [GuestController::class, 'tentang']);
 Route::get('/u-homestay', [GuestController::class, 'mitraHomestay']);
@@ -68,13 +64,8 @@ Route::get('/tambahhomestaymitra', [HomeController::class, 'tambah'])->middlewar
 Route::get('/edithomestaymitra', [HomeController::class, 'edit'])->middleware(['auth']);
 
 // Homestay //
-<<<<<<< HEAD
-Route::get('/datahomestay', [HomestayController::class, 'index'])->name('homestays.index')->middleware(['auth', 'admin']);
-Route::get('/tambahhomestay', [HomestayController::class, 'create'])->middleware(['auth', 'admin']);
-=======
 Route::get('/datahomestay', [HomestayController::class, 'index'])->name('homestays')->middleware(['auth']);
 Route::get('/tambahhomestay', [HomestayController::class, 'create'])->middleware(['auth']);
->>>>>>> 9761801db5ae2c99ad8be80af0dde4805c37df04
 Route::post('/homestays', [HomestayController::class, 'store'])->name('homestays.store');
 
 // Display the update form
@@ -103,16 +94,9 @@ Route::put('/update_transaksi/{id}',  [TransaksiController::class, 'update_with_
 Route::put('/update_trf/{id}',  [TransaksiController::class, 'update_trf_with_json'])->middleware(['auth']);
 
 
-<<<<<<< HEAD
-
-// Fasilitas Homestay
-Route::get('/datafasilitas', [FasilitasController::class, 'index'])->middleware(['auth', 'admin']);
-Route::get('/tambahfasilitas', [FasilitasController::class, 'tambahFasilitas'])->middleware(['auth', 'admin']);
-=======
 // Fasilitas Homestayd
 Route::get('/datafasilitas', [FasilitasController::class, 'index'])->middleware(['auth']);
 Route::get('/tambahfasilitas', [FasilitasController::class, 'tambahFasilitas'])->middleware(['auth']);
->>>>>>> 9761801db5ae2c99ad8be80af0dde4805c37df04
 
 // Fasilitas Homestay
 Route::get('/datapaketwisata', [PaketWisataController::class, 'index'])->name('pakets.index')->middleware(['auth']);
@@ -135,26 +119,6 @@ Route::get('/editartikel', [ArtikelController::class, 'editArtikel'])->middlewar
 // Route::get('/tambahlayanan', [LayananController::class, 'tambahLayanan'])->middleware(['auth', 'admin']);
 // Route::get('/editlayanan', [LayananController::class, 'editLayanan'])->middleware(['auth', 'admin']);
 
-<<<<<<< HEAD
-// Mitra
-Route::get('/dashboardmitra', [MitraController::class, 'index']);
-Route::get('/datamitra', [MitraController::class, 'data']);
-Route::get('/tambahdatamitra', [MitraController::class, 'tambah']);
-Route::get('/editdatamitra', [MitraController::class, 'edit']);
-
-// Customer
-Route::get('/dashboard/customer', [CustomerController::class, 'index'])->middleware(['auth']);
-
-
-// Transaksi
-Route::get('/dashboard/transaksi/', [TransaksiController::class, 'index'])->middleware(['auth']);
-Route::get('/dashboard/transaksi/pendapatan', [TransaksiController::class, 'pendapatan'])->middleware(['auth']);
-Route::get('/dashboard/transaksi/pendapatan/tambah', [TransaksiController::class, 'tambahPendapatan'])->middleware(['auth']);
-Route::get('/dashboard/transaksi/pengeluaran', [TransaksiController::class, 'pengeluaran'])->middleware(['auth']);
-Route::get('/dashboard/transaksi/pengeluaran/tambah', [TransaksiController::class, 'tambahPengeluaran'])->middleware(['auth']);
-Route::get('/dashboard/transaksi/wisata', [TransaksiController::class, 'wisataTransaksi'])->middleware(['auth']);
-Route::get('/dashboard/transaksi/layanan', [TransaksiController::class, 'serviceTransaksi'])->middleware(['auth']);
-=======
 Route::get('/pengeluaran', [PengeluaranController::class, 'index'])->name('pengeluarans.index')->middleware(['auth']);
 Route::post('/pengeluaran', [PengeluaranController::class, 'store'])->name('pengeluarans.store')->middleware(['auth']);
 Route::get('/pengeluaran/edit/{id}', [PengeluaranController::class, 'edit'])->name('pengeluarans.edit')->middleware(['auth']);
@@ -167,7 +131,6 @@ Route::post('/service', [ServiceTambahanController::class, 'store'])->name('serv
 Route::get('/service/edit/{id}', [ServiceTambahanController::class, 'edit'])->name('service.edit')->middleware(['auth']);
 Route::put('/service/update/{id}', [ServiceTambahanController::class, 'update'])->name('service.update')->middleware(['auth']);
 Route::delete('/service/delete/{id}', [ServiceTambahanController::class, 'destroy'])->name('service.delete')->middleware(['auth']);
->>>>>>> 9761801db5ae2c99ad8be80af0dde4805c37df04
 
 
 
