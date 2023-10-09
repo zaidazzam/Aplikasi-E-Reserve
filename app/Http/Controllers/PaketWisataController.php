@@ -22,7 +22,7 @@ class PaketWisataController extends Controller
             'harga' => 'required|integer',
             'judul' => 'required|string',
             'deskripsi' => 'required|string',
-            'image' => 'image|mimes:svg,jpeg,png,jpg,gif|max:5000', // Example validation rule for image uploads
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:5000', // Example validation rule for image uploads
         ]);
         $rekomendasi = new Paket([
             'harga' => $request->harga,

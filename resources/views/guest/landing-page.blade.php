@@ -1,19 +1,3 @@
-<style>
-    .team-item {
-        position: relative;
-        overflow: hidden;
-        transition: transform 0.3s ease;
-    }
-
-    .team-item:hover {
-        transform: scale(1.05);
-    }
-
-    .team-item img {
-        max-width: 100%;
-        height: auto;
-    }
-</style>
 <x-guest-layout>
     <!-- Header Start -->
     <div class="container-fluid header bg-white p-0">
@@ -53,8 +37,8 @@
         <div class="row g-4">
             <div class="row g-0 gx-5 align-items-end">
                 <div class="col-lg-6">
-                    <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
-                        <h1 class="mb-">Destinasi trending</h1>
+                    <div class="text-start mx-auto  wow slideInLeft" data-wow-delay="0.1s">
+                        <h1 class="">Destinasi trending</h1>
                         <p class="text-white-500">Pilihan terpopuler untuk traveler dari Indonesia</p>
                     </div>
                 </div>
@@ -70,7 +54,7 @@
                                     <img class="img-fluid" src="{{ asset('storage/' . $item->image) }}" alt="">
                                 </a>
                             </div>
-                            <div class="text-center p-4 mt-3">
+                            <div class="text-center p-4">
                                 <h5 class="fw-bold mb-0">{{ $item->judul }}</h5>
                             </div>
                         </div>
@@ -85,7 +69,7 @@
     <!-- Destinasi List End -->
 
     <!-- Property List Start -->
-    <div class="container-xxl py-5">
+    <div class="container-xxl">
         <div class="container">
             <div class="row g-0 gx-5 align-items-end">
                 <div class="col-lg-6">

@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    @vite('resources/js/app.js', 'vendor/courier/build')
+    {{-- @vite('resources/js/app.js', 'vendor/courier/build') --}}
 
     <title>Dashboard</title>
 

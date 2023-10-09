@@ -6,6 +6,12 @@ namespace App\Http\Controllers;
 use App\Models\Transaksi;
 
 use Illuminate\Http\Request;
+use App\Models\paket_transaksi;
+use App\Models\service_transaksi;
+use Illuminate\Support\Facades\DB;
+use App\Models\service_tambahan;
+
+use App\Models\Paket;
 
 class TransaksiController extends Controller {
     /**
@@ -14,7 +20,7 @@ class TransaksiController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index()
-    { 
+    {
         $transaksi = Transaksi::where('status_payment', 'pending')->with('homestay')->latest()->simplePaginate(5);
         $totalHargaSeluruhTransaksi = 0;
         $jumlahSeluruhTransaksi = $transaksi->count();
@@ -22,26 +28,48 @@ class TransaksiController extends Controller {
             $totalHargaSeluruhTransaksi += $trx->total_harga;
         }
         //sum biaya_admin in transaksi
-        $sum_biaya_admin = Transaksi::sum('biaya_admin');
+        $sum_biaya_admin = Transaksi::where('status_payment', 'pending')->sum('biaya_admin');
         return view('admin.transaksi.data-transaksi', compact('transaksi', 'totalHargaSeluruhTransaksi', 'jumlahSeluruhTransaksi','sum_biaya_admin'));
     }
 
     public function history()
-    { 
+    {
         $transaksi = Transaksi::where('status_payment', 'success')->with('homestay')->latest()->simplePaginate(5);
         $totalHargaSeluruhTransaksi = 0;
         $jumlahSeluruhTransaksi = $transaksi->count();
         foreach ($transaksi as $trx) {
             $totalHargaSeluruhTransaksi += $trx->total_harga;
         }
-        $sum_biaya_admin = Transaksi::sum('biaya_admin');
+        $sum_biaya_admin = Transaksi::where('status_payment', 'success')->sum('biaya_admin');
+        // sum where  status_transfer_pemilik belum and status_payment success
+        $sum_biaya_admin_belum = Transaksi::where('status_transfer_pemilik', 'belum')->where('status_payment', 'success')->sum('total_harga');
+        // sum where  status_transfer_pemilik sudah and status_payment success
+        $sum_biaya_admin_sudah = Transaksi::where('status_transfer_pemilik', 'sudah')->where('status_payment', 'success')->sum('total_harga');
+
+        // $sum_biaya_admin_belum = Transaksi::where('status_transfer_pemilik', 'belum')->sum('total_harga');
+        // $sum_biaya_admin_sudah = Transaksi::where('status_transfer_pemilik', 'sudah')->sum('total_harga');
+
+        return view('admin.transaksi.data-history-transaksi', compact('transaksi', 'totalHargaSeluruhTransaksi', 'jumlahSeluruhTransaksi','sum_biaya_admin','sum_biaya_admin_belum','sum_biaya_admin_sudah'));
+    }
+
+
+    public function refund()
+    {
+        $transaksi = Transaksi::where('status_payment', 'failed')->with('homestay')->latest()->simplePaginate(5);
+        $totalHargaSeluruhTransaksi = 0;
+        $jumlahSeluruhTransaksi = $transaksi->count();
+        foreach ($transaksi as $trx) {
+            $totalHargaSeluruhTransaksi += $trx->total_harga;
+        }
+        $sum_biaya_admin = Transaksi::where('status_payment', 'failed')->sum('biaya_admin');
 
         return view('admin.transaksi.data-transaksi', compact('transaksi', 'totalHargaSeluruhTransaksi', 'jumlahSeluruhTransaksi','sum_biaya_admin'));
     }
 
 
+
     public function index_api()
-    { 
+    {
         //include homestay
         $transaksi = Transaksi::with('homestay')->get();
         return response()->json([
@@ -59,7 +87,16 @@ class TransaksiController extends Controller {
         $transaksi->save();
         return response()->json(['message' => 'Transaksi updated successfully']);
     }
-    
+
+    public function update_trf_with_json(Request $request, $id) {
+        // Validate and update the transaksi data
+        // Example:
+        $transaksi = Transaksi::find($id);
+        $transaksi->status_transfer_pemilik = $request->input('status_transfer_pemilik');
+        $transaksi->save();
+        return response()->json(['message' => 'Transaksi updated successfully']);
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -71,6 +108,7 @@ class TransaksiController extends Controller {
 
     }
 
+
     /**
      * Store a newly created resource in storage.
      *
@@ -79,21 +117,9 @@ class TransaksiController extends Controller {
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'nomor_invoice' => 'required',
-        //     'homestay_id' => 'required',
-        //     'check_in' => 'required',
-        //     'check_out' => 'required',
-        //     'total_harga' => 'required',
-        //     'nama_depan' => 'required',
-        //     'notelp' => 'required',
-        //     'biaya_admin' => 'required',
-        //     'email' => 'required',
-        //     'bukti_transaksi' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-        //     'no_referensi' => 'required',
-        //     'total_masa_inap' => 'required',
-        // ]);
         $generate_number_random = rand(100000,999999);
+
+
 
         $transaksi = new Transaksi([
             'nomor_invoice' => $generate_number_random,
@@ -116,10 +142,38 @@ class TransaksiController extends Controller {
             $imagePath = $request->file('bukti_transaksi')->store('buktitrf_images', 'public');
             $transaksi->bukti_transaksi = $imagePath;
         }
-
-
-
         $transaksi->save();
+        $selectedItems = (array) $request->input('dropdown-group');
+
+        $selectedItemsService = (array) $request->input('dropdown-group-service');
+
+
+        // Iterate through the selected items and insert them into the database
+        $itemsToInsert = [];
+        $itemsToInsertService = [];
+        foreach ($selectedItems as $selectedItem) {
+            $paketId = str_replace('checkbox-custom_', '', $selectedItem);
+            $itemsToInsert[] = [
+                'paket_id' => $paketId,
+                'transaksi_id' => $transaksi->id,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ];
+        }
+
+        foreach ($selectedItemsService as $selectedItem) {
+            $serviceId = str_replace('checkbox-custom_', '', $selectedItem);
+            $itemsToInsertService[] = [
+                'service_tambahan_id' => $serviceId,
+                'transaksi_id' => $transaksi->id,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ];
+        }
+
+        // Bulk insert the selected items into the database
+        paket_transaksi::insert($itemsToInsert);
+        service_transaksi::insert($itemsToInsertService);
         // return response()->json(['success' => 'You have successfully upload transaksi.']);
         return redirect()->route('transaksi.detail', ['id' => $transaksi->id]);
     }
@@ -181,11 +235,45 @@ class TransaksiController extends Controller {
     }
     public function wisataTransaksi()
     {
-        return view('admin.transaksi.wisata-transaksi');
+        //show list paket_transaksi wheren transaksi status = pending
+        $paket_transaksi = paket_transaksi::all();
+        // show list paket transaksi where transaksi stasu = pending
+        return view('admin.transaksi.wisata-transaksi', compact('paket_transaksi'));
     }
     public function layananTransaksi()
     {
-        return view('admin.transaksi.layanan-transaksi');
+
+        $total_harga = 0;
+
+
+        //show list paket_transaksi wheren transaksi status = pending
+
+        $paket_transaksi = paket_transaksi::whereHas('transaksi', function ($query) {
+            $query->where('status_payment', 'success');
+        })->get();
+
+        foreach ($paket_transaksi as $paket) {
+            $total_harga += Paket::where('id', $paket->paket_id)->sum('harga');
+        }
+        $total_paket = $total_harga;
+        return view('admin.transaksi.layanan-transaksi', compact('paket_transaksi','total_paket'));
     }
 
+    public function serviceTransaksi()
+    {
+
+        $total_harga = 0;
+
+        //show list paket_transaksi wheren transaksi status = pending
+
+        $paket_transaksi = service_transaksi::whereHas('transaksi', function ($query) {
+            $query->where('status_payment', 'success');
+        })->get();
+
+        foreach ($paket_transaksi as $paket) {
+            $total_harga += service_tambahan::where('id', $paket->service_tambahan_id)->sum('harga');
+        }
+        $total_paket = $total_harga;
+        return view('admin.transaksi.service-transaksi', compact('paket_transaksi','total_paket'));
+    }
 }

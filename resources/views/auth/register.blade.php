@@ -13,7 +13,7 @@
     <!-- Scripts -->
     @vite('resources/js/app.js', 'vendor/courier/build')
 
-    <title>Dashboard</title>
+    <title>Kamojang.id</title>
 
     <meta name="description" content="" />
 

@@ -6,7 +6,7 @@
                 <h1 class="display-7 animated fadeIn mb-4">Artikel</h1>
                 <nav aria-label="breadcrumb animated fadeIn">
                     <ol class="breadcrumb text-uppercase">
-                        <li class="breadcrumb-item"><a href="{{ url('/beranda') }}">Beranda</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
                         <li class="breadcrumb-item text-body active" aria-current="page">Artikel</li>
                     </ol>
                 </nav>
