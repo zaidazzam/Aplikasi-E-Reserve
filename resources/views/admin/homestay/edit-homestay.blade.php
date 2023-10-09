@@ -71,11 +71,7 @@
                                 <input type="text" name="kapasitas_kamar" id="kapasitas_kamar" class="form-control"
                                     required value="{{ old('kapasitas_kamar', $rekomendasi->kapasitas_kamar) }}">
                             </div>
-
-
-
                             <!-- Add fields for other attributes -->
-
                             <button type="submit" class="btn btn-primary">Update</button>
                         </form>
                     </div>

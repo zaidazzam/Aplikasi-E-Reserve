@@ -222,7 +222,7 @@
                                 </script>
                                 , made with ❤️ by
                                 <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">Tim
-                                    E-Reserve</a>
+                                    Kamojang.id</a>
                             </div>
                         </div>
                     </footer>
@@ -424,7 +424,7 @@
                     // Send an AJAX request to update the transaksi data
                     $.ajax({
                         url: '/update_trf/' +
-                        transaksiId, // Replace with your controller route
+                            transaksiId, // Replace with your controller route
                         method: 'PUT',
                         data: updatedData,
                         headers: {
@@ -462,14 +462,14 @@
                     // Get the updated data from the form
                     var updatedData = {
                         status_payment: $('#updateTransaksiModal').find('#status_payment')
-                        .val(),
+                            .val(),
                         // Get other fields as needed
                     };
 
                     // Send an AJAX request to update the transaksi data
                     $.ajax({
                         url: '/update_transaksi/' +
-                        transaksiId, // Replace with your controller route
+                            transaksiId, // Replace with your controller route
                         method: 'PUT',
                         data: updatedData,
                         headers: {

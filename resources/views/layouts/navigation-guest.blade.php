@@ -20,14 +20,14 @@
                   <a href="{{ url('/paket') }}"
                       class="nav-item nav-link{{ Request::is('paket') ? ' active' : '' }}">Paket</a>
                   <a href="{{ url('/blog') }}"
-                      class="nav-item nav-link{{ Request::is('blog') ? ' active' : '' }}">Blog</a>
+                      class="nav-item nav-link{{ Request::is('blog') ? ' active' : '' }}">Artikel</a>
                   <a href="{{ url('/u-homestay') }}"
                       class="nav-item nav-link{{ Request::is('u-homestay') ? ' active' : '' }}">Mitra</a>
                   <a href="{{ url('/tentang') }}"
                       class="nav-item nav-link{{ Request::is('tentang') ? ' active' : '' }}">Tentang</a>
               </div>
-              {{-- <a href="{{ url('/login') }}" class="btn btn-primary px-3 m-1 d-none d-lg-flex">Masuk</a>
-              <a href="{{ url('/register') }}" class="btn btn-secondary px-3 d-none d-lg-flex">Daftar</a> --}}
+              <a href="{{ url('/login') }}" class="btn btn-primary px-3 m-1 d-none d-lg-flex">Masuk</a>
+              {{-- <a href="{{ url('/register') }}" class="btn btn-secondary px-3 d-none d-lg-flex">Daftar</a> --}}
           </div>
 
       </nav>

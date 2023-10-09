@@ -43,15 +43,18 @@
                                             class="btn btn-outline-primary" type="button"
                                             id="button-addon1">Gambar</button></a>
                                 </td>
-                                <td>{{ $rekomendasi->deskripsi }}</td>
+                                <td class="text-wrap">{{ $rekomendasi->deskripsi }}</td>
                                 <td class="text-wrap">
                                     <a href="{{ url('/tambahhomestay/fasilitas/') }}"> <button
                                             class="btn btn-outline-primary" type="button" id="button-addon1">
                                             Fasilitas</button></a>
                                 </td>
-                                <td>{{ $rekomendasi->kebijakan }}</td>
+                                <td class="text-wrap">{{ $rekomendasi->kebijakan }}</td>
                                 <td><span class="badge bg-label-primary me-1">Rekomendasi</span></td>
-                                <td>Ubah</td>
+                                <td><a href="{{ route('homestays.edit', ['homestays' => $rekomendasi->id]) }}"> <button
+                                            class="btn btn-outline-primary" type="button"
+                                            id="button-addon1">Edit</button></a>
+                                </td>
                             </tr>
                         @endforeach
                         {{-- <tr>

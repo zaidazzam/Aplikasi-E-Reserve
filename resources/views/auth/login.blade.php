@@ -117,13 +117,13 @@
                                 <button class="btn btn-primary d-grid w-100" type="submit">Masuk</button>
                             </div>
                         </form>
-
+                        {{--
                         <p class="text-center">
                             <span>Belum punya akun?</span>
                             <a href="{{ route('register') }}">
                                 <span>Daftar akun</span>
                             </a>
-                        </p>
+                        </p> --}}
                     </div>
                 </div>
                 <!-- /Register -->

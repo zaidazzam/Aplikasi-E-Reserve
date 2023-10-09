@@ -43,7 +43,7 @@
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                     <div class="about-img position-relative overflow-hidden p-5 pe-0">
-                        <img class="img-fluid w-100" src="{{ asset('img/pake-wisata/header-wisata.png') }}">
+                        <img class="img-fluid w-100" src="{{ asset('img/pake-wisata/pkaet-wisata2.png') }}">
                     </div>
                 </div>
                 <div class="col-lg-6 fadeIn" data-wow-delay="0.5s">

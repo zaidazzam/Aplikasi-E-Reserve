@@ -92,6 +92,9 @@ class ServiceTambahanController extends Controller
      */
     public function destroy(service_tambahan $service_tambahan)
     {
-        //
+        $rekomendasi = service_tambahan::findOrFail($id);
+        $rekomendasi->delete();
+
+        return redirect()->route('admin.service.data-service')->with('success', 'Rekomendasi deleted successfully.');
     }
 }

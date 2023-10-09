@@ -70,9 +70,9 @@
                     </li> -->
                 </ul>
                 <!-- Step Wise Form Content -->
-                
-                    <!-- Step 1 Content -->
-                    <section id="step-1" class="form-step">
+
+                <!-- Step 1 Content -->
+                <section id="step-1" class="form-step">
                     <form method="POST" action="{{ route('transaksi.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="d-flex flex-wrap">
@@ -85,53 +85,53 @@
                                             </center>
                                             <div class="d-flex flex-wrap">
                                                 <div class="col-md-6 form-group p_star">
-                                                    <label for="">Nomor Telepon</label>
+                                                    <label for="">Nama Lengkap</label>
                                                     <input type="text" class="form-control" id="first"
                                                         name="nama_depan" placeholder="Nama depan">
                                                 </div>
-                                                <div class="col-md-6 form-group p_star" style="display:none;" >
+                                                <div class="col-md-6 form-group p_star" style="display:none;">
                                                     <label for="">ID HOMESTAY</label>
                                                     <input type="text" class="form-control" id="first"
-                                                        value="{{ $homestay->id }}"
-                                                        name="homestay_id" placeholder="Nama depan">
+                                                        value="{{ $homestay->id }}" name="homestay_id"
+                                                        placeholder="Nama depan">
                                                 </div>
 
-                                                <div class="col-md-6 form-group p_star"  style="display:none;" >
+                                                <div class="col-md-6 form-group p_star" style="display:none;">
                                                     <label for="">checkin</label>
                                                     <input type="text" class="form-control" id="first"
-                                                        value="{{ $checkin }}"
-                                                        name="check_in" placeholder="check_in">
+                                                        value="{{ $checkin }}" name="check_in"
+                                                        placeholder="check_in">
                                                 </div>
 
-                                                <div class="col-md-6 form-group p_star"  style="display:none;"  >
+                                                <div class="col-md-6 form-group p_star" style="display:none;">
                                                     <label for="">checkout</label>
                                                     <input type="text" class="form-control" id="first"
-                                                        value="{{ $checkout }}"
-                                                        name="check_out" placeholder="check_out">
+                                                        value="{{ $checkout }}" name="check_out"
+                                                        placeholder="check_out">
                                                 </div>
 
-                                                <div class="col-md-6 form-group p_star"  style="display:none;"  >
+                                                <div class="col-md-6 form-group p_star" style="display:none;">
                                                     <label for="">total_harga</label>
                                                     <input type="text" class="form-control" id="first"
                                                         value="{{ $homestay->harga * $numberOfDays }}"
                                                         name="total_harga" placeholder="Nama depan">
                                                 </div>
 
-                                                <div class="col-md-6 form-group p_star"  style="display:none;"  >
+                                                <div class="col-md-6 form-group p_star" style="display:none;">
                                                     <label for="">biaya_admin</label>
                                                     <input type="text" class="form-control" id="first"
-                                                        value="{{ $homestay->harga * 0.10 }}"
-                                                        name="biaya_admin" placeholder="Nama depan">
+                                                        value="{{ $homestay->harga * 0.1 }}" name="biaya_admin"
+                                                        placeholder="Nama depan">
                                                 </div>
 
 
-                                                <div class="col-md-6 form-group p_star"  style="display:none;"  >
+                                                <div class="col-md-6 form-group p_star" style="display:none;">
                                                     <label for="">total_masa_inap</label>
                                                     <input type="text" class="form-control" id="first"
-                                                        value="{{ $numberOfDays }}"
-                                                        name="total_masa_inap" placeholder="Nama depan">
+                                                        value="{{ $numberOfDays }}" name="total_masa_inap"
+                                                        placeholder="Nama depan">
                                                 </div>
-                                                
+
                                                 <div class="col-md-6 form-group p_star">
                                                     <label for="">Nomor Telepon</label>
                                                     <input type="text" class="form-control" id="number"
@@ -143,74 +143,82 @@
                                                         name="email" placeholder="Alamat email">
                                                 </div>
                                                 <div class="col-md-6 form-group p_star">
-                                                        <label for="">Isi jumlah Peserta</label>
-                                                        <input type="number" class="form-control" id="first"
-                                                            name="name" placeholder="Jumlah Peserta">
+                                                    <label for="">Isi jumlah Peserta</label>
+                                                    <input type="number" class="form-control" id="first"
+                                                        name="name" placeholder="Jumlah Peserta">
                                                 </div>
                                             </div>
                                             <div class="">
-                                                    <!-- Default unchecked -->
-                                                    <div class="dropdown">
-                                                        <label
-                                                            class="dropdown-label  text-truncate border rounded">Pilih
-                                                            Wisata</label>
+                                                <!-- Default unchecked -->
+                                                <div class="dropdown">
+                                                    <label class="dropdown-label  text-truncate border rounded">Pilih
+                                                        Wisata</label>
 
-                                                        <div class="dropdown-list">
-                                                            <div class="checkbox">
-                                                                <input type="checkbox" name="dropdown-group-all"
-                                                                    class="check-all checkbox-custom "
-                                                                    id="checkbox-main" />
-                                                                <label for="checkbox-main"
-                                                                    class="checkbox-custom-label ">Selection
-                                                                    All</label>
-                                                            </div>
-                                                            @foreach ($pakets as $paket)
-                                                                <div class="checkbox">
-                                                                    <input type="checkbox" name="dropdown-group[]" class="check" id="checkbox-custom_{{ $paket->id }}" value="{{ $paket->id }}" />
-                                                                    <label for="checkbox-custom_{{ $paket->id }}" class="checkbox-custom-label">
-                                                                        {{ $paket->judul }} Rp. {{ number_format($paket->harga, 0, ',', '.') }}
-                                                                    </label>
-                                                                </div>
-                                                            @endforeach
+                                                    <div class="dropdown-list">
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" name="dropdown-group-all"
+                                                                class="check-all checkbox-custom "
+                                                                id="checkbox-main" />
+                                                            <label for="checkbox-main"
+                                                                class="checkbox-custom-label ">Selection
+                                                                All</label>
                                                         </div>
-                                                    </div>
-
-                                                    <div class="dropdown">
-                                                        <label
-                                                            class="dropdown-label  text-truncate border rounded">Pilih
-                                                            Service tambahan</label>
-
-                                                        <div class="dropdown-list">
+                                                        @foreach ($pakets as $paket)
                                                             <div class="checkbox">
-                                                                <input type="checkbox" name="dropdown-group-all"
-                                                                    class="check-all checkbox-custom "
-                                                                    id="checkbox-main" />
-                                                                <label for="checkbox-main"
-                                                                    class="checkbox-custom-label ">Selection
-                                                                    All</label>
+                                                                <input type="checkbox" name="dropdown-group[]"
+                                                                    class="check"
+                                                                    id="checkbox-custom_{{ $paket->id }}"
+                                                                    value="{{ $paket->id }}" />
+                                                                <label for="checkbox-custom_{{ $paket->id }}"
+                                                                    class="checkbox-custom-label">
+                                                                    {{ $paket->judul }} Rp.
+                                                                    {{ number_format($paket->harga, 0, ',', '.') }}
+                                                                </label>
                                                             </div>
-                                                            @foreach ($service_tambahan as $service)
-                                                                <div class="checkbox">
-                                                                    <input type="checkbox" name="dropdown-group-service[]" class="check" id="checkbox-custom_{{ $service->id }}" value="{{ $service->id }}" />
-                                                                    <label for="checkbox-custom_{{ $service->id }}" class="checkbox-custom-label">
-                                                                        {{ $service->nama_service_tambahan }} Rp. {{ number_format($service->harga, 0, ',', '.') }}
-                                                                    </label>
-                                                                </div>
-                                                            @endforeach
-                                                        </div>
+                                                        @endforeach
                                                     </div>
-                                                 
-                                            
-                                            <div class="form-group">
-                                                <!-- Default switch -->
-                                                <!-- <div class="custom-control custom-switch">
+                                                </div>
+
+                                                <div class="dropdown">
+                                                    <label class="dropdown-label  text-truncate border rounded">Pilih
+                                                        Service tambahan</label>
+
+                                                    <div class="dropdown-list">
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" name="dropdown-group-all"
+                                                                class="check-all checkbox-custom "
+                                                                id="checkbox-main" />
+                                                            <label for="checkbox-main"
+                                                                class="checkbox-custom-label ">Selection
+                                                                All</label>
+                                                        </div>
+                                                        @foreach ($service_tambahan as $service)
+                                                            <div class="checkbox">
+                                                                <input type="checkbox" name="dropdown-group-service[]"
+                                                                    class="check"
+                                                                    id="checkbox-custom_{{ $service->id }}"
+                                                                    value="{{ $service->id }}" />
+                                                                <label for="checkbox-custom_{{ $service->id }}"
+                                                                    class="checkbox-custom-label">
+                                                                    {{ $service->nama_service_tambahan }} Rp.
+                                                                    {{ number_format($service->harga, 0, ',', '.') }}
+                                                                </label>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <!-- Default switch -->
+                                                    <!-- <div class="custom-control custom-switch">
                                                     <input type="checkbox" class="custom-control-input"
                                                         id="customSwitches" />
                                                     <label class="custom-control-label" for="customSwitches">
                                                         <h3>Paket Wisata</h3>
                                                     </label>
                                                 </div> -->
-                                                <!-- <div class="">
+                                                    <!-- <div class="">
                                                     <div class="dropdown">
                                                         <label
                                                             class="dropdown-label  text-truncate border rounded">Pilih
@@ -257,14 +265,14 @@
                                                             name="name" placeholder="Jumlah Peserta">
                                                     </div>
                                                 </div> -->
-                                                <!-- <div class="custom-control custom-switch">
+                                                    <!-- <div class="custom-control custom-switch">
                                                     <input type="checkbox" class="custom-control-input"
                                                         id="customSwitches" />
                                                     <label class="custom-control-label" for="customSwitches">
                                                         <h3>Service Tamabahan</h3>
                                                     </label>
                                                 </div> -->
-                                                <!-- <div class="">
+                                                    <!-- <div class="">
                                                     <div class="dropdown">
                                                         <label
                                                             class="dropdown-label  text-truncate border rounded">Pilih
@@ -301,7 +309,7 @@
                                                             </div>
                                                         </div>
                                                     </div> -->
-                                                   
+
                                                 </div>
                                                 <!-- <div class="form-group">
                                                     <div class="creat_account">
@@ -338,8 +346,10 @@
                                     </div>
                                     <h2>Rincian Biaya Anda</h2>
                                     <ul class="list list_2">
-                                        <li><a href="">Harga Homestay <span>Rp. {{ number_format($homestay->harga, 0, ',', '.'); }}</span></a></li>
-                                        <li><a href="#">Total <span>Rp. {{ number_format($homestay->harga, 0, ',', '.'); }}</span></a></li>
+                                        <li><a href="">Harga Homestay <span>Rp.
+                                                    {{ number_format($homestay->harga, 0, ',', '.') }}</span></a></li>
+                                        <li><a href="#">Total <span>Rp.
+                                                    {{ number_format($homestay->harga, 0, ',', '.') }}</span></a></li>
                                     </ul>
                                     <div class="creat_account">
                                         <input type="checkbox" id="f-option4" name="selector">
@@ -351,120 +361,122 @@
                                 </div>
                             </div>
                         </div>
-                    </section>
-                    <section id="step-2" class="form-step d-none">
-                        <div class="d-flex flex-wrap">
-                            <div class="col-lg-8">
-                                <center>
-                                    <h3>Pilih Metode</h3>
-                                </center>
-                                <div class="form-pemesan">
-                                    <div class="metode-pembayaran mt-4">
-                                        <div class="pilihan mb-3">
-                                            <div class="e-wallet">
-                                                <h4>Pembayaran E-Wallet</h4>
-                                                <div class="pembayaran ewalet">
-                                                    <h5 class="my-2">Pembayaran Dana</h5>
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="first me-3">
-                                                            <img src="{{ asset('img/logo-pembayaran/Logo_dana_blue.svg.png') }}"
-                                                                alt="Pembayaran Dana" style="max-width: 80px; " />
-                                                        </div>
-                                                        <ul class="m-2">
-                                                            <li>
-                                                                <h6>Nama Dana: Zaid Abdullah Azzam</h6>
-                                                            </li>
-                                                            <li>
-                                                                <h6>Nomor Dana: 089688347718</h6>
-                                                            </li>
-                                                        </ul>
+                </section>
+                <section id="step-2" class="form-step d-none">
+                    <div class="d-flex flex-wrap">
+                        <div class="col-lg-8">
+                            <center>
+                                <h3>Pilih Metode</h3>
+                            </center>
+                            <div class="form-pemesan">
+                                <div class="metode-pembayaran mt-4">
+                                    <div class="pilihan mb-3">
+                                        <div class="e-wallet">
+                                            <h4>Pembayaran E-Wallet</h4>
+                                            <div class="pembayaran ewalet">
+                                                <h5 class="my-2">Pembayaran Dana</h5>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="first me-3">
+                                                        <img src="{{ asset('img/logo-pembayaran/Logo_dana_blue.svg.png') }}"
+                                                            alt="Pembayaran Dana" style="max-width: 80px; " />
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div class="bank">
-                                                <h4>Pembayaran Bank</h4>
-                                                <div class="pembayaran ewalet">
-                                                    <h5 class="my-2">Pembayaran BNI</h5>
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="first me-3">
-                                                            <img src="{{ asset('img/logo-pembayaran/bni.svg') }}"
-                                                                alt="Pembayaran Dana" style="max-width: 80px; " />
-                                                        </div>
-                                                        <ul class="m-2">
-                                                            <li>
-                                                                <h6>Nama BNI: Zaid Abdullah Azzam</h6>
-                                                            </li>
-                                                            <li>
-                                                                <h6>Nomor Rekening: 089688347718</h6>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
+                                                    <ul class="m-2">
+                                                        <li>
+                                                            <h6>Nama Dana: Zaid Abdullah Azzam</h6>
+                                                        </li>
+                                                        <li>
+                                                            <h6>Nomor Dana: 089688347718</h6>
+                                                        </li>
+                                                    </ul>
                                                 </div>
                                             </div>
                                         </div>
                                         <hr>
-                                        <div>
-                                                <div>
-                                                    <h5 class="my-2">Masukan No Ref/No Urut/No Transaksi (Jika tidak
-                                                        ada
-                                                        nama pemilik kartu )</h5>
+                                        <div class="bank">
+                                            <h4>Pembayaran Bank</h4>
+                                            <div class="pembayaran ewalet">
+                                                <h5 class="my-2">Pembayaran BNI</h5>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="first me-3">
+                                                        <img src="{{ asset('img/logo-pembayaran/bni.svg') }}"
+                                                            alt="Pembayaran Dana" style="max-width: 80px; " />
+                                                    </div>
+                                                    <ul class="m-2">
+                                                        <li>
+                                                            <h6>Nama BNI: Zaid Abdullah Azzam</h6>
+                                                        </li>
+                                                        <li>
+                                                            <h6>Nomor Rekening: 089688347718</h6>
+                                                        </li>
+                                                    </ul>
                                                 </div>
-                                                <div class="form-group p_star">
-                                                    <input type="text" class="form-control" id="first"
-                                                        name="no_referensi" placeholder="Masukkan Nomor">
-                                                </div>
-                                                <hr>
-                                                <div>
-                                                    <h5 class="my-2">Upload Bukti Transfer (.jpg, .jpeg,
-                                                        .png)</h5>
-                                                    <label for=""></label>
-                                                </div>
-                                                <div class="form-group p_star">
-                                                    <input type="file" class="form-control" id="first"
-                                                        name="bukti_transaksi" placeholder="Upload Bukti Transfer">
-                                                </div>
-                                            <div class="mt-3">
-                                                <button class="button btn-navigate-form-step" type="button"
-                                                    step_number="1">
-                                                    Kembali
-                                                </button>
                                             </div>
                                         </div>
                                     </div>
+                                    <hr>
+                                    <div>
+                                        <div>
+                                            <h5 class="my-2">Masukan No Ref/No Urut/No Transaksi (Jika tidak
+                                                ada
+                                                nama pemilik kartu )</h5>
+                                        </div>
+                                        <div class="form-group p_star">
+                                            <input type="text" class="form-control" id="first"
+                                                name="no_referensi" placeholder="Masukkan Nomor">
+                                        </div>
+                                        <hr>
+                                        <div>
+                                            <h5 class="my-2">Upload Bukti Transfer (.jpg, .jpeg,
+                                                .png)</h5>
+                                            <label for=""></label>
+                                        </div>
+                                        <div class="form-group p_star">
+                                            <input type="file" class="form-control" id="first"
+                                                name="bukti_transaksi" placeholder="Upload Bukti Transfer">
+                                        </div>
+                                        <div class="mt-3">
+                                            <button class="button btn-navigate-form-step" type="button"
+                                                step_number="1">
+                                                Kembali
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="order_box">
+                                <h2>Rincian Pesanan Anda</h2>
+                                <div class="details_item mb-2">
+                                    <ul class="list list_2">
+                                        <li><a>Check-in <span>{{ $checkin }}</span></a></li>
+                                        <li><a>Check-out<span>{{ $checkout }}</span></a></li>
+                                        <li><a>Total Masa inap <span>{{ $numberOfDays }} Hari</span></a></li>
+                                    </ul>
+                                </div>
+                                <h2>Rincian Biaya Anda</h2>
+                                <ul class="list list_2">
+                                    <li><a href="">Harga Homestay <span>Rp.
+                                                {{ number_format($homestay->harga, 0, ',', '.') }}</span></a></li>
+                                    <li><a href="#">Total <span>Rp.
+                                                {{ number_format($homestay->harga, 0, ',', '.') }}</span></a></li>
+                                </ul>
+                                <div class="creat_account">
+                                    <input type="checkbox" id="f-option4" name="selector">
+                                    <label for="f-option4">Saya telah membaca dan menerima</label>
+                                    <a href="#">syarat & ketentuan*</a>
                                 </div>
 
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="order_box">
-                                    <h2>Rincian Pesanan Anda</h2>
-                                    <div class="details_item mb-2">
-                                        <ul class="list list_2">
-                                            <li><a>Check-in <span>{{ $checkin }}</span></a></li>
-                                            <li><a>Check-out<span>{{ $checkout }}</span></a></li>
-                                            <li><a>Total Masa inap <span>{{ $numberOfDays }} Hari</span></a></li>
-                                        </ul>
-                                    </div>
-                                    <h2>Rincian Biaya Anda</h2>
-                                    <ul class="list list_2">
-                                        <li><a href="">Harga Homestay <span>Rp. {{ number_format($homestay->harga, 0, ',', '.'); }}</span></a></li>
-                                        <li><a href="#">Total <span>Rp. {{ number_format($homestay->harga, 0, ',', '.'); }}</span></a></li>
-                                    </ul>
-                                    <div class="creat_account">
-                                        <input type="checkbox" id="f-option4" name="selector">
-                                        <label for="f-option4">Saya telah membaca dan menerima</label>
-                                        <a href="#">syarat & ketentuan*</a>
-                                    </div>
-
-                                    <button type="submit" class="btn btn-primary"> Lanjutkan Pembayaran</button>
-                                    <!-- <button class="primary-btn button btn-navigate-form-step" type="submit">
+                                <button type="submit" class="btn btn-primary"> Lanjutkan Pembayaran</button>
+                                <!-- <button class="primary-btn button btn-navigate-form-step" type="submit">
                                         Lanjutkan Pembayaran
                                         </button> -->
-                                    </form>
-                                </div>
+                                </form>
                             </div>
                         </div>
-                    </section>
+                    </div>
+                </section>
             </div>
     </section>
     <script src="{{ asset('js/js-pembayaran/main.js') }}"></script>

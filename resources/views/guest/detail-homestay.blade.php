@@ -1,10 +1,10 @@
 <x-guest-layout>
     <!-- Header Start -->
-   
+
     <!-- Header End -->
 
     <!-- Search Start -->
- 
+
     <!-- Search End -->
 
     <div class="container-xxl py-5">
@@ -14,12 +14,14 @@
                     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner ">
                             <div class="carousel-item active">
-                                <img class="img-fluid rounded-2" src="{{ asset('storage/' . $homestay->image) }}" style="width:100%;" alt="">
+                                <img class="img-fluid rounded-2" src="{{ asset('storage/' . $homestay->image) }}"
+                                    style="width:100%;" alt="">
                             </div>
                             @foreach ($list_image_homestay as $image)
-                            <div class="carousel-item">
-                                <img class="img-fluid rounded-2" src="{{ asset('storage/' . $image->image) }}"  style="width:100%;" alt="">
-                            </div>
+                                <div class="carousel-item">
+                                    <img class="img-fluid rounded-2" src="{{ asset('storage/' . $image->image) }}"
+                                        style="width:100%;" alt="">
+                                </div>
                             @endforeach
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
@@ -36,19 +38,21 @@
                 </div>
                 <div class="col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="mx-auto mb-3 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="row align-items-center justify-center">
-                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                            <label for="">Checkin</label>
-                            <input id="datepicker" class="btn-outline-primary" width="276" />
+                        <div class="row align-items-center justify-center">
+                            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                                <label for="">Checkin</label>
+                                <input id="datepicker" class="btn-outline-primary" width="276" />
 
-                            <input id="homestay_id" value="{{ $homestay->id }}" style ="display:none;" class="btn-outline-primary" width="276" />
+                                <input id="homestay_id" value="{{ $homestay->id }}" style="display:none;"
+                                    class="btn-outline-primary" width="276" />
+                            </div>
+                            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                                <label for="">CheckOut</label>
+                                <input id="datepicker1" class="btn-outline-primary" width="276" />
+                            </div>
                         </div>
-                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                            <label for="">CheckOut</label>
-                            <input id="datepicker1" class="btn-outline-primary" width="276" />
-                        </div>
-                    </div>
-                    <a id="bookingLink" class="btn btn-primary justify-center py-3 px-5 mt-3" style="width: 100%" href="{{ url('/beranda/paket/') }}">Pesan</a>
+                        <a id="bookingLink" class="btn btn-primary justify-center py-3 px-5 mt-3" style="width: 100%"
+                            href="{{ url('/beranda/paket/') }}">Pesan</a>
 
                     </div>
                     <iframe class="position-relative rounded w-100 h-80"
@@ -92,10 +96,16 @@
                         </div>
                 </div>
                 <h5 class="mb-3">{{ $homestay->nama }}</h5>
-                <h5 class="text-warning mb-3">Rp. {{ number_format($homestay->harga, 0, ',', '.'); }}</h5>
+                <h5 class="text-warning mb-3">Rp. {{ number_format($homestay->harga, 0, ',', '.') }}</h5>
                 <p><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ $homestay->alamat }}
                 </p>
-                <p>{{ $homestay->deskripsi }}</p>
+                <p>{!! nl2br(e($homestay->deskripsi)) !!}</p>
+                <div>
+                    <label for="" class="fw-bold"> Kapasitas Tamu</label>
+                    <p class="me-2"><i class="fa fa-person text-primary me-2"></i> {{ $homestay->kapasitas_kamar }}
+                        dewasa
+                    </p>
+                </div>
             </div>
 
             <div class=" mx-auto wow fadeInUp bg-white rounded p-3 m-2" data-wow-delay="0.1s" id="tab-fasilitas"
@@ -121,7 +131,7 @@
                                     <div class="icon me-3" style="width: 20px; height: 20px;">
                                         <i class="fa fa-bed text-primary"></i>
                                     </div>
-                                    <span>3 Kamar + Extrabed </span>
+                                    <span>{{ $homestay->jumlah_kamar }} Kamar Tidur</span>
                                 </div>
                             </div>
                         </div>
@@ -132,7 +142,7 @@
                                     <div class="icon me-3" style="width: 20px; height: 20px;">
                                         <i class="fa fa-bath text-primary"></i>
                                     </div>
-                                    <span>2 Kamar mandi + bath up</span>
+                                    <span>Kamar mandi</span>
                                 </div>
                             </div>
                         </div>
@@ -143,18 +153,7 @@
                                     <div class="icon me-3" style="width: 20px; height: 20px;">
                                         <i class="fa-solid fa-warehouse text-primary"></i>
                                     </div>
-                                    <span>Garasi</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
-                            <div class="rounded ">
-                                <div class="d-flex align-items-center bg-white rounded p-2"
-                                    style="border: 1px dashed rgba(0, 185, 142, .3)">
-                                    <div class="icon me-3" style="width: 20px; height: 20px;">
-                                        <i class="fa-solid fa-person-swimming text-primary"></i>
-                                    </div>
-                                    <span>Kolam Renang</span>
+                                    <span>Tempat Parkir</span>
                                 </div>
                             </div>
                         </div>
@@ -187,7 +186,7 @@
                                     <div class="icon me-3" style="width: 20px; height: 20px;">
                                         <i class="fa-solid fa-fan text-primary"></i>
                                     </div>
-                                    <span>AC/Kipas</span>
+                                    <span>Kipas</span>
                                 </div>
                             </div>
                         </div>
@@ -198,86 +197,7 @@
                 style="max-width: 1200px;" id="tab-informasi-umum">
                 <h2 class="mb-3">Kebijakan</h2>
                 <p>Berikut adalah rapihkan kalimat dengan menggunakan list:</p>
-                    {{ $homestay->kebijakan }}
-                <!-- <ul>
-                    <li>
-                        Check-in:
-                        <ul>
-                            <li>Mulai pukul 16.00</li>
-                            <li>Tamu wajib memperlihatkan kartu identitas dengan foto dan kartu kredit pada saat
-                                check-in</li>
-                        </ul>
-                    </li>
-                    <li>
-                        Check-out:
-                        <ul>
-                            <li>Sampai pukul 11.00</li>
-                        </ul>
-                    </li>
-                    <li>
-                        Pembatalan/Prabayar:
-                        <ul>
-                            <li>Kebijakan pembatalan dan pembayaran di muka bervariasi tergantung tipe akomodasi. Harap
-                                masukkan tanggal inap Anda dan periksa ketentuan dari kamar yang Anda butuhkan.</li>
-                        </ul>
-                    </li>
-                    <li>
-                        Kebijakan Anak:
-                        <ul>
-                            <li>Anak-anak bisa menginap.</li>
-                            <li>Anak berusia 18 tahun ke atas dianggap sebagai orang dewasa di akomodasi ini.</li>
-                            <li>Untuk melihat informasi harga dan okupansi yang tepat, mohon tambahkan jumlah dan usia
-                                anak dalam grup Anda di pencarian.</li>
-                        </ul>
-                    </li>
-                    <li>
-                        Kebijakan Ranjang Bayi dan Tempat Tidur Ekstra:
-                        <ul>
-                            <li>0 - 1 tahun</li>
-                            <ul>
-                                <li>Tempat tidur ekstra berdasarkan permintaan</li>
-                                <li> Rp 25.000 per anak, per malam</li>
-                                <li>Ranjang bayi berdasarkan permintaan</li>
-                                <li> Rp 25.000 per anak, per malam</li>
-                            </ul>
-                            <li>2 tahun ke atas</li>
-                            <ul>
-                                <li>Tempat tidur ekstra berdasarkan permintaan</li>
-                                <li>Rp 25.000 per orang, per malam</li>
-                            </ul>
-                            <li>Harga untuk ranjang bayi dan tempat tidur ekstra tidak termasuk dalam harga total, dan
-                                harus dibayar secara terpisah ketika Anda menginap.</li>
-                            <li>Jumlah tempat tidur ekstra dan ranjang bayi yang diperbolehkan tergantung opsi yang Anda
-                                pilih. Harap periksa opsi yang dipilih untuk info selengkapnya.</li>
-                            <li>Semua ranjang bayi dan tempat tidur ekstra tergantung ketersediaan.</li>
-                        </ul>
-                    </li>
-                    <li>
-                        Batasan Usia:
-                        <ul>
-                            <li>Usia minimum untuk check-in adalah 18</li>
-                        </ul>
-                    </li>
-                    <li>
-                        Hewan Peliharaan:
-                        <ul>
-                            <li>Hewan peliharaan diperbolehkan. Mungkin akan dikenakan biaya.</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <p>Kartu yang Diterima di Hotel Ini:</p>
-                        <ul>
-                            <li>Transfer (ATM/SMS Banking/e-Banking/bank teller)</li>
-                            <li>ATM (seluruh ATM dengan logo ATM Bersama, Prima, dan Alto)</li>
-                            <li>Kartu Kredit (Visa/Mastercard)</li>
-                            <li>Internet Banking (BCA KlikPay, Mandiri ClickPay, dan CIMB Clicks)</li>
-                            <li>Indomaret</li>
-                            <li>Alfamart</li>
-                            <li>UANGKU Balance</li>
-                        </ul>
-
-                    </li>
-                </ul> -->
+                {!! nl2br(e($homestay->kebijakan)) !!}
             </div>
             <div class=" mx-auto wow fadeInUp bg-white rounded p-3" data-wow-delay="0.1s" style="max-width: 1200px;"
                 id="tab-ulasan" id="tab-informasi-umum">
@@ -330,15 +250,19 @@
         </div>
     </div>
     <!-- Testimonial End -->
-
-
-
-
-
-
-
-
 </x-guest-layout>
+{{--
+<div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
+    <div class="rounded ">
+        <div class="d-flex align-items-center bg-white rounded p-2"
+            style="border: 1px dashed rgba(0, 185, 142, .3)">
+            <div class="icon me-3" style="width: 20px; height: 20px;">
+                <i class="fa-solid fa-person-swimming text-primary"></i>
+            </div>
+            <span>Kolam Renang</span>
+        </div>
+    </div>
+</div> --}}
 
 <style>
     .gj-icon {
