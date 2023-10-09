@@ -26,8 +26,8 @@
                   <a href="{{ url('/tentang') }}"
                       class="nav-item nav-link{{ Request::is('tentang') ? ' active' : '' }}">Tentang</a>
               </div>
-              <a href="{{ url('/login') }}" class="btn btn-primary px-3 m-1 d-none d-lg-flex">Masuk</a>
-              <a href="{{ url('/register') }}" class="btn btn-secondary px-3 d-none d-lg-flex">Daftar</a>
+              {{-- <a href="{{ url('/login') }}" class="btn btn-primary px-3 m-1 d-none d-lg-flex">Masuk</a>
+              <a href="{{ url('/register') }}" class="btn btn-secondary px-3 d-none d-lg-flex">Daftar</a> --}}
           </div>
 
       </nav>

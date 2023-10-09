@@ -19,7 +19,7 @@ class TransaksiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    { 
+    {
         $transaksi = Transaksi::where('status_payment', 'pending')->with('homestay')->latest()->simplePaginate(5);
         $totalHargaSeluruhTransaksi = 0;
         $jumlahSeluruhTransaksi = $transaksi->count();
@@ -32,7 +32,7 @@ class TransaksiController extends Controller
     }
 
     public function history()
-    { 
+    {
         $transaksi = Transaksi::where('status_payment', 'success')->with('homestay')->latest()->simplePaginate(5);
         $totalHargaSeluruhTransaksi = 0;
         $jumlahSeluruhTransaksi = $transaksi->count();
@@ -53,7 +53,7 @@ class TransaksiController extends Controller
 
 
     public function refund()
-    { 
+    {
         $transaksi = Transaksi::where('status_payment', 'failed')->with('homestay')->latest()->simplePaginate(5);
         $totalHargaSeluruhTransaksi = 0;
         $jumlahSeluruhTransaksi = $transaksi->count();
@@ -68,7 +68,7 @@ class TransaksiController extends Controller
 
 
     public function index_api()
-    { 
+    {
         //include homestay
         $transaksi = Transaksi::with('homestay')->get();
         return response()->json([
@@ -86,7 +86,7 @@ class TransaksiController extends Controller
         $transaksi->save();
         return response()->json(['message' => 'Transaksi updated successfully']);
     }
-    
+
     public function update_trf_with_json(Request $request, $id) {
         // Validate and update the transaksi data
         // Example:
@@ -95,7 +95,7 @@ class TransaksiController extends Controller
         $transaksi->save();
         return response()->json(['message' => 'Transaksi updated successfully']);
     }
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -106,7 +106,7 @@ class TransaksiController extends Controller
     {
 
     }
-    
+
 
     /**
      * Store a newly created resource in storage.
@@ -116,23 +116,9 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'nomor_invoice' => 'required',
-        //     'homestay_id' => 'required',
-        //     'check_in' => 'required',
-        //     'check_out' => 'required',
-        //     'total_harga' => 'required',
-        //     'nama_depan' => 'required',
-        //     'notelp' => 'required',
-        //     'biaya_admin' => 'required',
-        //     'email' => 'required',
-        //     'bukti_transaksi' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-        //     'no_referensi' => 'required',
-        //     'total_masa_inap' => 'required',
-        // ]);
         $generate_number_random = rand(100000,999999);
 
-       
+
 
         $transaksi = new Transaksi([
             'nomor_invoice' => $generate_number_random,
@@ -160,7 +146,7 @@ class TransaksiController extends Controller
 
         $selectedItemsService = (array) $request->input('dropdown-group-service');
 
-        
+
         // Iterate through the selected items and insert them into the database
         $itemsToInsert = [];
         $itemsToInsertService = [];
@@ -183,7 +169,7 @@ class TransaksiController extends Controller
                 'updated_at' => date('Y-m-d H:i:s'),
             ];
         }
-    
+
         // Bulk insert the selected items into the database
         paket_transaksi::insert($itemsToInsert);
         service_transaksi::insert($itemsToInsertService);
@@ -249,7 +235,7 @@ class TransaksiController extends Controller
     }
     public function wisataTransaksi()
     {
-        //show list paket_transaksi wheren transaksi status = pending        
+        //show list paket_transaksi wheren transaksi status = pending
         $paket_transaksi = paket_transaksi::all();
         // show list paket transaksi where transaksi stasu = pending
         return view('admin.transaksi.wisata-transaksi', compact('paket_transaksi'));
@@ -258,10 +244,10 @@ class TransaksiController extends Controller
     {
 
         $total_harga = 0;
-      
-      
+
+
         //show list paket_transaksi wheren transaksi status = pending
-        
+
         $paket_transaksi = paket_transaksi::whereHas('transaksi', function ($query) {
             $query->where('status_payment', 'success');
         })->get();
@@ -277,9 +263,9 @@ class TransaksiController extends Controller
     {
 
         $total_harga = 0;
-      
+
         //show list paket_transaksi wheren transaksi status = pending
-        
+
         $paket_transaksi = service_transaksi::whereHas('transaksi', function ($query) {
             $query->where('status_payment', 'success');
         })->get();
