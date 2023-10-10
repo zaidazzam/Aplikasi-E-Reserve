@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 use App\Models\Homestay;
 use App\Models\Paket;
 use App\Models\Artikel;
+use App\Models\FasilitasHomestay;
 use Carbon\Carbon;
 use App\Models\Transaksi;
 use App\Models\image_homestay;
 use App\Models\paket_transaksi;
 use App\Models\service_tambahan;
 use App\Models\service_transaksi;
-
+use App\Models\Ulasan;
 use Illuminate\Http\Request;
 
 class GuestController extends Controller
@@ -29,10 +30,30 @@ class GuestController extends Controller
         return view ('guest.categori-homestay', compact('homestay'));    }
     public function homestayDetail($id){
         $homestay = Homestay::find($id);
+        $date_disable = Transaksi::where('homestay_id', $id)
+            ->where(function ($query) {
+                $query->where('status_payment', '=', 'pending')
+                    ->orWhere('status_payment', '=', 'success');
+            })
+            ->where(function ($query) {
+                $query->where('check_in', '<=', Carbon::now())
+                    ->where('check_out', '>=', Carbon::now()->subDay())
+                    ->orWhere('check_in', '>=', Carbon::now());
+            })
+            ->get();
+
+        $fasilitas = FasilitasHomestay::with('fasilitas')
+            ->where('homestay_id', $id)
+            ->get();
+
+        $ulasan = Ulasan::where('homestay_id', $id)
+            ->get();
+
         //show aa list image home stay by homestay id @param $id
         $list_image_homestay = image_homestay::where('homestay_id',$id)->get();
-        return view ('guest.detail-homestay',compact('homestay','list_image_homestay'));
+        return view ('guest.detail-homestay',compact('homestay','list_image_homestay', 'date_disable', 'fasilitas', 'ulasan'));
     }
+
     public function checkoutHomestay($idhomestay,$checkin,$checkout){
         $checkin_new = Carbon::parse($checkin); // Replace with your check-in date
         $checkout_new = Carbon::parse($checkout);
@@ -41,8 +62,8 @@ class GuestController extends Controller
         $service_tambahan = service_tambahan::all();
         $homestay = Homestay::find($idhomestay);
         return view ('guest.checkout-homestay',compact('homestay','checkin','checkout','numberOfDays','pakets','service_tambahan'));
-        return view ('guest.checkout-homestay');
     }
+
     public function blog(){
         $artikel = Artikel::all();
 
@@ -84,13 +105,31 @@ class GuestController extends Controller
         $list_service_transaksi = service_transaksi::where('transaksi_id',$id)->get();
         //sum harga in pake where in paket transaksi paket id = paket id
         foreach ($list_paket_transaksi as $paket) {
-            $total_harga += paket::where('id',$paket->paket_id)->sum('harga');
+            $total_harga += paket::where('id',$paket->paket_id)->sum('harga') * $detail_transaksi->peserta;
         }
 
         foreach ($list_service_transaksi as $paket) {
             $total_harga_service += service_tambahan::where('id',$paket->service_tambahan_id)->sum('harga');
         }
 
-        return view ('guest.konfirmasi-pembayaran',compact('detail_transaksi','list_paket_transaksi','total_harga','list_service_transaksi','total_harga_service'));
+        $total_semua_harga = $detail_transaksi->total_harga + $total_harga_service + $total_harga;
+
+        return view ('guest.konfirmasi-pembayaran',compact('detail_transaksi','list_paket_transaksi','total_harga','list_service_transaksi','total_harga_service', 'total_semua_harga'));
+    }
+
+    public function ulasanStore(Request $request, $homestay_id)
+    {
+        $request->validate([
+            'nama' => 'required',
+            'ulasan' => 'required'
+        ]);
+
+        Ulasan::create([
+            'homestay_id' => $homestay_id,
+            'nama' => $request->nama,
+            'ulasan' => $request->ulasan
+        ]);
+
+        return redirect()->route('homestay.detail', $homestay_id)->with('success', 'Paket created successfully.');
     }
 }

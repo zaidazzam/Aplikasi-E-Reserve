@@ -45,7 +45,7 @@
                                 </td>
                                 <td class="text-wrap">{{ $rekomendasi->deskripsi }}</td>
                                 <td class="text-wrap">
-                                    <a href="{{ url('/tambahhomestay/fasilitas/') }}"> <button
+                                    <a href="{{ route('homestays.tambahfasilitas', $rekomendasi->id) }}"> <button
                                             class="btn btn-outline-primary" type="button" id="button-addon1">
                                             Fasilitas</button></a>
                                 </td>

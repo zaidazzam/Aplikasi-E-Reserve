@@ -24,6 +24,7 @@ class Transaksi extends Model
         'status_payment',
         'status_homestay',
         'status_transfer_pemilik',
+        'peserta'
     ];
     
     //include homestay

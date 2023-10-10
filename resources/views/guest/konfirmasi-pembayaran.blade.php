@@ -78,7 +78,7 @@
                         <ul class="list">
                             <li><a><span>Nomor Pesanan</span> : {{ $detail_transaksi->nomor_invoice }}</a></li>
                             <li><a><span>Tanggal</span> : {{ $detail_transaksi->created_at }}</a></li>
-                            <li><a><span>Total</span> : Rp. {{ number_format($detail_transaksi->total_harga, 0, ',', '.'); }}</a></li>
+                            <li><a><span>Total</span> : Rp. {{ number_format($total_semua_harga, 0, ',', '.'); }}</a></li>
                             <li><a><span>Status Pembayaran</span> : {{ $detail_transaksi->status_payment }}</a></li>
                         </ul>
                     </div>
@@ -94,6 +94,9 @@
                     </div>
                 </div>
             </div>
+            <div class="order_box mb-3">
+                <h2>Alert Blablabalabla</h2>
+            </div>
             <div class="order_box">
                 <h2>Rincian Pesanan Anda</h2>
                 <div class="details_item mb-2">
@@ -101,6 +104,9 @@
                         <li><a>Check-in <span>{{ $detail_transaksi->check_in }}</span></a></li>
                         <li><a>Check-out<span>{{ $detail_transaksi->check_out }}</span></a></li>
                         <li><a>Total Masa inap <span>{{ $detail_transaksi->total_masa_inap }} Hari </span></a></li>
+                        @if ($detail_transaksi->peserta)
+                            <li><a>Jumlah Peserta <span>{{ $detail_transaksi->peserta }}</span></a></li>
+                        @endif
                     </ul>
                 </div>
                 <h2>Rincian Biaya Homestay</h2>

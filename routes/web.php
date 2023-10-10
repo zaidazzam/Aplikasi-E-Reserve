@@ -43,6 +43,7 @@ Route::get('/tentang', [GuestController::class, 'tentang']);
 Route::get('/u-homestay', [GuestController::class, 'mitraHomestay']);
 Route::get('/pembayaran/metode', [GuestController::class, 'pilihMetode']);
 Route::get('/transaksi/detail/{id}', [GuestController::class, 'konfirmasiPembayaran'])->name('transaksi.detail');
+Route::post('/homestay/ulasan/{id}', [GuestController::class, 'ulasanStore'])->name('ulasan.store');
 
 
 // Route::get('/dashboard', [DashboardController::class, 'konfirmasiPembayaran']);
@@ -62,7 +63,9 @@ Route::post('/homestays', [HomestayController::class, 'store'])->name('homestays
 // Display the update form
 Route::get('/homestays/{homestays}/edit', [HomestayController::class, 'edit'])->name('homestays.edit');
 Route::put('/homestays/{homestays}', [HomestayController::class, 'update'])->name('homestays.update');
-Route::get('/tambahhomestay/fasilitas/', [HomestayController::class, 'tambahFasilitas'])->middleware(['auth']);
+Route::get('/tambahhomestay/fasilitas/{homestay_id}', [HomestayController::class, 'tambahFasilitas'])->middleware(['auth'])->name('homestays.tambahfasilitas');
+Route::post('/tambahhomestay/fasilitas/{homestay_id}/{fasilitas_id}', [HomestayController::class, 'tambahFasilitasStore'])->middleware(['auth'])->name('homestays.tambahfasilitasStore');
+Route::delete('/tambahhomestay/fasilitas/{homestay_id}/{fasilitas_id}', [HomestayController::class, 'deleteFasilitas'])->middleware(['auth'])->name('homestays.deleteFasilitas');
 Route::get('/tambahhomestay/gambar/{homestays}', [HomestayController::class, 'tambahGambar'])->name('homestays.image')->middleware(['auth']);
 
 Route::delete('/image/delete/{id}', [ImageHomestayController::class, 'destroy'])->name('image.delete')->middleware(['auth']);
@@ -86,8 +89,9 @@ Route::put('/update_trf/{id}',  [TransaksiController::class, 'update_trf_with_js
 
 
 // Fasilitas Homestayd
-Route::get('/datafasilitas', [FasilitasController::class, 'index'])->middleware(['auth']);
+Route::get('/datafasilitas', [FasilitasController::class, 'index'])->middleware(['auth'])->name('fasilitas.index');
 Route::get('/tambahfasilitas', [FasilitasController::class, 'tambahFasilitas'])->middleware(['auth']);
+Route::post('/fasilitas', [FasilitasController::class, 'store'])->middleware(['auth'])->name('fasilitas.store');
 
 // Fasilitas Homestay
 Route::get('/datapaketwisata', [PaketWisataController::class, 'index'])->name('pakets.index')->middleware(['auth']);

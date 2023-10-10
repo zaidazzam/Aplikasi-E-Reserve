@@ -23,23 +23,21 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @forelse ($fasilitas_tidak_punya as $fasilitas)
                                     <tr>
-                                        <td> <strong>Ruang Tamu</strong></td>
-                                        <td class="text-center"> <button type="submit"
-                                                class="btn btn-primary">Tambah</button>
+                                        <td> <strong>{{ $fasilitas->nama }}</strong></td>
+                                        <td class="text-center"> 
+                                            <form action="{{ route('homestays.tambahfasilitasStore', [$homestay_id, $fasilitas->id]) }}" method="POST">
+                                                @csrf
+                                                <button type="submit" class="btn btn-primary">Tambah</button>
+                                            </form>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td> <strong>Media Tv</strong></td>
-                                        <td class="text-center"> <button type="submit"
-                                                class="btn btn-primary">Tambah</button>
-                                        </td>
-                                    </tr>
+                                    @empty
+                                        
+                                    @endforelse
                                 </tbody>
                             </table>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary">Simpan</button>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -58,11 +56,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td> <strong>Ruang Tamu</strong></td>
-                            <td class="text-center"> <button type="submit" class="btn btn-danger">Hapus</button>
-                            </td>
-                        </tr>
+                        @forelse ($fasilitas_punya as $fasilitas)
+                            <tr>
+                                <td> <strong>{{ $fasilitas->nama }}</strong></td>
+                                <td class="text-center">
+                                    <form action="{{ route('homestays.deleteFasilitas', [$homestay_id, $fasilitas->id]) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @empty
+                            
+                        @endforelse
                     </tbody>
                 </table>
             </div>

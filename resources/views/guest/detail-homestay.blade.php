@@ -113,7 +113,7 @@
                 <h2 class="mb-3">Fasilitas</h2>
                 <div class="col-12">
                     <div class="row gy-4">
-                        <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
+                        {{-- <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
                             <div class="rounded ">
                                 <div class="d-flex align-items-center bg-white rounded p-2"
                                     style="border: 1px dashed rgba(0, 185, 142, .3)">
@@ -178,8 +178,8 @@
                                     <span>TV</span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
+                        </div> --}}
+                        {{-- <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
                             <div class="rounded ">
                                 <div class="d-flex align-items-center bg-white rounded p-2"
                                     style="border: 1px dashed rgba(0, 185, 142, .3)">
@@ -189,7 +189,23 @@
                                     <span>Kipas</span>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
+
+                        @forelse ($fasilitas as $data)
+                            <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
+                                <div class="rounded ">
+                                    <div class="d-flex align-items-center bg-white rounded p-2"
+                                        style="border: 1px dashed rgba(0, 185, 142, .3)">
+                                        <div class="icon me-3" style="width: 20px; height: 20px;">
+                                            <img src="{{ asset('storage/' . $data['fasilitas']['icon']) }}" alt="">
+                                        </div>
+                                        <span>{{ $data['fasilitas']['nama'] }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        @empty
+                            
+                        @endforelse
                     </div>
                 </div>
             </div>
@@ -202,48 +218,39 @@
             <div class=" mx-auto wow fadeInUp bg-white rounded p-3" data-wow-delay="0.1s" style="max-width: 1200px;"
                 id="tab-ulasan" id="tab-informasi-umum">
                 <h2 class="mb-3">Ulasan</h2>
+                <div>
+                    <form action="{{ route('ulasan.store', $homestay['id']) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div>
+                            <label for="">Nama</label>
+                            <input type="text" name="nama" id="nama" class="form-control">
+                        </div>
+                        <div>
+                            <label for="">Ulasan</label>
+                            <textarea name="ulasan" id="ulasan" cols="2" rows="10" class="form-control"></textarea>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
                 <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="testimonial-item bg-light rounded p-3">
-                        <div class="bg-white border rounded p-4">
-                            <p>Homestay "Homestay Coffee Garden" adalah tempat yang menyenangkan dengan pemandangan
-                                indah
-                                dan suasana damai. Stafnya ramah dan membantu, kamar bersih dan nyaman, serta sarapan
-                                lezat
-                                dengan pilihan makanan lokal yang autentik. Saya menikmati momen tenang di tepi danau
-                                dan
-                                akan merekomendasikannya kepada orang lain. Terima kasih kepada seluruh tim homestay
-                                yang
-                                membuat pengalaman saya luar biasa!</p>
-                            <div class="d-flex align-items-center">
-                                <img class="img-fluid flex-shrink-0 rounded"
-                                    src="{{ asset('img/testimonial-2.jpg') }}" style="width: 45px; height: 45px;">
-                                <div class="ps-3">
-                                    <h6 class="fw-bold mb-1">Ahmad cool</h6>
+                    @forelse ($ulasan as $data)
+                        <div class="testimonial-item bg-light rounded p-3">
+                            <div class="bg-white border rounded p-4">
+                                <p>{{ $data['ulasan'] }}</p>
+                                <div class="d-flex align-items-center">
+                                    <img class="img-fluid flex-shrink-0 rounded"
+                                        src="{{ asset('img/testimonial-2.jpg') }}" style="width: 45px; height: 45px;">
+                                    <div class="ps-3">
+                                        <h6 class="fw-bold mb-1">{{ $data['nama'] }}</h6>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="testimonial-item bg-light rounded p-3">
-                        <div class="bg-white border rounded p-4">
-                            <p>Homestay "Homestay Coffee Garden" adalah surga bagi para pecinta alam dan petualangan.
-                                Tempatnya
-                                terletak di tengah-tengah kebun dan ladang yang hijau, memberikan suasana pedesaan yang
-                                tenang dan damai. Saya menikmati keindahan alam dan kesegaran udara di sekitarnya.
-                                Pemilik
-                                homestay sangat ramah dan hangat, mereka bahkan mengajak saya untuk mengikuti kegiatan
-                                petani setempat. Pengalaman yang luar biasa dan akan menjadi kenangan tak terlupakan
-                                bagi
-                                saya.
-                            </p>
-                            <div class="d-flex align-items-center">
-                                <img class="img-fluid flex-shrink-0 rounded"
-                                    src="{{ asset('img/testimonial-2.jpg') }}" style="width: 45px; height: 45px;">
-                                <div class="ps-3">
-                                    <h6 class="fw-bold mb-1">Nina Nuni</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @empty
+                        
+                    @endforelse
                 </div>
             </div>
 
@@ -337,11 +344,64 @@
     .clickable {
         cursor: pointer;
     }
+
+    /* ini untuk ui disable di calender */
+    .gj-picker-bootstrap table tr td.disabled div{
+        color: red;
+    }
 </style>
 <!-- About End -->
 
 
+<script>
+    // format datenya adalah m-d-y
+    function dateRangeToList(startDate, endDate) {
+        // Ubah string tanggal awal dan akhir menjadi objek Date
+        startDate = new Date(startDate);
+        endDate = new Date(endDate);
 
+        // Inisialisasi array untuk menyimpan tanggal-tanggal dalam rentang
+        const dateList = [];
+
+        // Loop dari tanggal awal hingga tanggal akhir, termasuk tanggal akhir
+        let currentDate = startDate;
+        while (currentDate <= endDate) {
+            // Tambahkan tanggal ke array dengan format yang diinginkan (dd/mm/yyyy)
+            const day = currentDate.getDate();
+            const month = currentDate.getMonth() + 1; // Bulan dimulai dari 0
+            const year = currentDate.getFullYear();
+            dateList.push(`${month}/${day}/${year}`);
+
+            // Tambahkan satu hari ke tanggal saat ini
+            currentDate.setDate(currentDate.getDate() + 1);
+        }
+
+        return dateList;
+    }
+
+    var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+    $('#datepicker').datepicker().destroy()
+    $('#datepicker1').datepicker().destroy()
+
+    let dateDisable = [];
+
+    @foreach ($date_disable as $data)
+        dateDisable = dateRangeToList('{{ Carbon\Carbon::create($data["check_in"])->format("m-d-Y") }}', '{{ Carbon\Carbon::create($data["check_out"])->format("m-d-Y") }}')
+            .concat(dateDisable)
+    @endforeach
+
+    $('#datepicker').datepicker({
+        uiLibrary: 'bootstrap4',
+        disableDates: dateDisable,
+        minDate: today
+    });
+
+    $('#datepicker1').datepicker({
+        uiLibrary: 'bootstrap4',
+        disableDates: dateDisable,
+        minDate: today
+    });
+</script>
 
 
 

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fasilitas;
+use App\Models\FasilitasHomestay;
 use Illuminate\Http\Request;
 use App\Models\Homestay;
 use App\Models\image_homestay;
+use Illuminate\Support\Facades\Auth;
 
 class HomeStayController extends Controller
 {
@@ -100,10 +103,19 @@ class HomeStayController extends Controller
         return redirect()->route('rekomendasis.index')->with('success', 'Rekomendasi deleted successfully.');
     }
 
-    public function tambahFasilitas()
+    public function tambahFasilitas($homestay_id)
     {
-        return view('admin.homestay.tambah-fasilitas-homestay');
+        $fasilitas_punya = FasilitasHomestay::with('fasilitas')
+            ->where('homestay_id', $homestay_id)
+            ->get()
+            ->pluck('fasilitas');
 
+        $fasilitas_punya_id = $fasilitas_punya->pluck('id');
+
+        $fasilitas_tidak_punya = Fasilitas::whereNotIn('id', $fasilitas_punya_id)
+            ->get();
+
+        return view('admin.homestay.tambah-fasilitas-homestay', compact('fasilitas_punya', 'fasilitas_tidak_punya', 'homestay_id'));
     }
     public function tambahGambar($homestay)
     {
@@ -112,5 +124,24 @@ class HomeStayController extends Controller
         $homestay = Homestay::findOrFail($homestay);
         return view('admin.homestay.tambah-gambar-homestay', compact('image_homestay', 'homestay'));
 
+    }
+
+    public function tambahFasilitasStore($homestay_id, $fasilitas_id)
+    {
+        FasilitasHomestay::create([
+            'homestay_id' => $homestay_id,
+            'fasilitas_id' => $fasilitas_id
+        ]);
+
+        return redirect()->route('homestays.tambahfasilitas', $homestay_id)->with('success', 'add fasilitas successfully.');
+    }
+
+    public function deleteFasilitas($homestay_id, $fasilitas_id)
+    {
+        FasilitasHomestay::where('homestay_id', $homestay_id)
+            ->where('fasilitas_id', $fasilitas_id)
+            ->delete();
+
+        return redirect()->route('homestays.tambahfasilitas', $homestay_id)->with('success', 'fasilitas Deleted successfully.');
     }
 }

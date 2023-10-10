@@ -206,11 +206,13 @@
 
 <script>
     $('#datepicker').datepicker({
-        uiLibrary: 'bootstrap4'
+        uiLibrary: 'bootstrap4',
     });
     $('#datepicker1').datepicker({
-        uiLibrary: 'bootstrap4'
+        uiLibrary: 'bootstrap4',
     });
 </script>
+
+@yield('script')
 
 </html>

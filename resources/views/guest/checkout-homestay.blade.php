@@ -144,8 +144,8 @@
                                                 </div>
                                                 <div class="col-md-6 form-group p_star">
                                                     <label for="">Isi jumlah Peserta</label>
-                                                    <input type="number" class="form-control" id="first"
-                                                        name="name" placeholder="Jumlah Peserta">
+                                                    <input type="number" class="form-control" id="peserta"
+                                                        name="peserta" placeholder="Jumlah Peserta">
                                                 </div>
                                             </div>
                                             <div class="">
@@ -166,9 +166,9 @@
                                                         @foreach ($pakets as $paket)
                                                             <div class="checkbox">
                                                                 <input type="checkbox" name="dropdown-group[]"
-                                                                    class="check"
+                                                                    class="check check_pakets"
                                                                     id="checkbox-custom_{{ $paket->id }}"
-                                                                    value="{{ $paket->id }}" />
+                                                                    value="{{ $paket->id }}"  harga="{{ $paket->harga }}" paket="{{ $paket->judul }}"/>
                                                                 <label for="checkbox-custom_{{ $paket->id }}"
                                                                     class="checkbox-custom-label">
                                                                     {{ $paket->judul }} Rp.
@@ -336,7 +336,7 @@
                             </div>
                             <div class="col-lg-12">
                                 <div class="order_box">
-                                    <h2>Rincian Pesanan Anda</h2>
+                                    {{-- <h2>Rincian Pesanan Anda</h2>
                                     <div class="details_item mb-2">
                                         <ul class="list list_2">
                                             <li><a>Check-in <span>{{ $checkin }}</span></a></li>
@@ -355,9 +355,9 @@
                                         <input type="checkbox" id="f-option4" name="selector">
                                         <label for="f-option4">Saya telah membaca dan menerima</label>
                                         <a href="#">syarat & ketentuan*</a>
-                                    </div>
+                                    </div> --}}
                                     <a class="primary-btn button btn-navigate-form-step" href="#"
-                                        type="button" step_number="2">Lanjutkan Pembayaran</a>
+                                        type="button" step_number="2" id="lanjutkan_pembayaran">Lanjutkan Pembayaran</a>
                                 </div>
                             </div>
                         </div>
@@ -453,13 +453,19 @@
                                         <li><a>Check-in <span>{{ $checkin }}</span></a></li>
                                         <li><a>Check-out<span>{{ $checkout }}</span></a></li>
                                         <li><a>Total Masa inap <span>{{ $numberOfDays }} Hari</span></a></li>
+                                        <li id="rincian_peserta"><a>Jumlah Peserta <span id="value">0</span></a></li>
                                     </ul>
                                 </div>
                                 <h2>Rincian Biaya Anda</h2>
                                 <ul class="list list_2">
                                     <li><a href="">Harga Homestay <span>Rp.
                                                 {{ number_format($homestay->harga, 0, ',', '.') }}</span></a></li>
-                                    <li><a href="#">Total <span>Rp.
+                                </ul>
+                                <ul class="list list_2" id="detail_rincian_pakets">
+                                    
+                                </ul>
+                                <ul class="list list_2">
+                                    <li><a href="#">Total <span id="total_harga_rincian">Rp.
                                                 {{ number_format($homestay->harga, 0, ',', '.') }}</span></a></li>
                                 </ul>
                                 <div class="creat_account">
@@ -600,7 +606,7 @@
 
             function updateStatus(label, result) {
                 if (!result.length) {
-                    label.html('Pilih Paket');
+                    // label.html('Pilih Paket');
                 }
             };
 
@@ -667,6 +673,68 @@
         };
 
         checkboxDropdown('.dropdown');
+
+        function number_format(number, decimals, decPoint, thousandsSep) {
+            number = parseFloat(number);
+
+            if (isNaN(number) || !isFinite(number)) {
+                return '';
+            }
+
+            decimals = !isNaN(decimals) ? parseInt(decimals) : 0;
+            decPoint = typeof decPoint !== 'undefined' ? decPoint : '.';
+            thousandsSep = typeof thousandsSep !== 'undefined' ? thousandsSep : ',';
+
+            var sign = number < 0 ? '-' : '';
+            var integerPart = parseInt(number = Math.abs(+number || 0).toFixed(decimals)) + '';
+            
+            var thousandsFormatted = '';
+            var numLength = integerPart.length;
+
+            for (var i = 0; i < numLength; i++) {
+                thousandsFormatted += integerPart.charAt(i);
+                if ((numLength - i - 1) % 3 === 0 && i < numLength - 1) {
+                    thousandsFormatted += thousandsSep;
+                }
+            }
+
+            var decimalPart = (decimals ? decPoint + Math.abs(number - integerPart).toFixed(decimals).slice(2) : '');
+
+            return sign + thousandsFormatted + decimalPart;
+        }
+
+
+        $('#lanjutkan_pembayaran').click(function(){
+            let total_harga_paket = 0;
+
+            let harga_homestay = {{ $homestay->harga }};
+
+            let masa_inap = {{ $numberOfDays }};
+
+            total_harga_paket += harga_homestay * masa_inap
+
+            let peserta = $('#peserta').val()
+
+            $('#rincian_peserta #value').text(peserta)
+
+            if(peserta == '' || peserta == 0){
+                $('#rincian_peserta').hide()
+            }else{
+                $('#rincian_peserta').show()
+            }
+
+            $('.check_pakets:input:checked').each(function() {
+                let harga = $(this).attr('harga')
+                let judul = $(this).attr('paket')
+                total_harga_paket += Number(peserta) * Number(harga)
+
+                $("#detail_rincian_pakets").html(`
+                    <li><a href="">Harga paket ${judul} <span>Rp. ${number_format(harga, 0, ',', '.')}</span></a></li>
+                `)
+            });
+
+            $('#total_harga_rincian').text("Rp. " + number_format(total_harga_paket, 0, ',', '.'))
+        })
     </script>
 </body>
 

@@ -119,7 +119,6 @@ class TransaksiController extends Controller
         $generate_number_random = rand(100000,999999);
 
 
-
         $transaksi = new Transaksi([
             'nomor_invoice' => $generate_number_random,
             'homestay_id' => $request->homestay_id,
@@ -135,7 +134,8 @@ class TransaksiController extends Controller
             'total_masa_inap' => $request->total_masa_inap,
             'status_payment' => 'pending',
             'status_homestay' => 'open',
-            'status_transfer_pemilik' => 'belum'
+            'status_transfer_pemilik' => 'belum',
+            'peserta' => $request->peserta
         ]);
         if ($request->hasFile('bukti_transaksi')) {
             $imagePath = $request->file('bukti_transaksi')->store('buktitrf_images', 'public');

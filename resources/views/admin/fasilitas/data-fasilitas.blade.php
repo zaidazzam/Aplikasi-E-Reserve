@@ -15,7 +15,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        {{-- <tr>
                             <td>Ruang Tamu</td>
                             <td> <img class="img-fluid-gambar" src="{{ asset('img/header/pemandangan2.svg') }}"
                                     alt="">
@@ -28,7 +28,19 @@
                                     alt="">
                             </td>
                             <td class="text-center"> <button type="submit" class="btn btn-danger">Hapus</button>
-                        </tr>
+                        </tr> --}}
+
+                        @forelse ($fasilitas as $data)
+                            <tr>
+                                <td>{{ $data['nama'] }}</td>
+                                <td> <img class="img-fluid-gambar" src="{{ asset('storage/' . $data['icon']) }}"
+                                        alt="">
+                                </td>
+                                <td class="text-center"> <button type="submit" class="btn btn-danger">Hapus</button>
+                            </tr>
+                        @empty
+                            
+                        @endforelse
 
                     </tbody>
                 </table>
