@@ -181,7 +181,7 @@
                                     mengubah rumah menjadi destinasi homestay yang mengagumkan. Hubungi kami sekarang
                                     untuk info lebih lanjut!</p>
                             </div>
-                            <a href="" class="btn btn-primary py-3 px-4 me-2"><i
+                            <a href="{{ url('/register') }}" class="btn btn-primary py-3 px-4 me-2"><i
                                     class="fa fa-house-user me-2"></i>Daftar</a>
                             <a href="https://api.whatsapp.com/send?phone=6289688347718&text=Halo%21%20Saya%20ingin%20mendapatkan%20informasi%20lebih%20lanjut%20tentang%20U-Homestay%20."
                                 class="btn btn-dark py-3 px-4">

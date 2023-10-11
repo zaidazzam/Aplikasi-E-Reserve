@@ -55,7 +55,7 @@ Route::get('/dashboard', function () {
 
 
 // Homestay //
-Route::get('/datahomestay', [HomestayController::class, 'index'])->name('homestays')->middleware(['auth']);
+Route::get('/datahomestay', [HomestayController::class, 'index'])->name('homestay.index')->middleware(['auth']);
 Route::get('/tambahhomestay', [HomestayController::class, 'create'])->middleware(['auth']);
 Route::post('/homestays', [HomestayController::class, 'store'])->name('homestays.store');
 

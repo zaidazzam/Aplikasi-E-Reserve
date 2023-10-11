@@ -81,7 +81,9 @@
                             </a>
                         </div>
                         <!-- /Logo -->
-                        <h4 class="mb-4">Selamat Datang di Kamojang.id! 👋</h4>
+                        <h5 class="mb-3 text-center">Selamat Datang di Kamojang.id!👋</h5>
+                        <p class="text-center">Login Ini Khusus Untuk Admin & Pemilik Homstay Kamojang.id</p>
+                        <p class="text-center">Customer Tidak Perlu Daftar Maupun Login Untuk Memesan Homestay</p>
 
                         <form method="POST" action="{{ route('login') }}">
                             @csrf

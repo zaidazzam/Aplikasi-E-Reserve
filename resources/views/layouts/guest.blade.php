@@ -64,7 +64,7 @@
                         <h5 class="text-white mb-4">Kontak Kami</h5>
                         <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Jl. Desa Kamojang, Garut</p>
                         <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+62 1345 67890</p>
-                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>ereserve@gmail.com</p>
+                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>idkamojang@gmail.com</p>
                         <div class="d-flex pt-2">
                             <a class="btn btn-outline-light btn-social" href=""><i
                                     class="fab fa-twitter"></i></a>
@@ -78,49 +78,49 @@
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h5 class="text-white mb-4">Tautan Langsung</h5>
-                        <a class="btn btn-link text-white-50" href="{{ url('/beranda/tentang') }}">Tentang</a>
-                        <a class="btn btn-link text-white-50" href="{{ url('/beranda/blog') }}">Blog</a>
-                        <a class="btn btn-link text-white-50" href="{{ url('/beranda/u-homestay') }}">Mitra</a>
-                        <a class="btn btn-link text-white-50" href="">Privacy Policy</a>
-                        <a class="btn btn-link text-white-50" href="">Terms & Condition</a>
+                        <a class="btn btn-link text-white-50" href="{{ url('/tentang') }}">Tentang</a>
+                        <a class="btn btn-link text-white-50" href="{{ url('/blog') }}">Artikel</a>
+                        <a class="btn btn-link text-white-50" href="{{ url('/u-homestay') }}">Mitra</a>
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h5 class="text-white mb-4">Foto Galeri</h5>
                         <div class="row g-2 pt-2">
                             <div class="col-4">
-                                <img class="img-fluid rounded bg-light p-1" src="{{ asset('img/property-1.jpg') }}"
+                                <img class="img-fluid rounded bg-light p-1" src="{{ asset('img/header/fillage.png') }}"
                                     alt="">
                             </div>
                             <div class="col-4">
-                                <img class="img-fluid rounded bg-light p-1" src="{{ asset('img/property-2.jpg') }}"
+                                <img class="img-fluid rounded bg-light p-1"
+                                    src="{{ asset('img/header/jembatan.png') }}" alt="">
+                            </div>
+                            <div class="col-4">
+                                <img class="img-fluid rounded bg-light p-1" src="{{ asset('img/header/Danau.png') }}"
                                     alt="">
                             </div>
                             <div class="col-4">
-                                <img class="img-fluid rounded bg-light p-1" src="{{ asset('img/property-3.jpg') }}"
+                                <img class="img-fluid rounded bg-light p-1" src="{{ asset('img/header/elang.png') }}"
                                     alt="">
                             </div>
                             <div class="col-4">
-                                <img class="img-fluid rounded bg-light p-1" src="{{ asset('img/property-4.jpg') }}"
-                                    alt="">
+                                <img class="img-fluid rounded bg-light p-1"
+                                    src="{{ asset('img/header/fillage.png') }}" alt="">
                             </div>
                             <div class="col-4">
-                                <img class="img-fluid rounded bg-light p-1" src="{{ asset('img/property-5.jpg') }}"
-                                    alt="">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-fluid rounded bg-light p-1" src="{{ asset('img/property-6.jpg') }}"
-                                    alt="">
+                                <img class="img-fluid rounded bg-light p-1"
+                                    src="{{ asset('img/header/jembatan.png') }}" alt="">
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
-                        <h5 class="text-white mb-4">Newsletter</h5>
-                        <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
+                        <h5 class="text-white mb-4">kamojang.id </h5>
+                        <p>"Kamojang.id: Aplikasi Pemesanan Akomodasi Homestay & Penjelajahan Wisata di Desa Laksana
+                            untuk Membantu Pengembangan Ekonomi Lokal dan Menghadirkan Pengalaman Wisata yang Tak
+                            Terlupakan"</p>
                         <div class="position-relative mx-auto" style="max-width: 400px;">
                             <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text"
                                 placeholder="Your email">
                             <button type="button"
-                                class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                                class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">Daftar</button>
                         </div>
                     </div>
                 </div>
@@ -129,14 +129,14 @@
                 <div class="copyright">
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="#">E-Reserve</a>, All Right Reserved.
+                            &copy; <a class="border-bottom" href="#">Kamojang.id</a>, All Right Reserved.
 
                             <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
                             Designed By <a class="border-bottom" href="https://htmlcodex.com">ZaiiDeveloper</a>
                         </div>
                         <div class="col-md-6 text-center text-md-end">
                             <div class="footer-menu">
-                                <a href="{{ url('/beranda') }}">Beranda</a>
+                                <a href="{{ url('/') }}">Beranda</a>
                             </div>
                         </div>
                     </div>
