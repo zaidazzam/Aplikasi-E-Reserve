@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
 class GuestController extends Controller
 {
     public function landing() {
-        $homestay = Homestay::all();
+        $homestay = Homestay::where('status', 'accept')->get();
         $pakets = Paket::all();
         $artikel = Artikel::all();
         return view ('guest.landing-page', compact('homestay','pakets','artikel'));
@@ -59,16 +59,16 @@ class GuestController extends Controller
     public function checkoutHomestay($idhomestay,$checkin,$checkout){
 
         // check data tanggal yang tidak tersedia
-        $checkin = Carbon::createFromFormat('Y-m-d H:i:s', $checkin . ' 00:00:00');
-        $checkout = Carbon::createFromFormat('Y-m-d H:i:s', $checkout .  ' 00:00:00');
+        $checkinNew = Carbon::createFromFormat('Y-m-d H:i:s', $checkin . ' 00:00:00');
+        $checkoutNew = Carbon::createFromFormat('Y-m-d H:i:s', $checkout .  ' 00:00:00');
         $date_disable = Transaksi::where('homestay_id', $idhomestay)
             ->where(function ($query) {
                 $query->where('status_payment', '=', 'pending')
                     ->orWhere('status_payment', '=', 'success');
             })
-            ->where(function ($query) use ($checkin, $checkout) {
-                $query->where('check_in', '<=', $checkin)
-                    ->where('check_out', '>=', $checkout->subDay());
+            ->where(function ($query) use ($checkinNew, $checkoutNew) {
+                $query->where('check_in', '<=', $checkinNew)
+                    ->where('check_out', '>=', $checkoutNew->subDay());
             })
             ->count();
 

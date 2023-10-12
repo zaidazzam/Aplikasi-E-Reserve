@@ -131,6 +131,9 @@
                     @endforeach
                    
                 </ul>
+                <ul class="list list_2">
+                    <li><a href="">Total Seluruh Biaya Pemesanan <span> Rp. {{ number_format($total_semua_harga, 0, ',', '.'); }} </span></a></li>
+                </ul>
             </div>
         </div>
     </section>

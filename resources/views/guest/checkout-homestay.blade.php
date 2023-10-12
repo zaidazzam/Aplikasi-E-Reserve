@@ -195,9 +195,9 @@
                                                         @foreach ($service_tambahan as $service)
                                                             <div class="checkbox">
                                                                 <input type="checkbox" name="dropdown-group-service[]"
-                                                                    class="check"
+                                                                    class="check check_service"
                                                                     id="checkbox-custom_{{ $service->id }}"
-                                                                    value="{{ $service->id }}" />
+                                                                    value="{{ $service->id }}" harga="{{ $service->harga }}" service="{{ $service->judul }}" />
                                                                 <label for="checkbox-custom_{{ $service->id }}"
                                                                     class="checkbox-custom-label">
                                                                     {{ $service->nama_service_tambahan }} Rp.
@@ -731,6 +731,16 @@
                 $("#detail_rincian_pakets").html(`
                     <li><a href="">Harga paket ${judul} <span>Rp. ${number_format(harga, 0, ',', '.')}</span></a></li>
                 `)
+            });
+
+            $('.check_service:input:checked').each(function() {
+                let harga = $(this).attr('harga')
+                let judul = $(this).attr('service')
+                total_harga_paket += Number(harga)
+
+                // $("#detail_rincian_pakets").html(`
+                //     <li><a href="">Harga paket ${judul} <span>Rp. ${number_format(harga, 0, ',', '.')}</span></a></li>
+                // `)
             });
 
             $('#total_harga_rincian').text("Rp. " + number_format(total_harga_paket, 0, ',', '.'))

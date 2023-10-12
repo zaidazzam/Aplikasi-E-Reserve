@@ -62,8 +62,8 @@ Route::get('/tambahhomestay', [HomestayController::class, 'create'])->middleware
 Route::post('/homestays', [HomestayController::class, 'store'])->name('homestays.store');
 
 // Display the update form
-Route::get('/homestays/{homestays}/edit', [HomestayController::class, 'edit'])->name('homestays.edit');
-Route::put('/homestays/{homestays}', [HomestayController::class, 'update'])->name('homestays.update');
+Route::get('/homestays/{homestays}/edit', [HomestayController::class, 'edit'])->name('homestays.edit')->middleware(['auth', 'admin']);
+Route::put('/homestays/{homestays}', [HomestayController::class, 'update'])->name('homestays.update')->middleware(['auth', 'admin']);
 Route::get('/tambahhomestay/fasilitas/{homestay_id}', [HomestayController::class, 'tambahFasilitas'])->middleware(['auth', 'admin'])->name('homestays.tambahfasilitas');
 Route::post('/tambahhomestay/fasilitas/{homestay_id}/{fasilitas_id}', [HomestayController::class, 'tambahFasilitasStore'])->middleware(['auth', 'admin'])->name('homestays.tambahfasilitasStore');
 Route::delete('/tambahhomestay/fasilitas/{homestay_id}/{fasilitas_id}', [HomestayController::class, 'deleteFasilitas'])->middleware(['auth', 'admin'])->name('homestays.deleteFasilitas');
@@ -134,6 +134,8 @@ Route::get('/pemilik-homestay', [PemilikHomestayDashboardController::class, 'ind
 Route::get('/pemilik-homestay/datahomestay', [PemilikHomestayDashboardController::class, 'datahomestay'])->name('pemilik_homestay.datahomestay')->middleware(['auth', 'pemilik_homestay']);
 Route::get('/pemilik-homestay/tambahhomestay', [PemilikHomestayDashboardController::class, 'tambahhomestay'])->name('pemilik_homestay.tambahhomestay')->middleware(['auth', 'pemilik_homestay']);
 Route::post('/pemilik-homestay/tambahhomestay', [PemilikHomestayDashboardController::class, 'storehomestay'])->name('pemilik_homestay.storehomestay')->middleware(['auth', 'pemilik_homestay']);
+Route::get('/pemilik-homestay/edithomestay/{homestay_id}', [PemilikHomestayDashboardController::class, 'showHomestay'])->name('pemilik_homestay.showHomestay')->middleware(['auth', 'pemilik_homestay']);
+Route::put('/pemilik-homestay/edithomestay/{homestay_id}', [PemilikHomestayDashboardController::class, 'updateHomestay'])->name('pemilik_homestay.updateHomestay')->middleware(['auth', 'pemilik_homestay']);
 
 
 

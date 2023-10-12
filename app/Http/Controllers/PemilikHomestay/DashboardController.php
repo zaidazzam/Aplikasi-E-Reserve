@@ -7,6 +7,7 @@ use App\Models\Homestay;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardController extends Controller
 {
@@ -66,5 +67,45 @@ class DashboardController extends Controller
         }
         $rekomendasi->save();
         return redirect()->route('pemilik_homestay.datahomestay')->with('success', 'Homestay created successfully.');
+    }
+
+    public function showHomestay($id)
+    {
+        $rekomendasi = Homestay::findOrFail($id);
+        return view('pemilik-homestay.edit-homestay', compact('rekomendasi'));
+    }
+
+    public function updateHomestay(Request $request, $id)
+    {
+
+        // Validation
+        $request->validate([
+            'harga' => 'required|integer',
+            'image' => 'nullable|file',
+            'nama' => 'required|string',
+            'alamat' => 'required|string',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
+            'deskripsi' => 'required|string',
+            'kebijakan' => 'required|string',
+            'jumlah_kamar' => 'required|integer',
+            'kapasitas_kamar' => 'required|string',
+        ]);
+
+        $rekomendasi = Homestay::findOrFail($id);
+
+        $data = $request->all();
+
+        if($request->hasFile('image')){
+            Storage::delete('public/' . $rekomendasi->image);
+            $imagePath = $request->file('image')->store('homestay_images', 'public');
+            $data['image'] = $imagePath;
+        }else {
+            unset($data['image']);
+        }
+
+        $rekomendasi->update($data);
+
+        return redirect()->route('pemilik_homestay.datahomestay')->with('success', 'Homestay updated successfully.');
     }
 }

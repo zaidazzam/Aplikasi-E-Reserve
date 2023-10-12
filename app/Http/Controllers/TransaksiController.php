@@ -154,8 +154,8 @@ class TransaksiController extends Controller
 
         $idhomestay = $request->homestay_id;
         // check data tanggal yang tidak tersedia
-        $checkin = Carbon::createFromFormat('Y-m-d H:i:s', $request->check_in);
-        $checkout = Carbon::createFromFormat('Y-m-d H:i:s', $request->check_out);
+        $checkin = Carbon::createFromFormat('Y-m-d H:i:s', $request->check_in . ' 00:00:00');
+        $checkout = Carbon::createFromFormat('Y-m-d H:i:s', $request->check_out. ' 00:00:00');
         $date_disable = Transaksi::where('homestay_id', $idhomestay)
             ->where(function ($query) {
                 $query->where('status_payment', '=', 'pending')

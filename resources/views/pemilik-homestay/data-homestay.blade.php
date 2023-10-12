@@ -54,7 +54,7 @@
                                 <td class="text-wrap">{{ $rekomendasi->kebijakan }}</td>
                                 <td><span class="badge bg-label-primary me-1">Rekomendasi</span></td>
                                 <td><span class="badge bg-label-warning me-1">{{ $rekomendasi->status }}</span></td>
-                                <td><a href="{{ route('homestays.edit', ['homestays' => $rekomendasi->id]) }}"> <button
+                                <td><a href="{{ route('pemilik_homestay.showHomestay', $rekomendasi->id) }}"> <button
                                             class="btn btn-outline-primary" type="button"
                                             id="button-addon1">Edit</button></a>
                                 </td>
