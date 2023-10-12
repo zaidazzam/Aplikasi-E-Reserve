@@ -1109,6 +1109,8 @@ video {
   margin-inline-end: 0.5rem;
 }.me-3 {
   margin-inline-end: 0.75rem;
+}.me-4 {
+  margin-inline-end: 1rem;
 }.ml-1 {
   margin-left: 0.25rem;
 }.ml-12 {
@@ -2042,6 +2044,8 @@ video {
   padding-left: 0.5rem;
 }.pl-3 {
   padding-left: 0.75rem;
+}.pl-4 {
+  padding-left: 1rem;
 }.pl-\[1\.5rem\] {
   padding-left: 1.5rem;
 }.pl-\[18px\] {

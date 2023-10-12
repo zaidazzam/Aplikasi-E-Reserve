@@ -99,8 +99,6 @@ function elementBoundEffect(el) {
   }];
 }
 
-
-
 // packages/alpinejs/src/mutation.js
 var onAttributeAddeds = [];
 var onElRemoveds = [];
