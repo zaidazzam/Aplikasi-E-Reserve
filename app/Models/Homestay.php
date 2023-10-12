@@ -21,6 +21,7 @@ class Homestay extends Model
         'jumlah_kamar',
         'kapasitas_kamar',
         'image',
+        'status'
     ];
 
     public function user()

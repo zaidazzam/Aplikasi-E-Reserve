@@ -173,6 +173,20 @@
         </div>
 
         <div class="card-body">
+            <div class="mb-3">
+                <form action="">
+                    <div>
+                        <label for="">Filter By</label>
+                        <select name="filter_by" id="filter_by" class="form-control mb-3">
+                            <option value="tahun">Tahun</option>
+                            <option value="bulan">Bulan</option>
+                            <option value="tanggal">Tanggal</option>
+                        </select>
+                        <input type="date" name="date" id="date" class="form-control mb-3" placeholder="Tanggal">
+                        <button type="submit" class="btn btn-primary w-100">Filter</button>
+                    </div>
+                </form>
+            </div>
             <div class="table-responsive text-nowrap">
                 <table class="table table-bordered mb-4">
                     <thead>
@@ -278,3 +292,22 @@
         height: auto;
     }
 </style>
+
+<script>
+    $('#filter_by').change(function(){
+        let filter_by = $(this).val()
+        $('#date').val("")
+        if(filter_by == 'tahun'){
+            $('#date').attr('type', 'number')
+            $('#date').attr('placeholder', 'Isi Tahun')
+        }else if(filter_by == 'bulan'){
+            $('#date').attr('type', 'month')
+            $('#date').attr('placeholder', 'Isi Bulan')
+        }else if(filter_by == 'tanggal'){
+            $('#date').attr('type', 'date')
+            $('#date').attr('placeholder', 'Isi Tanggal')
+        }
+    })
+
+    $('#filter_by').trigger("change");
+</script>

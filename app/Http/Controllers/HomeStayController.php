@@ -77,22 +77,22 @@ class HomeStayController extends Controller
 
         // Validation
         $request->validate([
-            'users_id' => 'required|exists:users,id',
-            'harga' => 'required|integer',
-            'nama' => 'required|string',
-            'alamat' => 'required|string',
-            'latitude' => 'required|numeric',
-            'longitude' => 'required|numeric',
-            'deskripsi' => 'required|string',
-            'kebijakan' => 'required|string',
-            'jumlah_kamar' => 'required|integer',
-            'kapasitas_kamar' => 'required|string',
+            // 'harga' => 'required|integer',
+            // 'nama' => 'required|string',
+            // 'alamat' => 'required|string',
+            // 'latitude' => 'required|numeric',
+            // 'longitude' => 'required|numeric',
+            // 'deskripsi' => 'required|string',
+            // 'kebijakan' => 'required|string',
+            // 'jumlah_kamar' => 'required|integer',
+            // 'kapasitas_kamar' => 'required|string',
+            'status' => 'required|in:pending,accept,reject'
         ]);
 
         $rekomendasi = Homestay::findOrFail($id);
         $rekomendasi->update($request->all());
 
-        return redirect()->route('rekomendasis.index')->with('success', 'Rekomendasi updated successfully.');
+        return redirect()->route('homestays')->with('success', 'Rekomendasi updated successfully.');
     }
 
     public function destroy($id)

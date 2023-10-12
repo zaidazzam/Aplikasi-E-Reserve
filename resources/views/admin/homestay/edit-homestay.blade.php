@@ -10,7 +10,7 @@
                         <form method="POST" action="{{ route('homestays.update', $rekomendasi) }}">
                             @csrf
                             @method('PUT')
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label for="nama">Nama Homestay:</label>
                                 <input type="text" name="nama" id="nama" class="form-control" required
                                     value="{{ old('nama', $rekomendasi->nama) }}">
@@ -70,6 +70,18 @@
                                 <label for="kapasitas_kamar">Kapasitas Kamar:</label>
                                 <input type="text" name="kapasitas_kamar" id="kapasitas_kamar" class="form-control"
                                     required value="{{ old('kapasitas_kamar', $rekomendasi->kapasitas_kamar) }}">
+                            </div> --}}
+
+                            <div class="form-group">
+                                <label for="jumlah_kamar">Status</label>
+                                {{-- <input type="number" name="jumlah_kamar" id="jumlah_kamar" class="form-control"
+                                    required value="{{ old('jumlah_kamar', $rekomendasi->jumlah_kamar) }}"> --}}
+
+                                    <select name="status" id="status" class="form-control">
+                                        <option value="pending" {{ $rekomendasi->status == 'pending' ? 'selected' : '' }}>Pending</option>
+                                        <option value="accept" {{ $rekomendasi->status == 'accept' ? 'selected' : '' }}>Accept</option>
+                                        <option value="reject" {{ $rekomendasi->status == 'reject' ? 'selected' : '' }}>Reject</option>
+                                    </select>
                             </div>
                             <!-- Add fields for other attributes -->
                             <button type="submit" class="btn btn-primary">Update</button>

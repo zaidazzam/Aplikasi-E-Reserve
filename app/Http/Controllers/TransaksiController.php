@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\service_tambahan;
 
 use App\Models\Paket;
+use Carbon\Carbon;
 
 class TransaksiController extends Controller
 {
@@ -31,19 +32,52 @@ class TransaksiController extends Controller
         return view('admin.transaksi.data-transaksi', compact('transaksi', 'totalHargaSeluruhTransaksi', 'jumlahSeluruhTransaksi','sum_biaya_admin'));
     }
 
-    public function history()
+    public function history(Request $request)
     {
-        $transaksi = Transaksi::where('status_payment', 'success')->with('homestay')->latest()->simplePaginate(5);
+        if($request->filter_by == 'tahun'){
+            $filter_date = Carbon::create($request->date, 1, 1, 0, 0, 0);
+            $endOfDate = Carbon::create($request->date, 12, 31, 23, 59, 59);
+        }else if($request->filter_by == 'bulan'){
+            $filter_date = Carbon::createFromFormat('Y-m', $request->date)->day(1)->startOfDay();
+            $endOfDate = Carbon::createFromFormat('Y-m', $request->date)->endOfMonth();
+        }else if($request->filter_by == 'tanggal'){
+            $filter_date = Carbon::createFromFormat('Y-m-d', $request->date)->startOfDay();
+            $endOfDate = Carbon::createFromFormat('Y-m-d', $request->date)->endOfDay();
+        }
+
+        $transaksi = Transaksi::where('status_payment', 'success')->with('homestay');
+
+        if(isset($filter_date)){
+            $transaksi = $transaksi->where('created_at', '>=', $filter_date)
+                ->where('created_at', '<=', $endOfDate);
+        }
+        
+        $transaksi = $transaksi->latest()->simplePaginate(5);
         $totalHargaSeluruhTransaksi = 0;
         $jumlahSeluruhTransaksi = $transaksi->count();
         foreach ($transaksi as $trx) {
             $totalHargaSeluruhTransaksi += $trx->total_harga;
         }
-        $sum_biaya_admin = Transaksi::where('status_payment', 'success')->sum('biaya_admin');
+        $sum_biaya_admin = Transaksi::where('status_payment', 'success');
+
         // sum where  status_transfer_pemilik belum and status_payment success
-        $sum_biaya_admin_belum = Transaksi::where('status_transfer_pemilik', 'belum')->where('status_payment', 'success')->sum('total_harga');
+        $sum_biaya_admin_belum = Transaksi::where('status_transfer_pemilik', 'belum')->where('status_payment', 'success');
+
         // sum where  status_transfer_pemilik sudah and status_payment success
-        $sum_biaya_admin_sudah = Transaksi::where('status_transfer_pemilik', 'sudah')->where('status_payment', 'success')->sum('total_harga');
+        $sum_biaya_admin_sudah = Transaksi::where('status_transfer_pemilik', 'sudah')->where('status_payment', 'success');
+
+        if(isset($filter_date)){
+            $sum_biaya_admin = $sum_biaya_admin->where('created_at', '>=', $filter_date)
+                ->where('created_at', '<=', $endOfDate);
+            $sum_biaya_admin_belum = $sum_biaya_admin->where('created_at', '>=', $filter_date)
+                ->where('created_at', '<=', $endOfDate);
+            $sum_biaya_admin_sudah = $sum_biaya_admin->where('created_at', '>=', $filter_date)
+                ->where('created_at', '<=', $endOfDate);
+        }
+
+        $sum_biaya_admin = $sum_biaya_admin->sum('biaya_admin');
+        $sum_biaya_admin_belum = $sum_biaya_admin_belum->sum('total_harga');
+        $sum_biaya_admin_sudah = $sum_biaya_admin_sudah->sum('total_harga');
 
         // $sum_biaya_admin_belum = Transaksi::where('status_transfer_pemilik', 'belum')->sum('total_harga');
         // $sum_biaya_admin_sudah = Transaksi::where('status_transfer_pemilik', 'sudah')->sum('total_harga');
@@ -118,6 +152,26 @@ class TransaksiController extends Controller
     {
         $generate_number_random = rand(100000,999999);
 
+        $idhomestay = $request->homestay_id;
+        // check data tanggal yang tidak tersedia
+        $checkin = Carbon::createFromFormat('Y-m-d H:i:s', $request->check_in);
+        $checkout = Carbon::createFromFormat('Y-m-d H:i:s', $request->check_out);
+        $date_disable = Transaksi::where('homestay_id', $idhomestay)
+            ->where(function ($query) {
+                $query->where('status_payment', '=', 'pending')
+                    ->orWhere('status_payment', '=', 'success');
+            })
+            ->where(function ($query) use ($checkin, $checkout) {
+                $query->where('check_in', '<=', $checkin)
+                    ->where('check_out', '>=', $checkout);
+            })
+            ->count();
+
+        if($date_disable >= 1){
+            return redirect()->route('homestay.detail', $idhomestay);
+        }
+
+        // --------
 
         $transaksi = new Transaksi([
             'nomor_invoice' => $generate_number_random,

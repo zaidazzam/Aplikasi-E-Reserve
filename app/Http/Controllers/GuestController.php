@@ -25,9 +25,11 @@ class GuestController extends Controller
 
     public function categori()
     {
-        $homestay = Homestay::all();
+        $homestay = Homestay::where('status', 'accept')->get();
 
-        return view ('guest.categori-homestay', compact('homestay'));    }
+        return view ('guest.categori-homestay', compact('homestay'));    
+    }
+
     public function homestayDetail($id){
         $homestay = Homestay::find($id);
         $date_disable = Transaksi::where('homestay_id', $id)
@@ -55,6 +57,27 @@ class GuestController extends Controller
     }
 
     public function checkoutHomestay($idhomestay,$checkin,$checkout){
+
+        // check data tanggal yang tidak tersedia
+        $checkin = Carbon::createFromFormat('Y-m-d H:i:s', $checkin . ' 00:00:00');
+        $checkout = Carbon::createFromFormat('Y-m-d H:i:s', $checkout .  ' 00:00:00');
+        $date_disable = Transaksi::where('homestay_id', $idhomestay)
+            ->where(function ($query) {
+                $query->where('status_payment', '=', 'pending')
+                    ->orWhere('status_payment', '=', 'success');
+            })
+            ->where(function ($query) use ($checkin, $checkout) {
+                $query->where('check_in', '<=', $checkin)
+                    ->where('check_out', '>=', $checkout->subDay());
+            })
+            ->count();
+
+        if($date_disable >= 1){
+            return redirect()->route('homestay.detail', $idhomestay);
+        }
+
+        // --------
+
         $checkin_new = Carbon::parse($checkin); // Replace with your check-in date
         $checkout_new = Carbon::parse($checkout);
         $numberOfDays = $checkout_new->diffInDays($checkin_new);

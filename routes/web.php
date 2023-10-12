@@ -10,6 +10,7 @@ use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\ImageHomestayController;
+use App\Http\Controllers\PemilikHomestay\DashboardController as PemilikHomestayDashboardController;
 use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\ServiceTambahanController;
 
@@ -125,6 +126,12 @@ Route::post('/service', [ServiceTambahanController::class, 'store'])->name('serv
 Route::get('/service/edit/{id}', [ServiceTambahanController::class, 'edit'])->name('service.edit')->middleware(['auth']);
 Route::put('/service/update/{id}', [ServiceTambahanController::class, 'update'])->name('service.update')->middleware(['auth']);
 Route::delete('/service/delete/{id}', [ServiceTambahanController::class, 'destroy'])->name('service.delete')->middleware(['auth']);
+
+
+Route::get('/pemilik-homestay', [PemilikHomestayDashboardController::class, 'index'])->middleware(['auth'])->name('pemilik_homestay.dashboard');
+Route::get('/pemilik-homestay/datahomestay', [PemilikHomestayDashboardController::class, 'datahomestay'])->name('pemilik_homestay.datahomestay')->middleware(['auth']);
+Route::get('/pemilik-homestay/tambahhomestay', [PemilikHomestayDashboardController::class, 'tambahhomestay'])->name('pemilik_homestay.tambahhomestay')->middleware(['auth']);
+Route::post('/pemilik-homestay/tambahhomestay', [PemilikHomestayDashboardController::class, 'storehomestay'])->name('pemilik_homestay.storehomestay')->middleware(['auth']);
 
 
 
