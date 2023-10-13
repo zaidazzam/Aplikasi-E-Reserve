@@ -461,8 +461,14 @@
                                     <li><a href="">Harga Homestay <span>Rp.
                                                 {{ number_format($homestay->harga, 0, ',', '.') }}</span></a></li>
                                 </ul>
-                                <ul class="list list_2" id="detail_rincian_pakets">
+                                {{-- <ul class="list list_2" id="detail_rincian_pakets">
                                     
+                                </ul> --}}
+                                <ul class="list list_2">
+                                    <li><a href="#">Total Harga Wisata <span id="total_harga_wisata">Rp. 0</span></a></li>
+                                </ul>
+                                <ul class="list list_2">
+                                    <li><a href="#">Total Harga Service <span id="total_harga_service">Rp. 0</span></a></li>
                                 </ul>
                                 <ul class="list list_2">
                                     <li><a href="#">Total <span id="total_harga_rincian">Rp.
@@ -705,13 +711,17 @@
 
 
         $('#lanjutkan_pembayaran').click(function(){
-            let total_harga_paket = 0;
+            let total_harga = 0;
+
+            let total_harga_wisata = 0;
+
+            let total_harga_service = 0;
 
             let harga_homestay = {{ $homestay->harga }};
 
             let masa_inap = {{ $numberOfDays }};
 
-            total_harga_paket += harga_homestay * masa_inap
+            total_harga += harga_homestay * masa_inap
 
             let peserta = $('#peserta').val()
 
@@ -726,24 +736,30 @@
             $('.check_pakets:input:checked').each(function() {
                 let harga = $(this).attr('harga')
                 let judul = $(this).attr('paket')
-                total_harga_paket += Number(peserta) * Number(harga)
+                total_harga_wisata += (Number(peserta) * Number(harga))
 
-                $("#detail_rincian_pakets").html(`
-                    <li><a href="">Harga paket ${judul} <span>Rp. ${number_format(harga, 0, ',', '.')}</span></a></li>
-                `)
-            });
-
-            $('.check_service:input:checked').each(function() {
-                let harga = $(this).attr('harga')
-                let judul = $(this).attr('service')
-                total_harga_paket += Number(harga)
+                console.log(total_harga_wisata);
 
                 // $("#detail_rincian_pakets").html(`
                 //     <li><a href="">Harga paket ${judul} <span>Rp. ${number_format(harga, 0, ',', '.')}</span></a></li>
                 // `)
             });
 
-            $('#total_harga_rincian').text("Rp. " + number_format(total_harga_paket, 0, ',', '.'))
+            $('.check_service:input:checked').each(function() {
+                let harga = $(this).attr('harga')
+                let judul = $(this).attr('service')
+                total_harga_service += Number(harga)
+
+                // $("#detail_rincian_pakets").html(`
+                //     <li><a href="">Harga paket ${judul} <span>Rp. ${number_format(harga, 0, ',', '.')}</span></a></li>
+                // `)
+            });
+
+
+            total_harga += total_harga_wisata + total_harga_service
+            $('#total_harga_wisata').text("Rp. " + number_format(total_harga_wisata, 0, ',', '.'))
+            $('#total_harga_service').text("Rp. " + number_format(total_harga_service, 0, ',', '.'))
+            $('#total_harga_rincian').text("Rp. " + number_format(total_harga, 0, ',', '.'))
         })
     </script>
 </body>

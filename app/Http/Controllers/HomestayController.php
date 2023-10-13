@@ -9,7 +9,7 @@ use App\Models\Homestay;
 use App\Models\image_homestay;
 use Illuminate\Support\Facades\Auth;
 
-class HomeStayController extends Controller
+class HomestayController extends Controller
 {
     public function index()
     {

@@ -16,7 +16,7 @@ class service_transaksi extends Model
 
     public function transaksi()
     {
-        return $this->belongsTo(transaksi::class);
+        return $this->belongsTo(Transaksi::class);
     }
 
     public function service_tambahan()
